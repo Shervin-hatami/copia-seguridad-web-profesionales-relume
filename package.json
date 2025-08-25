@@ -16,7 +16,6 @@
     "lint:fix": "cross-env NODE_OPTIONS=--no-deprecation next lint --fix",
     "payload": "cross-env NODE_OPTIONS=--no-deprecation payload",
     "reinstall": "cross-env NODE_OPTIONS=--no-deprecation rm -rf node_modules && rm pnpm-lock.yaml && pnpm --ignore-workspace install",
-
     "start": "cross-env NODE_OPTIONS=--no-deprecation next start",
     "test": "pnpm run test:int && pnpm run test:e2e",
     "test:e2e": "cross-env NODE_OPTIONS=\"--no-deprecation --no-experimental-strip-types\" pnpm exec playwright test --config=playwright.config.ts",
@@ -26,7 +25,7 @@
     "restore:auto": "node scripts/restore-auto.js"
   },
   "dependencies": {
-    "@hookform/resolvers": "^5.2.1",
+    "@hookform/resolvers": "^3.10.0",
     "@payloadcms/admin-bar": "3.50.0",
     "@payloadcms/db-postgres": "3.50.0",
     "@payloadcms/live-preview-react": "3.50.0",
@@ -59,7 +58,7 @@
     "prism-react-renderer": "^2.3.1",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "react-hook-form": "^7.45.4",
+    "react-hook-form": "^7.62.0",
     "react-icons": "^5.5.0",
     "sharp": "0.34.2",
     "tailwind-merge": "^2.3.0",

@@ -191,7 +191,7 @@ export interface Page {
       | null;
     media?: (number | null) | Media;
   };
-  layout: (Banner1Block | CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock)[];
+  layout: (Banner1Block | CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | MultiForm1Block)[];
   meta?: {
     title?: string | null;
     /**
@@ -758,6 +758,27 @@ export interface Form {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MultiForm1Block".
+ */
+export interface MultiForm1Block {
+  logo: {
+    url?: string | null;
+    src: string;
+    alt?: string | null;
+  };
+  navText?: string | null;
+  navButton?: {
+    title?: string | null;
+    variant?: ('primary' | 'secondary' | 'link') | null;
+    size?: ('default' | 'sm' | 'lg' | 'link') | null;
+  };
+  footerText?: string | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'multiForm1';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1048,6 +1069,7 @@ export interface PagesSelect<T extends boolean = true> {
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
+        multiForm1?: T | MultiForm1BlockSelect<T>;
       };
   meta?:
     | T
@@ -1169,6 +1191,30 @@ export interface FormBlockSelect<T extends boolean = true> {
   form?: T;
   enableIntro?: T;
   introContent?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "MultiForm1Block_select".
+ */
+export interface MultiForm1BlockSelect<T extends boolean = true> {
+  logo?:
+    | T
+    | {
+        url?: T;
+        src?: T;
+        alt?: T;
+      };
+  navText?: T;
+  navButton?:
+    | T
+    | {
+        title?: T;
+        variant?: T;
+        size?: T;
+      };
+  footerText?: T;
   id?: T;
   blockName?: T;
 }
