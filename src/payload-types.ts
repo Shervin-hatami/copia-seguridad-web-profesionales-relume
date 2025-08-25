@@ -191,7 +191,16 @@ export interface Page {
       | null;
     media?: (number | null) | Media;
   };
-  layout: (Banner1Block | CallToActionBlock | ContentBlock | MediaBlock | ArchiveBlock | FormBlock | MultiForm1Block)[];
+  layout: (
+    | Banner1Block
+    | CallToActionBlock
+    | ContentBlock
+    | MediaBlock
+    | ArchiveBlock
+    | FormBlock
+    | MultiForm1Block
+    | Navbar1Block
+  )[];
   meta?: {
     title?: string | null;
     /**
@@ -779,6 +788,84 @@ export interface MultiForm1Block {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Navbar1Block".
+ */
+export interface Navbar1Block {
+  logo?: {
+    useMedia?: boolean | null;
+    media?: (number | null) | Media;
+    url?: string | null;
+    src?: string | null;
+    alt?: string | null;
+  };
+  navLinks?:
+    | {
+        title: string;
+        link?: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+        };
+        subMenuLinks?:
+          | {
+              title: string;
+              link?: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?:
+                  | ({
+                      relationTo: 'pages';
+                      value: number | Page;
+                    } | null)
+                  | ({
+                      relationTo: 'posts';
+                      value: number | Post;
+                    } | null);
+                url?: string | null;
+              };
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  buttons?:
+    | {
+        title: string;
+        link?: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+        };
+        size?: ('sm' | 'lg') | null;
+        variant?: ('default' | 'secondary' | 'ghost' | 'link') | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'navbar1';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1070,6 +1157,7 @@ export interface PagesSelect<T extends boolean = true> {
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
         multiForm1?: T | MultiForm1BlockSelect<T>;
+        navbar1?: T | Navbar1BlockSelect<T>;
       };
   meta?:
     | T
@@ -1215,6 +1303,67 @@ export interface MultiForm1BlockSelect<T extends boolean = true> {
         size?: T;
       };
   footerText?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Navbar1Block_select".
+ */
+export interface Navbar1BlockSelect<T extends boolean = true> {
+  logo?:
+    | T
+    | {
+        useMedia?: T;
+        media?: T;
+        url?: T;
+        src?: T;
+        alt?: T;
+      };
+  navLinks?:
+    | T
+    | {
+        title?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+            };
+        subMenuLinks?:
+          | T
+          | {
+              title?: T;
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                  };
+              id?: T;
+            };
+        id?: T;
+      };
+  buttons?:
+    | T
+    | {
+        title?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+            };
+        size?: T;
+        variant?: T;
+        id?: T;
+      };
   id?: T;
   blockName?: T;
 }

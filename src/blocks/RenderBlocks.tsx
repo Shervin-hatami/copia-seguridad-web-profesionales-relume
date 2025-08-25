@@ -9,6 +9,7 @@ import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { MultiForm1Block } from '@/blocks/MultiForm1/Component'
+import { Navbar1 } from '@/blocks/Navbar1/Component'
 
 const blockComponents = {
   archive: ArchiveBlock,
@@ -18,6 +19,7 @@ const blockComponents = {
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
   multiForm1: MultiForm1Block,
+  navbar1: Navbar1,
 }
 
 export const RenderBlocks: React.FC<{
