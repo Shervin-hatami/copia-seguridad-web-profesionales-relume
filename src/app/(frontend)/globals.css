@@ -47,6 +47,16 @@
     --success: 196 52% 74%;
     --warning: 34 89% 85%;
     --error: 10 100% 86%;
+
+    /* Variables específicas de Relume */
+    --background-primary: 0 0% 100%;
+    --background-secondary: 0 0% 98%;
+    --background-tertiary: 0 0% 96%;
+    --border-primary: 240 6% 80%;
+    --border-secondary: 240 6% 85%;
+    --text-primary: 222.2 84% 4.9%;
+    --text-secondary: 215.4 16.3% 46.9%;
+    --text-tertiary: 215.4 16.3% 56.9%;
   }
 
   [data-theme='dark'] {
@@ -81,6 +91,16 @@
     --success: 196 100% 14%;
     --warning: 34 51% 25%;
     --error: 10 39% 43%;
+
+    /* Variables específicas de Relume para dark mode */
+    --background-primary: 0 0% 0%;
+    --background-secondary: 0 0% 4%;
+    --background-tertiary: 0 0% 8%;
+    --border-primary: 0, 0%, 15%, 0.8;
+    --border-secondary: 0, 0%, 20%, 0.8;
+    --text-primary: 210 40% 98%;
+    --text-secondary: 215 20.2% 65.1%;
+    --text-tertiary: 215 20.2% 55.1%;
   }
 }
 

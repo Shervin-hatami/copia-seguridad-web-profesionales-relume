@@ -93,6 +93,16 @@ const config = {
         success: 'hsl(var(--success))',
         error: 'hsl(var(--error))',
         warning: 'hsl(var(--warning))',
+        
+        /* Colores específicos de Relume */
+        'background-primary': 'hsl(var(--background-primary))',
+        'background-secondary': 'hsl(var(--background-secondary))',
+        'background-tertiary': 'hsl(var(--background-tertiary))',
+        'border-primary': 'hsl(var(--border-primary))',
+        'border-secondary': 'hsl(var(--border-secondary))',
+        'text-primary': 'hsl(var(--text-primary))',
+        'text-secondary': 'hsl(var(--text-secondary))',
+        'text-tertiary': 'hsl(var(--text-tertiary))',
       },
       fontFamily: {
         mono: ['var(--font-geist-mono)'],
