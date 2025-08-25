@@ -86,6 +86,58 @@ export const enum_btns_variant = pgEnum('enum_btns_variant', [
   'ghost',
   'link',
 ])
+export const enum_cat_link_items_5_link_type = pgEnum('enum_cat_link_items_5_link_type', [
+  'reference',
+  'custom',
+])
+export const enum_cat_link_items_5_button_size = pgEnum('enum_cat_link_items_5_button_size', [
+  'sm',
+  'lg',
+])
+export const enum_cat_link_items_5_button_variant = pgEnum('enum_cat_link_items_5_button_variant', [
+  'default',
+  'secondary',
+  'ghost',
+  'link',
+])
+export const enum_featured_links_5_link_type = pgEnum('enum_featured_links_5_link_type', [
+  'reference',
+  'custom',
+])
+export const enum_featured_links_5_button_size = pgEnum('enum_featured_links_5_button_size', [
+  'sm',
+  'lg',
+])
+export const enum_featured_links_5_button_variant = pgEnum('enum_featured_links_5_button_variant', [
+  'default',
+  'secondary',
+  'ghost',
+  'link',
+])
+export const enum_nav_links_5_link_type = pgEnum('enum_nav_links_5_link_type', [
+  'reference',
+  'custom',
+])
+export const enum_nav_links_5_mega_menu_button_size = pgEnum(
+  'enum_nav_links_5_mega_menu_button_size',
+  ['sm', 'lg'],
+)
+export const enum_nav_links_5_mega_menu_button_variant = pgEnum(
+  'enum_nav_links_5_mega_menu_button_variant',
+  ['default', 'secondary', 'ghost', 'link'],
+)
+export const enum_nav_links_5_mega_menu_button_link_type = pgEnum(
+  'enum_nav_links_5_mega_menu_button_link_type',
+  ['reference', 'custom'],
+)
+export const enum_btns_5_size = pgEnum('enum_btns_5_size', ['sm', 'lg'])
+export const enum_btns_5_variant = pgEnum('enum_btns_5_variant', [
+  'default',
+  'secondary',
+  'ghost',
+  'link',
+])
+export const enum_btns_5_link_type = pgEnum('enum_btns_5_link_type', ['reference', 'custom'])
 export const enum_pages_hero_type = pgEnum('enum_pages_hero_type', [
   'none',
   'highImpact',
@@ -161,6 +213,54 @@ export const enum__btns_v_variant = pgEnum('enum__btns_v_variant', [
   'ghost',
   'link',
 ])
+export const enum__cat_link_items_5_v_link_type = pgEnum('enum__cat_link_items_5_v_link_type', [
+  'reference',
+  'custom',
+])
+export const enum__cat_link_items_5_v_button_size = pgEnum('enum__cat_link_items_5_v_button_size', [
+  'sm',
+  'lg',
+])
+export const enum__cat_link_items_5_v_button_variant = pgEnum(
+  'enum__cat_link_items_5_v_button_variant',
+  ['default', 'secondary', 'ghost', 'link'],
+)
+export const enum__featured_links_5_v_link_type = pgEnum('enum__featured_links_5_v_link_type', [
+  'reference',
+  'custom',
+])
+export const enum__featured_links_5_v_button_size = pgEnum('enum__featured_links_5_v_button_size', [
+  'sm',
+  'lg',
+])
+export const enum__featured_links_5_v_button_variant = pgEnum(
+  'enum__featured_links_5_v_button_variant',
+  ['default', 'secondary', 'ghost', 'link'],
+)
+export const enum__nav_links_5_v_link_type = pgEnum('enum__nav_links_5_v_link_type', [
+  'reference',
+  'custom',
+])
+export const enum__nav_links_5_v_mega_menu_button_size = pgEnum(
+  'enum__nav_links_5_v_mega_menu_button_size',
+  ['sm', 'lg'],
+)
+export const enum__nav_links_5_v_mega_menu_button_variant = pgEnum(
+  'enum__nav_links_5_v_mega_menu_button_variant',
+  ['default', 'secondary', 'ghost', 'link'],
+)
+export const enum__nav_links_5_v_mega_menu_button_link_type = pgEnum(
+  'enum__nav_links_5_v_mega_menu_button_link_type',
+  ['reference', 'custom'],
+)
+export const enum__btns_5_v_size = pgEnum('enum__btns_5_v_size', ['sm', 'lg'])
+export const enum__btns_5_v_variant = pgEnum('enum__btns_5_v_variant', [
+  'default',
+  'secondary',
+  'ghost',
+  'link',
+])
+export const enum__btns_5_v_link_type = pgEnum('enum__btns_5_v_link_type', ['reference', 'custom'])
 export const enum__pages_v_version_hero_type = pgEnum('enum__pages_v_version_hero_type', [
   'none',
   'highImpact',
@@ -554,6 +654,170 @@ export const pages_blocks_navbar1 = pgTable(
       columns: [columns['_parentID']],
       foreignColumns: [pages.id],
       name: 'pages_blocks_navbar1_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+)
+
+export const cat_link_items_5 = pgTable(
+  'cat_link_items_5',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: varchar('_parent_id').notNull(),
+    id: varchar('id').primaryKey(),
+    link_type: enum_cat_link_items_5_link_type('link_type').default('reference'),
+    link_newTab: boolean('link_new_tab'),
+    link_url: varchar('link_url'),
+    image_src: varchar('image_src'),
+    image_alt: varchar('image_alt'),
+    title: varchar('title'),
+    description: varchar('description'),
+    button_title: varchar('button_title'),
+    button_size: enum_cat_link_items_5_button_size('button_size').default('sm'),
+    button_variant: enum_cat_link_items_5_button_variant('button_variant').default('default'),
+  },
+  (columns) => ({
+    _orderIdx: index('cat_link_items_5_order_idx').on(columns._order),
+    _parentIDIdx: index('cat_link_items_5_parent_id_idx').on(columns._parentID),
+    _parentIDFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [cat_links_5.id],
+      name: 'cat_link_items_5_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+)
+
+export const cat_links_5 = pgTable(
+  'cat_links_5',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: varchar('_parent_id').notNull(),
+    id: varchar('id').primaryKey(),
+    title: varchar('title'),
+  },
+  (columns) => ({
+    _orderIdx: index('cat_links_5_order_idx').on(columns._order),
+    _parentIDIdx: index('cat_links_5_parent_id_idx').on(columns._parentID),
+    _parentIDFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [nav_links_5.id],
+      name: 'cat_links_5_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+)
+
+export const featured_links_5 = pgTable(
+  'featured_links_5',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: varchar('_parent_id').notNull(),
+    id: varchar('id').primaryKey(),
+    link_type: enum_featured_links_5_link_type('link_type').default('reference'),
+    link_newTab: boolean('link_new_tab'),
+    link_url: varchar('link_url'),
+    image_src: varchar('image_src'),
+    image_alt: varchar('image_alt'),
+    title: varchar('title'),
+    description: varchar('description'),
+    button_title: varchar('button_title'),
+    button_size: enum_featured_links_5_button_size('button_size').default('sm'),
+    button_variant: enum_featured_links_5_button_variant('button_variant').default('default'),
+  },
+  (columns) => ({
+    _orderIdx: index('featured_links_5_order_idx').on(columns._order),
+    _parentIDIdx: index('featured_links_5_parent_id_idx').on(columns._parentID),
+    _parentIDFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [nav_links_5.id],
+      name: 'featured_links_5_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+)
+
+export const nav_links_5 = pgTable(
+  'nav_links_5',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: varchar('_parent_id').notNull(),
+    id: varchar('id').primaryKey(),
+    title: varchar('title'),
+    link_type: enum_nav_links_5_link_type('link_type').default('reference'),
+    link_newTab: boolean('link_new_tab'),
+    link_url: varchar('link_url'),
+    megaMenu_featuredSections_title: varchar('mega_menu_featured_sections_title'),
+    megaMenu_button_title: varchar('mega_menu_button_title'),
+    megaMenu_button_size:
+      enum_nav_links_5_mega_menu_button_size('mega_menu_button_size').default('sm'),
+    megaMenu_button_variant: enum_nav_links_5_mega_menu_button_variant(
+      'mega_menu_button_variant',
+    ).default('default'),
+    megaMenu_button_link_type: enum_nav_links_5_mega_menu_button_link_type(
+      'mega_menu_button_link_type',
+    ).default('reference'),
+    megaMenu_button_link_newTab: boolean('mega_menu_button_link_new_tab'),
+    megaMenu_button_link_url: varchar('mega_menu_button_link_url'),
+  },
+  (columns) => ({
+    _orderIdx: index('nav_links_5_order_idx').on(columns._order),
+    _parentIDIdx: index('nav_links_5_parent_id_idx').on(columns._parentID),
+    _parentIDFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [pages_blocks_navbar5.id],
+      name: 'nav_links_5_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+)
+
+export const btns_5 = pgTable(
+  'btns_5',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: varchar('_parent_id').notNull(),
+    id: varchar('id').primaryKey(),
+    title: varchar('title'),
+    size: enum_btns_5_size('size').default('sm'),
+    variant: enum_btns_5_variant('variant').default('default'),
+    link_type: enum_btns_5_link_type('link_type').default('reference'),
+    link_newTab: boolean('link_new_tab'),
+    link_url: varchar('link_url'),
+  },
+  (columns) => ({
+    _orderIdx: index('btns_5_order_idx').on(columns._order),
+    _parentIDIdx: index('btns_5_parent_id_idx').on(columns._parentID),
+    _parentIDFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [pages_blocks_navbar5.id],
+      name: 'btns_5_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+)
+
+export const pages_blocks_navbar5 = pgTable(
+  'pages_blocks_navbar5',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: integer('_parent_id').notNull(),
+    _path: text('_path').notNull(),
+    id: varchar('id').primaryKey(),
+    logo_useMedia: boolean('logo_use_media').default(false),
+    logo_media: integer('logo_media_id').references(() => media.id, {
+      onDelete: 'set null',
+    }),
+    logo_url: varchar('logo_url'),
+    logo_src: varchar('logo_src'),
+    logo_alt: varchar('logo_alt'),
+    blockName: varchar('block_name'),
+  },
+  (columns) => ({
+    _orderIdx: index('pages_blocks_navbar5_order_idx').on(columns._order),
+    _parentIDIdx: index('pages_blocks_navbar5_parent_id_idx').on(columns._parentID),
+    _pathIdx: index('pages_blocks_navbar5_path_idx').on(columns._path),
+    pages_blocks_navbar5_logo_logo_media_idx: index('pages_blocks_navbar5_logo_logo_media_idx').on(
+      columns.logo_media,
+    ),
+    _parentIdFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [pages.id],
+      name: 'pages_blocks_navbar5_parent_id_fk',
     }).onDelete('cascade'),
   }),
 )
@@ -1005,6 +1269,176 @@ export const _pages_v_blocks_navbar1 = pgTable(
       columns: [columns['_parentID']],
       foreignColumns: [_pages_v.id],
       name: '_pages_v_blocks_navbar1_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+)
+
+export const _cat_link_items_5_v = pgTable(
+  '_cat_link_items_5_v',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: integer('_parent_id').notNull(),
+    id: serial('id').primaryKey(),
+    link_type: enum__cat_link_items_5_v_link_type('link_type').default('reference'),
+    link_newTab: boolean('link_new_tab'),
+    link_url: varchar('link_url'),
+    image_src: varchar('image_src'),
+    image_alt: varchar('image_alt'),
+    title: varchar('title'),
+    description: varchar('description'),
+    button_title: varchar('button_title'),
+    button_size: enum__cat_link_items_5_v_button_size('button_size').default('sm'),
+    button_variant: enum__cat_link_items_5_v_button_variant('button_variant').default('default'),
+    _uuid: varchar('_uuid'),
+  },
+  (columns) => ({
+    _orderIdx: index('_cat_link_items_5_v_order_idx').on(columns._order),
+    _parentIDIdx: index('_cat_link_items_5_v_parent_id_idx').on(columns._parentID),
+    _parentIDFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [_cat_links_5_v.id],
+      name: '_cat_link_items_5_v_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+)
+
+export const _cat_links_5_v = pgTable(
+  '_cat_links_5_v',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: integer('_parent_id').notNull(),
+    id: serial('id').primaryKey(),
+    title: varchar('title'),
+    _uuid: varchar('_uuid'),
+  },
+  (columns) => ({
+    _orderIdx: index('_cat_links_5_v_order_idx').on(columns._order),
+    _parentIDIdx: index('_cat_links_5_v_parent_id_idx').on(columns._parentID),
+    _parentIDFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [_nav_links_5_v.id],
+      name: '_cat_links_5_v_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+)
+
+export const _featured_links_5_v = pgTable(
+  '_featured_links_5_v',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: integer('_parent_id').notNull(),
+    id: serial('id').primaryKey(),
+    link_type: enum__featured_links_5_v_link_type('link_type').default('reference'),
+    link_newTab: boolean('link_new_tab'),
+    link_url: varchar('link_url'),
+    image_src: varchar('image_src'),
+    image_alt: varchar('image_alt'),
+    title: varchar('title'),
+    description: varchar('description'),
+    button_title: varchar('button_title'),
+    button_size: enum__featured_links_5_v_button_size('button_size').default('sm'),
+    button_variant: enum__featured_links_5_v_button_variant('button_variant').default('default'),
+    _uuid: varchar('_uuid'),
+  },
+  (columns) => ({
+    _orderIdx: index('_featured_links_5_v_order_idx').on(columns._order),
+    _parentIDIdx: index('_featured_links_5_v_parent_id_idx').on(columns._parentID),
+    _parentIDFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [_nav_links_5_v.id],
+      name: '_featured_links_5_v_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+)
+
+export const _nav_links_5_v = pgTable(
+  '_nav_links_5_v',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: integer('_parent_id').notNull(),
+    id: serial('id').primaryKey(),
+    title: varchar('title'),
+    link_type: enum__nav_links_5_v_link_type('link_type').default('reference'),
+    link_newTab: boolean('link_new_tab'),
+    link_url: varchar('link_url'),
+    megaMenu_featuredSections_title: varchar('mega_menu_featured_sections_title'),
+    megaMenu_button_title: varchar('mega_menu_button_title'),
+    megaMenu_button_size:
+      enum__nav_links_5_v_mega_menu_button_size('mega_menu_button_size').default('sm'),
+    megaMenu_button_variant: enum__nav_links_5_v_mega_menu_button_variant(
+      'mega_menu_button_variant',
+    ).default('default'),
+    megaMenu_button_link_type: enum__nav_links_5_v_mega_menu_button_link_type(
+      'mega_menu_button_link_type',
+    ).default('reference'),
+    megaMenu_button_link_newTab: boolean('mega_menu_button_link_new_tab'),
+    megaMenu_button_link_url: varchar('mega_menu_button_link_url'),
+    _uuid: varchar('_uuid'),
+  },
+  (columns) => ({
+    _orderIdx: index('_nav_links_5_v_order_idx').on(columns._order),
+    _parentIDIdx: index('_nav_links_5_v_parent_id_idx').on(columns._parentID),
+    _parentIDFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [_pages_v_blocks_navbar5.id],
+      name: '_nav_links_5_v_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+)
+
+export const _btns_5_v = pgTable(
+  '_btns_5_v',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: integer('_parent_id').notNull(),
+    id: serial('id').primaryKey(),
+    title: varchar('title'),
+    size: enum__btns_5_v_size('size').default('sm'),
+    variant: enum__btns_5_v_variant('variant').default('default'),
+    link_type: enum__btns_5_v_link_type('link_type').default('reference'),
+    link_newTab: boolean('link_new_tab'),
+    link_url: varchar('link_url'),
+    _uuid: varchar('_uuid'),
+  },
+  (columns) => ({
+    _orderIdx: index('_btns_5_v_order_idx').on(columns._order),
+    _parentIDIdx: index('_btns_5_v_parent_id_idx').on(columns._parentID),
+    _parentIDFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [_pages_v_blocks_navbar5.id],
+      name: '_btns_5_v_parent_id_fk',
+    }).onDelete('cascade'),
+  }),
+)
+
+export const _pages_v_blocks_navbar5 = pgTable(
+  '_pages_v_blocks_navbar5',
+  {
+    _order: integer('_order').notNull(),
+    _parentID: integer('_parent_id').notNull(),
+    _path: text('_path').notNull(),
+    id: serial('id').primaryKey(),
+    logo_useMedia: boolean('logo_use_media').default(false),
+    logo_media: integer('logo_media_id').references(() => media.id, {
+      onDelete: 'set null',
+    }),
+    logo_url: varchar('logo_url'),
+    logo_src: varchar('logo_src'),
+    logo_alt: varchar('logo_alt'),
+    _uuid: varchar('_uuid'),
+    blockName: varchar('block_name'),
+  },
+  (columns) => ({
+    _orderIdx: index('_pages_v_blocks_navbar5_order_idx').on(columns._order),
+    _parentIDIdx: index('_pages_v_blocks_navbar5_parent_id_idx').on(columns._parentID),
+    _pathIdx: index('_pages_v_blocks_navbar5_path_idx').on(columns._path),
+    _pages_v_blocks_navbar5_logo_logo_media_idx: index(
+      '_pages_v_blocks_navbar5_logo_logo_media_idx',
+    ).on(columns.logo_media),
+    _parentIdFk: foreignKey({
+      columns: [columns['_parentID']],
+      foreignColumns: [_pages_v.id],
+      name: '_pages_v_blocks_navbar5_parent_id_fk',
     }).onDelete('cascade'),
   }),
 )
@@ -2555,6 +2989,68 @@ export const relations_pages_blocks_navbar1 = relations(pages_blocks_navbar1, ({
     relationName: 'buttons',
   }),
 }))
+export const relations_cat_link_items_5 = relations(cat_link_items_5, ({ one }) => ({
+  _parentID: one(cat_links_5, {
+    fields: [cat_link_items_5._parentID],
+    references: [cat_links_5.id],
+    relationName: 'links',
+  }),
+}))
+export const relations_cat_links_5 = relations(cat_links_5, ({ one, many }) => ({
+  _parentID: one(nav_links_5, {
+    fields: [cat_links_5._parentID],
+    references: [nav_links_5.id],
+    relationName: 'megaMenu_categoryLinks',
+  }),
+  links: many(cat_link_items_5, {
+    relationName: 'links',
+  }),
+}))
+export const relations_featured_links_5 = relations(featured_links_5, ({ one }) => ({
+  _parentID: one(nav_links_5, {
+    fields: [featured_links_5._parentID],
+    references: [nav_links_5.id],
+    relationName: 'megaMenu_featuredSections_links',
+  }),
+}))
+export const relations_nav_links_5 = relations(nav_links_5, ({ one, many }) => ({
+  _parentID: one(pages_blocks_navbar5, {
+    fields: [nav_links_5._parentID],
+    references: [pages_blocks_navbar5.id],
+    relationName: 'links',
+  }),
+  megaMenu_categoryLinks: many(cat_links_5, {
+    relationName: 'megaMenu_categoryLinks',
+  }),
+  megaMenu_featuredSections_links: many(featured_links_5, {
+    relationName: 'megaMenu_featuredSections_links',
+  }),
+}))
+export const relations_btns_5 = relations(btns_5, ({ one }) => ({
+  _parentID: one(pages_blocks_navbar5, {
+    fields: [btns_5._parentID],
+    references: [pages_blocks_navbar5.id],
+    relationName: 'buttons',
+  }),
+}))
+export const relations_pages_blocks_navbar5 = relations(pages_blocks_navbar5, ({ one, many }) => ({
+  _parentID: one(pages, {
+    fields: [pages_blocks_navbar5._parentID],
+    references: [pages.id],
+    relationName: '_blocks_navbar5',
+  }),
+  logo_media: one(media, {
+    fields: [pages_blocks_navbar5.logo_media],
+    references: [media.id],
+    relationName: 'logo_media',
+  }),
+  links: many(nav_links_5, {
+    relationName: 'links',
+  }),
+  buttons: many(btns_5, {
+    relationName: 'buttons',
+  }),
+}))
 export const relations_pages_rels = relations(pages_rels, ({ one }) => ({
   parent: one(pages, {
     fields: [pages_rels.parent],
@@ -2609,6 +3105,9 @@ export const relations_pages = relations(pages, ({ one, many }) => ({
   }),
   _blocks_navbar1: many(pages_blocks_navbar1, {
     relationName: '_blocks_navbar1',
+  }),
+  _blocks_navbar5: many(pages_blocks_navbar5, {
+    relationName: '_blocks_navbar5',
   }),
   meta_image: one(media, {
     fields: [pages.meta_image],
@@ -2771,6 +3270,71 @@ export const relations__pages_v_blocks_navbar1 = relations(
     }),
   }),
 )
+export const relations__cat_link_items_5_v = relations(_cat_link_items_5_v, ({ one }) => ({
+  _parentID: one(_cat_links_5_v, {
+    fields: [_cat_link_items_5_v._parentID],
+    references: [_cat_links_5_v.id],
+    relationName: 'links',
+  }),
+}))
+export const relations__cat_links_5_v = relations(_cat_links_5_v, ({ one, many }) => ({
+  _parentID: one(_nav_links_5_v, {
+    fields: [_cat_links_5_v._parentID],
+    references: [_nav_links_5_v.id],
+    relationName: 'megaMenu_categoryLinks',
+  }),
+  links: many(_cat_link_items_5_v, {
+    relationName: 'links',
+  }),
+}))
+export const relations__featured_links_5_v = relations(_featured_links_5_v, ({ one }) => ({
+  _parentID: one(_nav_links_5_v, {
+    fields: [_featured_links_5_v._parentID],
+    references: [_nav_links_5_v.id],
+    relationName: 'megaMenu_featuredSections_links',
+  }),
+}))
+export const relations__nav_links_5_v = relations(_nav_links_5_v, ({ one, many }) => ({
+  _parentID: one(_pages_v_blocks_navbar5, {
+    fields: [_nav_links_5_v._parentID],
+    references: [_pages_v_blocks_navbar5.id],
+    relationName: 'links',
+  }),
+  megaMenu_categoryLinks: many(_cat_links_5_v, {
+    relationName: 'megaMenu_categoryLinks',
+  }),
+  megaMenu_featuredSections_links: many(_featured_links_5_v, {
+    relationName: 'megaMenu_featuredSections_links',
+  }),
+}))
+export const relations__btns_5_v = relations(_btns_5_v, ({ one }) => ({
+  _parentID: one(_pages_v_blocks_navbar5, {
+    fields: [_btns_5_v._parentID],
+    references: [_pages_v_blocks_navbar5.id],
+    relationName: 'buttons',
+  }),
+}))
+export const relations__pages_v_blocks_navbar5 = relations(
+  _pages_v_blocks_navbar5,
+  ({ one, many }) => ({
+    _parentID: one(_pages_v, {
+      fields: [_pages_v_blocks_navbar5._parentID],
+      references: [_pages_v.id],
+      relationName: '_blocks_navbar5',
+    }),
+    logo_media: one(media, {
+      fields: [_pages_v_blocks_navbar5.logo_media],
+      references: [media.id],
+      relationName: 'logo_media',
+    }),
+    links: many(_nav_links_5_v, {
+      relationName: 'links',
+    }),
+    buttons: many(_btns_5_v, {
+      relationName: 'buttons',
+    }),
+  }),
+)
 export const relations__pages_v_rels = relations(_pages_v_rels, ({ one }) => ({
   parent: one(_pages_v, {
     fields: [_pages_v_rels.parent],
@@ -2830,6 +3394,9 @@ export const relations__pages_v = relations(_pages_v, ({ one, many }) => ({
   }),
   _blocks_navbar1: many(_pages_v_blocks_navbar1, {
     relationName: '_blocks_navbar1',
+  }),
+  _blocks_navbar5: many(_pages_v_blocks_navbar5, {
+    relationName: '_blocks_navbar5',
   }),
   version_meta_image: one(media, {
     fields: [_pages_v.version_meta_image],
@@ -3351,6 +3918,19 @@ type DatabaseSchema = {
   enum_btns_link_type: typeof enum_btns_link_type
   enum_btns_size: typeof enum_btns_size
   enum_btns_variant: typeof enum_btns_variant
+  enum_cat_link_items_5_link_type: typeof enum_cat_link_items_5_link_type
+  enum_cat_link_items_5_button_size: typeof enum_cat_link_items_5_button_size
+  enum_cat_link_items_5_button_variant: typeof enum_cat_link_items_5_button_variant
+  enum_featured_links_5_link_type: typeof enum_featured_links_5_link_type
+  enum_featured_links_5_button_size: typeof enum_featured_links_5_button_size
+  enum_featured_links_5_button_variant: typeof enum_featured_links_5_button_variant
+  enum_nav_links_5_link_type: typeof enum_nav_links_5_link_type
+  enum_nav_links_5_mega_menu_button_size: typeof enum_nav_links_5_mega_menu_button_size
+  enum_nav_links_5_mega_menu_button_variant: typeof enum_nav_links_5_mega_menu_button_variant
+  enum_nav_links_5_mega_menu_button_link_type: typeof enum_nav_links_5_mega_menu_button_link_type
+  enum_btns_5_size: typeof enum_btns_5_size
+  enum_btns_5_variant: typeof enum_btns_5_variant
+  enum_btns_5_link_type: typeof enum_btns_5_link_type
   enum_pages_hero_type: typeof enum_pages_hero_type
   enum_pages_status: typeof enum_pages_status
   enum__pages_v_version_hero_links_link_type: typeof enum__pages_v_version_hero_links_link_type
@@ -3371,6 +3951,19 @@ type DatabaseSchema = {
   enum__btns_v_link_type: typeof enum__btns_v_link_type
   enum__btns_v_size: typeof enum__btns_v_size
   enum__btns_v_variant: typeof enum__btns_v_variant
+  enum__cat_link_items_5_v_link_type: typeof enum__cat_link_items_5_v_link_type
+  enum__cat_link_items_5_v_button_size: typeof enum__cat_link_items_5_v_button_size
+  enum__cat_link_items_5_v_button_variant: typeof enum__cat_link_items_5_v_button_variant
+  enum__featured_links_5_v_link_type: typeof enum__featured_links_5_v_link_type
+  enum__featured_links_5_v_button_size: typeof enum__featured_links_5_v_button_size
+  enum__featured_links_5_v_button_variant: typeof enum__featured_links_5_v_button_variant
+  enum__nav_links_5_v_link_type: typeof enum__nav_links_5_v_link_type
+  enum__nav_links_5_v_mega_menu_button_size: typeof enum__nav_links_5_v_mega_menu_button_size
+  enum__nav_links_5_v_mega_menu_button_variant: typeof enum__nav_links_5_v_mega_menu_button_variant
+  enum__nav_links_5_v_mega_menu_button_link_type: typeof enum__nav_links_5_v_mega_menu_button_link_type
+  enum__btns_5_v_size: typeof enum__btns_5_v_size
+  enum__btns_5_v_variant: typeof enum__btns_5_v_variant
+  enum__btns_5_v_link_type: typeof enum__btns_5_v_link_type
   enum__pages_v_version_hero_type: typeof enum__pages_v_version_hero_type
   enum__pages_v_version_status: typeof enum__pages_v_version_status
   enum_posts_status: typeof enum_posts_status
@@ -3396,6 +3989,12 @@ type DatabaseSchema = {
   nav_links: typeof nav_links
   btns: typeof btns
   pages_blocks_navbar1: typeof pages_blocks_navbar1
+  cat_link_items_5: typeof cat_link_items_5
+  cat_links_5: typeof cat_links_5
+  featured_links_5: typeof featured_links_5
+  nav_links_5: typeof nav_links_5
+  btns_5: typeof btns_5
+  pages_blocks_navbar5: typeof pages_blocks_navbar5
   pages: typeof pages
   pages_rels: typeof pages_rels
   _pages_v_version_hero_links: typeof _pages_v_version_hero_links
@@ -3412,6 +4011,12 @@ type DatabaseSchema = {
   _nav_links_v: typeof _nav_links_v
   _btns_v: typeof _btns_v
   _pages_v_blocks_navbar1: typeof _pages_v_blocks_navbar1
+  _cat_link_items_5_v: typeof _cat_link_items_5_v
+  _cat_links_5_v: typeof _cat_links_5_v
+  _featured_links_5_v: typeof _featured_links_5_v
+  _nav_links_5_v: typeof _nav_links_5_v
+  _btns_5_v: typeof _btns_5_v
+  _pages_v_blocks_navbar5: typeof _pages_v_blocks_navbar5
   _pages_v: typeof _pages_v
   _pages_v_rels: typeof _pages_v_rels
   posts_populated_authors: typeof posts_populated_authors
@@ -3471,6 +4076,12 @@ type DatabaseSchema = {
   relations_nav_links: typeof relations_nav_links
   relations_btns: typeof relations_btns
   relations_pages_blocks_navbar1: typeof relations_pages_blocks_navbar1
+  relations_cat_link_items_5: typeof relations_cat_link_items_5
+  relations_cat_links_5: typeof relations_cat_links_5
+  relations_featured_links_5: typeof relations_featured_links_5
+  relations_nav_links_5: typeof relations_nav_links_5
+  relations_btns_5: typeof relations_btns_5
+  relations_pages_blocks_navbar5: typeof relations_pages_blocks_navbar5
   relations_pages_rels: typeof relations_pages_rels
   relations_pages: typeof relations_pages
   relations__pages_v_version_hero_links: typeof relations__pages_v_version_hero_links
@@ -3487,6 +4098,12 @@ type DatabaseSchema = {
   relations__nav_links_v: typeof relations__nav_links_v
   relations__btns_v: typeof relations__btns_v
   relations__pages_v_blocks_navbar1: typeof relations__pages_v_blocks_navbar1
+  relations__cat_link_items_5_v: typeof relations__cat_link_items_5_v
+  relations__cat_links_5_v: typeof relations__cat_links_5_v
+  relations__featured_links_5_v: typeof relations__featured_links_5_v
+  relations__nav_links_5_v: typeof relations__nav_links_5_v
+  relations__btns_5_v: typeof relations__btns_5_v
+  relations__pages_v_blocks_navbar5: typeof relations__pages_v_blocks_navbar5
   relations__pages_v_rels: typeof relations__pages_v_rels
   relations__pages_v: typeof relations__pages_v
   relations_posts_populated_authors: typeof relations_posts_populated_authors

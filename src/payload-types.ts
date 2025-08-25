@@ -200,6 +200,7 @@ export interface Page {
     | FormBlock
     | MultiForm1Block
     | Navbar1Block
+    | Navbar5Block
   )[];
   meta?: {
     title?: string | null;
@@ -866,6 +867,154 @@ export interface Navbar1Block {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Navbar5Block".
+ */
+export interface Navbar5Block {
+  logo?: {
+    useMedia?: boolean | null;
+    media?: (number | null) | Media;
+    url?: string | null;
+    src?: string | null;
+    alt?: string | null;
+  };
+  links?:
+    | {
+        title: string;
+        link?: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+        };
+        megaMenu: {
+          categoryLinks?:
+            | {
+                title: string;
+                links?:
+                  | {
+                      link?: {
+                        type?: ('reference' | 'custom') | null;
+                        newTab?: boolean | null;
+                        reference?:
+                          | ({
+                              relationTo: 'pages';
+                              value: number | Page;
+                            } | null)
+                          | ({
+                              relationTo: 'posts';
+                              value: number | Post;
+                            } | null);
+                        url?: string | null;
+                      };
+                      image: {
+                        src: string;
+                        alt?: string | null;
+                      };
+                      title: string;
+                      description?: string | null;
+                      button?: {
+                        title?: string | null;
+                        size?: ('sm' | 'lg') | null;
+                        variant?: ('default' | 'secondary' | 'ghost' | 'link') | null;
+                      };
+                      id?: string | null;
+                    }[]
+                  | null;
+                id?: string | null;
+              }[]
+            | null;
+          featuredSections: {
+            title: string;
+            links?:
+              | {
+                  link?: {
+                    type?: ('reference' | 'custom') | null;
+                    newTab?: boolean | null;
+                    reference?:
+                      | ({
+                          relationTo: 'pages';
+                          value: number | Page;
+                        } | null)
+                      | ({
+                          relationTo: 'posts';
+                          value: number | Post;
+                        } | null);
+                    url?: string | null;
+                  };
+                  image: {
+                    src: string;
+                    alt?: string | null;
+                  };
+                  title: string;
+                  description?: string | null;
+                  button?: {
+                    title?: string | null;
+                    size?: ('sm' | 'lg') | null;
+                    variant?: ('default' | 'secondary' | 'ghost' | 'link') | null;
+                  };
+                  id?: string | null;
+                }[]
+              | null;
+          };
+          button: {
+            title: string;
+            size?: ('sm' | 'lg') | null;
+            variant?: ('default' | 'secondary' | 'ghost' | 'link') | null;
+            link?: {
+              type?: ('reference' | 'custom') | null;
+              newTab?: boolean | null;
+              reference?:
+                | ({
+                    relationTo: 'pages';
+                    value: number | Page;
+                  } | null)
+                | ({
+                    relationTo: 'posts';
+                    value: number | Post;
+                  } | null);
+              url?: string | null;
+            };
+          };
+        };
+        id?: string | null;
+      }[]
+    | null;
+  buttons?:
+    | {
+        title: string;
+        size?: ('sm' | 'lg') | null;
+        variant?: ('default' | 'secondary' | 'ghost' | 'link') | null;
+        link?: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'navbar5';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "redirects".
  */
 export interface Redirect {
@@ -1158,6 +1307,7 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         multiForm1?: T | MultiForm1BlockSelect<T>;
         navbar1?: T | Navbar1BlockSelect<T>;
+        navbar5?: T | Navbar5BlockSelect<T>;
       };
   meta?:
     | T
@@ -1362,6 +1512,139 @@ export interface Navbar1BlockSelect<T extends boolean = true> {
             };
         size?: T;
         variant?: T;
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Navbar5Block_select".
+ */
+export interface Navbar5BlockSelect<T extends boolean = true> {
+  logo?:
+    | T
+    | {
+        useMedia?: T;
+        media?: T;
+        url?: T;
+        src?: T;
+        alt?: T;
+      };
+  links?:
+    | T
+    | {
+        title?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+            };
+        megaMenu?:
+          | T
+          | {
+              categoryLinks?:
+                | T
+                | {
+                    title?: T;
+                    links?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                              };
+                          image?:
+                            | T
+                            | {
+                                src?: T;
+                                alt?: T;
+                              };
+                          title?: T;
+                          description?: T;
+                          button?:
+                            | T
+                            | {
+                                title?: T;
+                                size?: T;
+                                variant?: T;
+                              };
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              featuredSections?:
+                | T
+                | {
+                    title?: T;
+                    links?:
+                      | T
+                      | {
+                          link?:
+                            | T
+                            | {
+                                type?: T;
+                                newTab?: T;
+                                reference?: T;
+                                url?: T;
+                              };
+                          image?:
+                            | T
+                            | {
+                                src?: T;
+                                alt?: T;
+                              };
+                          title?: T;
+                          description?: T;
+                          button?:
+                            | T
+                            | {
+                                title?: T;
+                                size?: T;
+                                variant?: T;
+                              };
+                          id?: T;
+                        };
+                  };
+              button?:
+                | T
+                | {
+                    title?: T;
+                    size?: T;
+                    variant?: T;
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          reference?: T;
+                          url?: T;
+                        };
+                  };
+            };
+        id?: T;
+      };
+  buttons?:
+    | T
+    | {
+        title?: T;
+        size?: T;
+        variant?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+            };
         id?: T;
       };
   id?: T;
