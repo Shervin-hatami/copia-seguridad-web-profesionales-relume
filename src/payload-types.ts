@@ -196,6 +196,7 @@ export interface Page {
     | CallToActionBlock
     | ContentBlock
     | Footer1Block
+    | Footer5Block
     | MediaBlock
     | ArchiveBlock
     | FormBlock
@@ -624,6 +625,115 @@ export interface Footer1Block {
   id?: string | null;
   blockName?: string | null;
   blockType: 'footer1';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Footer5Block".
+ */
+export interface Footer5Block {
+  logo: {
+    media: number | Media;
+    link?: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: number | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: number | Post;
+          } | null);
+      url?: string | null;
+    };
+  };
+  newsletterHeading: string;
+  newsletterDescription: string;
+  inputPlaceholder?: string | null;
+  button: {
+    title: string;
+    size?: ('sm' | 'md' | 'lg') | null;
+    variant?: ('default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link') | null;
+  };
+  termsAndConditions?: {
+    text?: string | null;
+    /**
+     * Link to Terms and Conditions page
+     */
+    link?: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: number | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: number | Post;
+          } | null);
+      url?: string | null;
+    };
+    suffix?: string | null;
+  };
+  columnLinks?:
+    | {
+        title: string;
+        links?:
+          | {
+              title: string;
+              link?: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?:
+                  | ({
+                      relationTo: 'pages';
+                      value: number | Page;
+                    } | null)
+                  | ({
+                      relationTo: 'posts';
+                      value: number | Post;
+                    } | null);
+                url?: string | null;
+              };
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  socialMediaLinks?:
+    | {
+        url: string;
+        icon: 'facebook' | 'instagram' | 'x' | 'linkedin' | 'youtube';
+        id?: string | null;
+      }[]
+    | null;
+  footerText?: string | null;
+  footerLinks?:
+    | {
+        title: string;
+        link?: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'footer5';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1406,6 +1516,7 @@ export interface PagesSelect<T extends boolean = true> {
         cta?: T | CallToActionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
         footer1?: T | Footer1BlockSelect<T>;
+        footer5?: T | Footer5BlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
@@ -1562,6 +1673,93 @@ export interface Footer1BlockSelect<T extends boolean = true> {
               icon?: T;
               id?: T;
             };
+        id?: T;
+      };
+  footerText?: T;
+  footerLinks?:
+    | T
+    | {
+        title?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Footer5Block_select".
+ */
+export interface Footer5BlockSelect<T extends boolean = true> {
+  logo?:
+    | T
+    | {
+        media?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+            };
+      };
+  newsletterHeading?: T;
+  newsletterDescription?: T;
+  inputPlaceholder?: T;
+  button?:
+    | T
+    | {
+        title?: T;
+        size?: T;
+        variant?: T;
+      };
+  termsAndConditions?:
+    | T
+    | {
+        text?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+            };
+        suffix?: T;
+      };
+  columnLinks?:
+    | T
+    | {
+        title?: T;
+        links?:
+          | T
+          | {
+              title?: T;
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                  };
+              id?: T;
+            };
+        id?: T;
+      };
+  socialMediaLinks?:
+    | T
+    | {
+        url?: T;
+        icon?: T;
         id?: T;
       };
   footerText?: T;
