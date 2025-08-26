@@ -7,6 +7,7 @@ import { Banner1 } from '@/blocks/Banner1/Component'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
 import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
+import { Footer1 } from '@/blocks/Footer1/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { MultiForm1Block } from '@/blocks/MultiForm1/Component'
 import { Navbar1 } from '@/blocks/Navbar1/Component'
@@ -17,6 +18,7 @@ const blockComponents = {
   banner1: Banner1,
   content: ContentBlock,
   cta: CallToActionBlock,
+  footer1: Footer1,
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
   multiForm1: MultiForm1Block,

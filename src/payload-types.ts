@@ -195,6 +195,7 @@ export interface Page {
     | Banner1Block
     | CallToActionBlock
     | ContentBlock
+    | Footer1Block
     | MediaBlock
     | ArchiveBlock
     | FormBlock
@@ -521,6 +522,108 @@ export interface ContentBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'content';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Footer1Block".
+ */
+export interface Footer1Block {
+  logo: {
+    media: number | Media;
+    link?: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: number | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: number | Post;
+          } | null);
+      url?: string | null;
+    };
+  };
+  newsletterDescription: string;
+  inputPlaceholder?: string | null;
+  button: {
+    title: string;
+    size?: ('sm' | 'md' | 'lg') | null;
+    variant?: ('default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link') | null;
+  };
+  termsAndConditions?: {
+    text?: string | null;
+    /**
+     * Link to Terms and Conditions page
+     */
+    link?: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: number | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: number | Post;
+          } | null);
+      url?: string | null;
+    };
+    suffix?: string | null;
+  };
+  columnLinks?:
+    | {
+        title: string;
+        links?:
+          | {
+              title: string;
+              link?: {
+                type?: ('reference' | 'custom') | null;
+                newTab?: boolean | null;
+                reference?:
+                  | ({
+                      relationTo: 'pages';
+                      value: number | Page;
+                    } | null)
+                  | ({
+                      relationTo: 'posts';
+                      value: number | Post;
+                    } | null);
+                url?: string | null;
+              };
+              icon?: ('facebook' | 'instagram' | 'x' | 'linkedin' | 'youtube') | null;
+              id?: string | null;
+            }[]
+          | null;
+        id?: string | null;
+      }[]
+    | null;
+  footerText?: string | null;
+  footerLinks?:
+    | {
+        title: string;
+        link?: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'footer1';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1302,6 +1405,7 @@ export interface PagesSelect<T extends boolean = true> {
         banner1?: T | Banner1BlockSelect<T>;
         cta?: T | CallToActionBlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
+        footer1?: T | Footer1BlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
@@ -1392,6 +1496,86 @@ export interface ContentBlockSelect<T extends boolean = true> {
               url?: T;
               label?: T;
               appearance?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Footer1Block_select".
+ */
+export interface Footer1BlockSelect<T extends boolean = true> {
+  logo?:
+    | T
+    | {
+        media?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+            };
+      };
+  newsletterDescription?: T;
+  inputPlaceholder?: T;
+  button?:
+    | T
+    | {
+        title?: T;
+        size?: T;
+        variant?: T;
+      };
+  termsAndConditions?:
+    | T
+    | {
+        text?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+            };
+        suffix?: T;
+      };
+  columnLinks?:
+    | T
+    | {
+        title?: T;
+        links?:
+          | T
+          | {
+              title?: T;
+              link?:
+                | T
+                | {
+                    type?: T;
+                    newTab?: T;
+                    reference?: T;
+                    url?: T;
+                  };
+              icon?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  footerText?: T;
+  footerLinks?:
+    | T
+    | {
+        title?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
             };
         id?: T;
       };

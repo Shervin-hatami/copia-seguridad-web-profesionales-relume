@@ -15,6 +15,15 @@ type ImageProps = {
   url?: string;
   src: string;
   alt?: string;
+  link: {
+    type: 'reference' | 'custom';
+    newTab?: boolean;
+    reference?: {
+      relationTo: 'pages' | 'posts';
+      value: any;
+    };
+    url?: string;
+  };
 };
 
 type MegaMenuLink = {
@@ -22,7 +31,7 @@ type MegaMenuLink = {
     type: 'reference' | 'custom';
     newTab?: boolean;
     reference?: {
-      relationTo: string;
+      relationTo: 'pages' | 'posts';
       value: any;
     };
     url?: string;
@@ -35,8 +44,8 @@ type MegaMenuLink = {
   description: string;
   button?: {
     title: string;
-    size: 'sm' | 'lg';
-    variant: 'default' | 'secondary' | 'ghost' | 'link';
+    size: 'sm' | 'primary';
+    variant: 'primary' | 'secondary' | 'ghost' | 'link';
   };
 };
 
@@ -53,13 +62,13 @@ type MegaMenuLinkProps = {
   };
   button: {
     title: string;
-    size: 'sm' | 'lg';
-    variant: 'default' | 'secondary' | 'ghost' | 'link';
+    size: 'sm' | 'primary';
+    variant: 'primary' | 'secondary' | 'ghost' | 'link';
     link: {
       type: 'reference' | 'custom';
       newTab?: boolean;
       reference?: {
-        relationTo: string;
+        relationTo: 'pages' | 'posts';
         value: any;
       };
       url?: string;
@@ -73,7 +82,7 @@ type LinkProps = {
     type: 'reference' | 'custom';
     newTab?: boolean;
     reference?: {
-      relationTo: string;
+      relationTo: 'pages' | 'posts';
       value: any;
     };
     url?: string;
@@ -83,13 +92,13 @@ type LinkProps = {
 
 type ButtonWithLink = {
   title: string;
-  size: 'sm' | 'lg';
-  variant: 'default' | 'secondary' | 'ghost' | 'link';
+  size: 'sm' | 'primary';
+  variant: 'primary' | 'secondary' | 'ghost' | 'link';
   link: {
     type: 'reference' | 'custom';
     newTab?: boolean;
     reference?: {
-      relationTo: string;
+      relationTo: 'pages' | 'posts';
       value: any;
     };
     url?: string;
@@ -191,7 +200,7 @@ export const Navbar5 = (props: Navbar5Props) => {
                 >
                   <Button
                     size={button.size}
-                    appearance={button.variant === 'default' ? 'default' : button.variant}
+                    variant={button.variant === 'primary' ? 'primary' : button.variant}
                     className="w-full"
                   >
                     {button.title}
@@ -209,7 +218,7 @@ export const Navbar5 = (props: Navbar5Props) => {
             >
               <Button
                 size={button.size}
-                appearance={button.variant === 'default' ? 'default' : button.variant}
+                variant={button.variant === 'primary' ? 'primary' : button.variant}
               >
                 {button.title}
               </Button>
@@ -324,7 +333,7 @@ const SubMenu = ({
                           <div className="mt-1.5">
                             <Button
                               size={link.button.size}
-                              appearance={link.button.variant === 'default' ? 'default' : link.button.variant}
+                              variant={link.button.variant === 'primary' ? 'primary' : link.button.variant}
                               className="text-sm underline"
                             >
                               {link.button.title}
@@ -339,7 +348,7 @@ const SubMenu = ({
                   <CMSLink {...megaMenu.button.link}>
                     <Button
                       size={megaMenu.button.size}
-                      appearance={megaMenu.button.variant === 'default' ? 'default' : megaMenu.button.variant}
+                      variant={megaMenu.button.variant === 'primary' ? 'primary' : megaMenu.button.variant}
                     >
                       {megaMenu.button.title}
                     </Button>
@@ -361,6 +370,10 @@ export const Navbar5Defaults: Props = {
     url: "#",
     src: "https://d22po4pjz3o32e.cloudfront.net/logo-image.svg",
     alt: "Logo image",
+    link: {
+      type: 'custom',
+      url: "#"
+    }
   },
   links: [
     {
@@ -563,6 +576,7 @@ export const Navbar5Defaults: Props = {
     {
       title: "Button",
       size: "sm",
+      variant: "primary",
       link: {
         type: 'custom',
         url: "#"
