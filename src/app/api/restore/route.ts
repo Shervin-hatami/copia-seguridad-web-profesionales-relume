@@ -2,6 +2,57 @@ import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
 import path from 'path';
 
+// Interfaces para tipado
+interface NavItem {
+  link?: {
+    type: string;
+    label: string;
+    url: string;
+    newTab: boolean;
+    reference?: {
+      value?: {
+        slug: string;
+      };
+    };
+  };
+}
+
+interface SocialLink {
+  platform: string;
+  url: string;
+}
+
+interface GlobalData {
+  navItems?: NavItem[];
+  copyright?: string;
+  socialLinks?: SocialLink[];
+}
+
+interface CleanNavItem {
+  link?: {
+    type: string;
+    label: string;
+    url: string;
+    newTab: boolean;
+  };
+}
+
+interface SafeData {
+  navItems?: CleanNavItem[];
+  copyright?: string;
+  socialLinks?: SocialLink[];
+}
+
+// Tipos para datos de página
+interface PageData {
+  title: string;
+  slug: string;
+  _status?: string;
+  hero?: any;
+  layout?: any[];
+  meta?: any;
+}
+
 export async function POST(request: NextRequest) {
   try {
     const { backupFile } = await request.json();
@@ -36,15 +87,15 @@ export async function POST(request: NextRequest) {
     // Restaurar globales de forma más segura
     for (const globalName of backupData.metadata.globals) {
       try {
-        const globalData = backupData.globals[globalName];
+        const globalData = backupData.globals[globalName] as GlobalData;
         
         // Solo restaurar campos específicos y seguros
-        const safeData: any = {};
+        const safeData: SafeData = {};
         
         // Para header: restaurar navItems con referencias convertidas a enlaces simples
         if (globalName === 'header' && globalData.navItems) {
-          safeData.navItems = globalData.navItems.map((item: any) => {
-            const cleanItem: any = {};
+          safeData.navItems = globalData.navItems.map((item: NavItem) => {
+            const cleanItem: CleanNavItem = {};
             
             if (item.link) {
               cleanItem.link = {
@@ -66,8 +117,8 @@ export async function POST(request: NextRequest) {
         
         // Para footer: restaurar navItems con referencias convertidas a enlaces simples
         if (globalName === 'footer' && globalData.navItems) {
-          safeData.navItems = globalData.navItems.map((item: any) => {
-            const cleanItem: any = {};
+          safeData.navItems = globalData.navItems.map((item: NavItem) => {
+            const cleanItem: CleanNavItem = {};
             
             if (item.link) {
               cleanItem.link = {
@@ -91,7 +142,7 @@ export async function POST(request: NextRequest) {
         if (globalName === 'footer') {
           if (globalData.copyright) safeData.copyright = globalData.copyright;
           if (globalData.socialLinks) {
-            safeData.socialLinks = globalData.socialLinks.map((link: any) => ({
+            safeData.socialLinks = globalData.socialLinks.map((link: SocialLink) => ({
               platform: link.platform || '',
               url: link.url || '#'
             }));
@@ -119,7 +170,7 @@ export async function POST(request: NextRequest) {
     if (backupData.collections.pages && backupData.collections.pages.docs) {
       console.log('📄 Restaurando páginas...');
       
-      for (const page of backupData.collections.pages.docs) {
+      for (const page of backupData.collections.pages.docs as PageData[]) {
         try {
           // Limpiar datos de la página
           const cleanPage: any = {
@@ -140,8 +191,8 @@ export async function POST(request: NextRequest) {
           
           // Restaurar layout si existe
           if (page.layout && Array.isArray(page.layout)) {
-            cleanPage.layout = page.layout.map((block: any) => {
-              const cleanBlock: any = {
+            cleanPage.layout = page.layout.map((block: Record<string, unknown>) => {
+              const cleanBlock: Record<string, unknown> = {
                 blockType: block.blockType,
                 blockName: block.blockName
               };

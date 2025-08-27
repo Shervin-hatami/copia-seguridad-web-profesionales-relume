@@ -2,16 +2,16 @@
 
 import { useState } from "react";
 import { Button, useMediaQuery } from "@relume_io/relume-ui";
-import type { ButtonProps } from "@relume_io/relume-ui";
-import { RxChevronDown, RxChevronRight } from "react-icons/rx";
+import { RxChevronDown } from "react-icons/rx";
 import { motion } from "framer-motion";
 import { CMSLink } from "@/components/Link";
 import { Media } from "@/components/Media";
+import Image from "next/image";
 
 // Tipos para la estructura de datos de Payload CMS
 type ImageProps = {
   useMedia?: boolean;
-  media?: any;
+  media?: any; // Usando any para compatibilidad con Media component
   url?: string;
   src: string;
   alt?: string;
@@ -20,7 +20,7 @@ type ImageProps = {
     newTab?: boolean;
     reference?: {
       relationTo: 'pages' | 'posts';
-      value: any;
+      value: any; // Usando any para compatibilidad con CMSLinkType
     };
     url?: string;
   };
@@ -32,7 +32,7 @@ type MegaMenuLink = {
     newTab?: boolean;
     reference?: {
       relationTo: 'pages' | 'posts';
-      value: any;
+      value: any; // Usando any para compatibilidad con CMSLinkType
     };
     url?: string;
   };
@@ -69,7 +69,7 @@ type MegaMenuLinkProps = {
       newTab?: boolean;
       reference?: {
         relationTo: 'pages' | 'posts';
-        value: any;
+        value: any; // Usando any para compatibilidad con CMSLinkType
       };
       url?: string;
     };
@@ -83,7 +83,7 @@ type LinkProps = {
     newTab?: boolean;
     reference?: {
       relationTo: 'pages' | 'posts';
-      value: any;
+      value: any; // Usando any para compatibilidad con CMSLinkType
     };
     url?: string;
   };
@@ -99,7 +99,7 @@ type ButtonWithLink = {
     newTab?: boolean;
     reference?: {
       relationTo: 'pages' | 'posts';
-      value: any;
+      value: any; // Usando any para compatibilidad con CMSLinkType
     };
     url?: string;
   };
@@ -134,7 +134,7 @@ export const Navbar5 = (props: Navbar5Props) => {
               {logo.useMedia && logo.media ? (
                 <Media resource={logo.media} />
               ) : (
-                <img src={logo.src} alt={logo.alt} />
+                <Image src={logo.src} alt={logo.alt || "Logo"} width={150} height={50} />
               )}
             </CMSLink>
             <button
@@ -295,9 +295,9 @@ const SubMenu = ({
                       {...link.link}
                       className="grid w-full grid-cols-[max-content_1fr] items-start gap-x-3 py-2"
                     >
-                      <div className="flex size-6 flex-col items-center justify-center">
-                        <img src={link.image.src} alt={link.image.alt} />
-                      </div>
+                                             <div className="flex size-6 flex-col items-center justify-center">
+                         <Image src={link.image.src} alt={link.image.alt || "Icon"} width={24} height={24} />
+                       </div>
                       <div className="flex flex-col items-start justify-center">
                         <h5 className="font-semibold">{link.title}</h5>
                         <p className="hidden text-sm md:block">{link.description}</p>
@@ -319,13 +319,14 @@ const SubMenu = ({
                       {...link.link}
                       className="flex auto-cols-fr grid-cols-[0.6fr_1fr] flex-col gap-x-6 py-2 md:grid"
                     >
-                      <div className="relative w-full pt-[66.66%]">
-                        <img
-                          src={link.image.src}
-                          alt={link.image.alt}
-                          className="absolute inset-0 size-full object-cover"
-                        />
-                      </div>
+                                             <div className="relative w-full pt-[66.66%]">
+                         <Image
+                           src={link.image.src}
+                           alt={link.image.alt || "Featured image"}
+                           fill
+                           className="object-cover"
+                         />
+                       </div>
                       <div className="rt-4 mt-4 flex flex-col justify-start md:mt-0">
                         <h5 className="mb-1 font-semibold">{link.title}</h5>
                         <p className="text-sm">{link.description}</p>

@@ -1,13 +1,5 @@
 import type { Block } from 'payload'
 
-import {
-  FixedToolbarFeature,
-  HeadingFeature,
-  InlineToolbarFeature,
-  lexicalEditor,
-} from '@payloadcms/richtext-lexical'
-
-import { link } from '@/fields/link'
 import { simpleLink } from '@/fields/simpleLink'
 
 export const Footer5Block: Block = {

@@ -1,16 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { Button, useMediaQuery } from "@relume_io/relume-ui";
-import type { ButtonProps } from "@relume_io/relume-ui";
+import { useMediaQuery } from "@relume_io/relume-ui";
 import { AnimatePresence, motion } from "framer-motion";
 import { RxChevronDown } from "react-icons/rx";
 import { CMSLink } from "@/components/Link";
 import { Media } from "@/components/Media";
+import Image from "next/image";
 
 type ImageProps = {
   useMedia?: boolean;
-  media?: any;
+  media?: any; // Usando any para compatibilidad con Media component
   url?: string;
   src: string;
   alt?: string;
@@ -23,7 +23,7 @@ type NavLink = {
     url?: string | null;
     reference?: {
       relationTo: 'pages' | 'posts';
-      value: any;
+      value: any; // Usando any para compatibilidad con CMSLinkType
     } | null;
     newTab?: boolean | null;
   };
@@ -37,7 +37,7 @@ type ButtonWithLink = {
     url?: string | null;
     reference?: {
       relationTo: 'pages' | 'posts';
-      value: any;
+      value: any; // Usando any para compatibilidad con CMSLinkType
     } | null;
     newTab?: boolean | null;
   };
@@ -73,7 +73,7 @@ export const Navbar1 = (props: Navbar1Props) => {
             {logo.useMedia && logo.media ? (
               <Media resource={logo.media} />
             ) : (
-              <img src={logo.src} alt={logo.alt} />
+              <Image src={logo.src} alt={logo.alt || "Logo"} width={150} height={50} />
             )}
           </a>
           <button

@@ -29,6 +29,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import clsx from "clsx";
 import { FaRegCalendar } from "react-icons/fa6";
 import { DateTime } from "luxon";
+import Image from "next/image";
 
 type ImageProps = {
   url?: string;
@@ -155,7 +156,6 @@ export const MultiForm1Block: React.FC<
   ] as const;
   
   const Step = steps[step].component;
-  const currentFields = steps[step].fields;
   const totalSteps = steps.length;
   const isLastStep = step === steps.length - 1;
   const isFirstStep = step === 0;
@@ -175,7 +175,7 @@ export const MultiForm1Block: React.FC<
       <nav className="px-[5%]">
         <div className="flex min-h-16 items-center justify-between md:min-h-18">
           <a href={logo.url}>
-            <img src={logo.src} alt={logo.alt} />
+            <Image src={logo.src} alt={logo.alt || "Logo"} width={150} height={50} />
           </a>
           <div className="flex items-center gap-x-1">
             <span className="hidden md:inline-block">{navText}</span>
@@ -322,9 +322,9 @@ const StepAction = ({
 const StepOne: React.FC<StepProps> = ({ form }) => (
   <React.Fragment>
     <div className="mb-6 text-center md:mb-8">
-      <h2 className="text-2xl font-bold md:text-3xl md:leading-[1.3] lg:text-4xl">
-        Let's start with your name & email
-      </h2>
+              <h2 className="text-2xl font-bold md:text-3xl md:leading-[1.3] lg:text-4xl">
+          Let&apos;s start with your name & email
+        </h2>
       <p className="mt-3 md:mt-4">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.
       </p>
@@ -507,7 +507,7 @@ const StepThree: React.FC<StepProps> = ({ form }) => {
     <React.Fragment>
       <div className="mb-6 text-center md:mb-8">
         <h2 className="text-2xl font-bold md:text-3xl md:leading-[1.3] lg:text-4xl">
-          Let's confirm your company info
+          Let&apos;s confirm your company info
         </h2>
         <p className="mt-3 md:mt-4">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.
@@ -600,7 +600,7 @@ const StepFour: React.FC<StepProps> = ({ form }) => {
     <React.Fragment>
       <div className="mb-6 text-center md:mb-8">
         <h2 className="text-2xl font-bold md:text-3xl md:leading-[1.3] lg:text-4xl">
-          Let's confirm your company info
+          Let&apos;s confirm your company info
         </h2>
         <p className="mt-3 md:mt-4">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse varius enim in eros.

@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { Button, Input } from "@relume_io/relume-ui";
 import type { ButtonProps } from "@relume_io/relume-ui";
 import { RxCross2 } from "react-icons/rx";
+import Image from "next/image";
 
 type ImageProps = {
   url?: string;
@@ -46,7 +47,7 @@ export const Banner1 = (props: Banner1Props) => {
       <div className="container relative flex flex-col justify-start border border-border-primary bg-neutral-white p-4 md:flex-row md:items-center md:px-4 md:py-3">
         <div className="mb-4 mr-7 flex flex-1 items-start md:mb-0 md:mr-8 md:items-center">
           <a href={logo.url} className="flex-none">
-            <img src={logo.src} alt={logo.alt} className="mr-4 hidden size-8 lg:block" />
+            <Image src={logo.src} alt={logo.alt || "Logo"} width={32} height={32} className="mr-4 hidden lg:block" />
           </a>
           <div>
             <h2 className="font-semibold">{heading}</h2>

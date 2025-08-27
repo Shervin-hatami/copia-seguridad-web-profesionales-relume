@@ -4,12 +4,14 @@ import type { Page } from '@/payload-types'
 
 import { HighImpactHero } from '@/heros/HighImpact'
 import { Header1Hero } from '@/heros/Header1'
+import { Header5Hero } from '@/heros/Header5'
 import { LowImpactHero } from '@/heros/LowImpact'
 import { MediumImpactHero } from '@/heros/MediumImpact'
 
 const heroes = {
   highImpact: HighImpactHero,
   header1: Header1Hero,
+  header5: Header5Hero,
   lowImpact: LowImpactHero,
   mediumImpact: MediumImpactHero,
 }

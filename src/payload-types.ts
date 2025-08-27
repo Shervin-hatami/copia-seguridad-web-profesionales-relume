@@ -149,7 +149,7 @@ export interface Page {
   id: number;
   title: string;
   hero: {
-    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'header1';
+    type: 'none' | 'highImpact' | 'mediumImpact' | 'lowImpact' | 'header1' | 'header5';
     richText?: {
       root: {
         type: string;

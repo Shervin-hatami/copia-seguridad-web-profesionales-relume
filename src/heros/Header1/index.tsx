@@ -1,7 +1,5 @@
 'use client'
 import React from 'react'
-import { Button } from "@relume_io/relume-ui";
-import type { ButtonProps } from "@relume_io/relume-ui";
 
 import type { Page } from '@/payload-types'
 

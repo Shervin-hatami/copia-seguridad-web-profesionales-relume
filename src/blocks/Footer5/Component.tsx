@@ -13,7 +13,6 @@ import {
 
 import { CMSLink } from "@/components/Link";
 import { Media as MediaComponent } from "@/components/Media";
-import RichText from "@/components/RichText";
 
 import type { Media as MediaType } from '@/payload-types'
 
@@ -21,7 +20,7 @@ type LinkType = {
   type?: 'reference' | 'custom';
   reference?: {
     relationTo: 'pages' | 'posts';
-    value: any;
+    value: any; // Usando any para compatibilidad con CMSLinkType
   };
   url?: string;
   newTab?: boolean;
