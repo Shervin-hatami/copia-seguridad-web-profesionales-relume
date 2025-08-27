@@ -9,6 +9,7 @@ import { Content } from '../../blocks/Content/config'
 import { Footer1Block } from '../../blocks/Footer1/config'
 import { Footer5Block } from '../../blocks/Footer5/config'
 import { FormBlock } from '../../blocks/Form/config'
+import { Header44Block } from '../../blocks/Header44/config'
 import { MediaBlock } from '../../blocks/MediaBlock/config'
 import { MultiForm1Block } from '../../blocks/MultiForm1/config'
 import { Navbar1Block } from '../../blocks/Navbar1/config'
@@ -81,7 +82,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [Banner1Block, CallToAction, Content, Footer1Block, Footer5Block, MediaBlock, Archive, FormBlock, MultiForm1Block, Navbar1Block, Navbar5Block],
+              blocks: [Banner1Block, CallToAction, Content, Footer1Block, Footer5Block, Header44Block, MediaBlock, Archive, FormBlock, MultiForm1Block, Navbar1Block, Navbar5Block],
               required: true,
               admin: {
                 initCollapsed: true,
