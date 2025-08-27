@@ -10,6 +10,7 @@ import { FormBlock } from '@/blocks/Form/Component'
 import { Footer1 } from '@/blocks/Footer1/Component'
 import { Footer5 } from '@/blocks/Footer5/Component'
 import { Header44Block } from '@/blocks/Header44/Component'
+import { Header48Block } from '@/blocks/Header48/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { MultiForm1Block } from '@/blocks/MultiForm1/Component'
 import { Navbar1 } from '@/blocks/Navbar1/Component'
@@ -23,6 +24,7 @@ const blockComponents = {
   footer1: Footer1,
   footer5: Footer5,
   header44: Header44Block,
+  header48: Header48Block,
   formBlock: FormBlock,
   mediaBlock: MediaBlock,
   multiForm1: MultiForm1Block,

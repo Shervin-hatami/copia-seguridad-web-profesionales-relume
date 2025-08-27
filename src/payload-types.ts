@@ -198,6 +198,7 @@ export interface Page {
     | Footer1Block
     | Footer5Block
     | Header44Block
+    | Header48Block
     | MediaBlock
     | ArchiveBlock
     | FormBlock
@@ -799,6 +800,67 @@ export interface Header44Block {
   id?: string | null;
   blockName?: string | null;
   blockType: 'header44';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Header48Block".
+ */
+export interface Header48Block {
+  tagline: string;
+  heading?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  inputPlaceholder?: string | null;
+  button: {
+    title: string;
+    size?: ('sm' | 'md' | 'lg') | null;
+    variant?: ('default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link') | null;
+  };
+  termsAndConditions?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'header48';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1583,6 +1645,7 @@ export interface PagesSelect<T extends boolean = true> {
         footer1?: T | Footer1BlockSelect<T>;
         footer5?: T | Footer5BlockSelect<T>;
         header44?: T | Header44BlockSelect<T>;
+        header48?: T | Header48BlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
@@ -1869,6 +1932,26 @@ export interface Header44BlockSelect<T extends boolean = true> {
             };
         id?: T;
       };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Header48Block_select".
+ */
+export interface Header48BlockSelect<T extends boolean = true> {
+  tagline?: T;
+  heading?: T;
+  description?: T;
+  inputPlaceholder?: T;
+  button?:
+    | T
+    | {
+        title?: T;
+        size?: T;
+        variant?: T;
+      };
+  termsAndConditions?: T;
   id?: T;
   blockName?: T;
 }
