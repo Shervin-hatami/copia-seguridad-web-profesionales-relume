@@ -200,6 +200,7 @@ export interface Page {
     | Header44Block
     | Header48Block
     | Layout1Block
+    | Layout5Block
     | MediaBlock
     | ArchiveBlock
     | FormBlock
@@ -933,6 +934,100 @@ export interface Layout1Block {
   id?: string | null;
   blockName?: string | null;
   blockType: 'layout1';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Layout5Block".
+ */
+export interface Layout5Block {
+  tagline: string;
+  heading?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Agregue subencabezados (máximo 2)
+   */
+  subHeadings?:
+    | {
+        /**
+         * Título del subencabezado
+         */
+        title: string;
+        /**
+         * Descripción del subencabezado
+         */
+        description: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Agregue botones/enlaces (máximo 2)
+   */
+  buttons?:
+    | {
+        /**
+         * Configure el enlace para este botón
+         */
+        link: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+          label: string;
+          /**
+           * Choose how the link should be rendered.
+           */
+          appearance?: ('default' | 'outline') | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * URL del video (YouTube, Vimeo, etc. - se aceptan URLs normales y de embed)
+   */
+  video?: string | null;
+  /**
+   * Imagen de portada para el video
+   */
+  image?: (number | null) | Media;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'layout5';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1719,6 +1814,7 @@ export interface PagesSelect<T extends boolean = true> {
         header44?: T | Header44BlockSelect<T>;
         header48?: T | Header48BlockSelect<T>;
         layout1?: T | Layout1BlockSelect<T>;
+        layout5?: T | Layout5BlockSelect<T>;
         mediaBlock?: T | MediaBlockSelect<T>;
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
@@ -2052,6 +2148,41 @@ export interface Layout1BlockSelect<T extends boolean = true> {
         id?: T;
       };
   media?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Layout5Block_select".
+ */
+export interface Layout5BlockSelect<T extends boolean = true> {
+  tagline?: T;
+  heading?: T;
+  description?: T;
+  subHeadings?:
+    | T
+    | {
+        title?: T;
+        description?: T;
+        id?: T;
+      };
+  buttons?:
+    | T
+    | {
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+              label?: T;
+              appearance?: T;
+            };
+        id?: T;
+      };
+  video?: T;
+  image?: T;
   id?: T;
   blockName?: T;
 }
