@@ -5,6 +5,8 @@ import { authenticatedOrPublished } from '../../access/authenticatedOrPublished'
 import { Archive } from '../../blocks/ArchiveBlock/config'
 import { Banner1Block } from '../../blocks/Banner1/config'
 import { CallToAction } from '../../blocks/CallToAction/config'
+import { CTA1Block } from '../../blocks/CTA1/config'
+import { CTA5Block } from '../../blocks/CTA5/config'
 import { Content } from '../../blocks/Content/config'
 import { Footer1Block } from '../../blocks/Footer1/config'
 import { Footer5Block } from '../../blocks/Footer5/config'
@@ -85,7 +87,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [Banner1Block, CallToAction, Content, Footer1Block, Footer5Block, Header44Block, Header48Block, Layout1Block, Layout5Block, MediaBlock, Archive, FormBlock, MultiForm1Block, Navbar1Block, Navbar5Block],
+              blocks: [Banner1Block, CallToAction, CTA1Block, CTA5Block, Content, Footer1Block, Footer5Block, Header44Block, Header48Block, Layout1Block, Layout5Block, MediaBlock, Archive, FormBlock, MultiForm1Block, Navbar1Block, Navbar5Block],
               required: true,
               admin: {
                 initCollapsed: true,

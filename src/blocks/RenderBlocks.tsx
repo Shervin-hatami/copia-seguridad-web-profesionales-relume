@@ -5,6 +5,8 @@ import type { Page } from '@/payload-types'
 import { ArchiveBlock } from '@/blocks/ArchiveBlock/Component'
 import { Banner1 } from '@/blocks/Banner1/Component'
 import { CallToActionBlock } from '@/blocks/CallToAction/Component'
+import { CTA1Block } from '@/blocks/CTA1/Component'
+import { CTA5Block } from '@/blocks/CTA5/Component'
 import { ContentBlock } from '@/blocks/Content/Component'
 import { FormBlock } from '@/blocks/Form/Component'
 import { Footer1 } from '@/blocks/Footer1/Component'
@@ -23,6 +25,8 @@ const blockComponents = {
   banner1: Banner1,
   content: ContentBlock,
   cta: CallToActionBlock,
+  cta1: CTA1Block,
+  cta5: CTA5Block,
   footer1: Footer1,
   footer5: Footer5,
   header44: Header44Block,

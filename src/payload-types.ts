@@ -194,6 +194,8 @@ export interface Page {
   layout: (
     | Banner1Block
     | CallToActionBlock
+    | CTA1Block
+    | CTA5Block
     | ContentBlock
     | Footer1Block
     | Footer5Block
@@ -477,6 +479,109 @@ export interface CallToActionBlock {
   id?: string | null;
   blockName?: string | null;
   blockType: 'cta';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CTA1Block".
+ */
+export interface CTA1Block {
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  buttons?:
+    | {
+        title: string;
+        variant?: ('primary' | 'secondary' | 'ghost' | 'link') | null;
+        link?: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  image: {
+    media: number | Media;
+    /**
+     * Descripción de la imagen para accesibilidad
+     */
+    alt?: string | null;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'cta1';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CTA5Block".
+ */
+export interface CTA5Block {
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  buttons?:
+    | {
+        title: string;
+        variant?: ('primary' | 'secondary' | 'secondary-alt' | 'ghost' | 'link') | null;
+        link?: {
+          type?: ('reference' | 'custom') | null;
+          newTab?: boolean | null;
+          reference?:
+            | ({
+                relationTo: 'pages';
+                value: number | Page;
+              } | null)
+            | ({
+                relationTo: 'posts';
+                value: number | Post;
+              } | null);
+          url?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  video: {
+    /**
+     * Pega la URL del video de YouTube (ej: https://www.youtube.com/watch?v=VIDEO_ID)
+     */
+    youtubeUrl: string;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'cta5';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -1808,6 +1913,8 @@ export interface PagesSelect<T extends boolean = true> {
     | {
         banner1?: T | Banner1BlockSelect<T>;
         cta?: T | CallToActionBlockSelect<T>;
+        cta1?: T | CTA1BlockSelect<T>;
+        cta5?: T | CTA5BlockSelect<T>;
         content?: T | ContentBlockSelect<T>;
         footer1?: T | Footer1BlockSelect<T>;
         footer5?: T | Footer5BlockSelect<T>;
@@ -1881,6 +1988,65 @@ export interface CallToActionBlockSelect<T extends boolean = true> {
               appearance?: T;
             };
         id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CTA1Block_select".
+ */
+export interface CTA1BlockSelect<T extends boolean = true> {
+  content?: T;
+  buttons?:
+    | T
+    | {
+        title?: T;
+        variant?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+            };
+        id?: T;
+      };
+  image?:
+    | T
+    | {
+        media?: T;
+        alt?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CTA5Block_select".
+ */
+export interface CTA5BlockSelect<T extends boolean = true> {
+  content?: T;
+  buttons?:
+    | T
+    | {
+        title?: T;
+        variant?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+            };
+        id?: T;
+      };
+  video?:
+    | T
+    | {
+        youtubeUrl?: T;
       };
   id?: T;
   blockName?: T;
