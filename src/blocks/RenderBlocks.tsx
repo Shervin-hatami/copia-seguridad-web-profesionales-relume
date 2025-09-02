@@ -17,6 +17,7 @@ import { Layout1Block } from '@/blocks/Layout1/Component'
 import { Layout5Block } from '@/blocks/Layout5/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { MultiForm1Block } from '@/blocks/MultiForm1/Component'
+import { Contact1 } from '@/blocks/Contact1/Component'
 import { Navbar1 } from '@/blocks/Navbar1/Component'
 import { Navbar5 } from '@/blocks/Navbar5/Component'
 
@@ -27,6 +28,7 @@ const blockComponents = {
   cta: CallToActionBlock,
   cta1: CTA1Block,
   cta5: CTA5Block,
+  contact1: Contact1,
   footer1: Footer1,
   footer5: Footer5,
   header44: Header44Block,

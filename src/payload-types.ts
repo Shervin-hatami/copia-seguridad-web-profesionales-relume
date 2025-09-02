@@ -207,6 +207,7 @@ export interface Page {
     | ArchiveBlock
     | FormBlock
     | MultiForm1Block
+    | Contact1Block
     | Navbar1Block
     | Navbar5Block
   )[];
@@ -1401,6 +1402,50 @@ export interface MultiForm1Block {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Contact1Block".
+ */
+export interface Contact1Block {
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  button: {
+    title: string;
+    variant?: ('primary' | 'secondary' | 'link') | null;
+    size?: ('default' | 'sm' | 'lg' | 'link') | null;
+  };
+  terms: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contact1';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "Navbar1Block".
  */
 export interface Navbar1Block {
@@ -1926,6 +1971,7 @@ export interface PagesSelect<T extends boolean = true> {
         archive?: T | ArchiveBlockSelect<T>;
         formBlock?: T | FormBlockSelect<T>;
         multiForm1?: T | MultiForm1BlockSelect<T>;
+        contact1?: T | Contact1BlockSelect<T>;
         navbar1?: T | Navbar1BlockSelect<T>;
         navbar5?: T | Navbar5BlockSelect<T>;
       };
@@ -2407,6 +2453,23 @@ export interface MultiForm1BlockSelect<T extends boolean = true> {
         size?: T;
       };
   footerText?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Contact1Block_select".
+ */
+export interface Contact1BlockSelect<T extends boolean = true> {
+  content?: T;
+  button?:
+    | T
+    | {
+        title?: T;
+        variant?: T;
+        size?: T;
+      };
+  terms?: T;
   id?: T;
   blockName?: T;
 }
