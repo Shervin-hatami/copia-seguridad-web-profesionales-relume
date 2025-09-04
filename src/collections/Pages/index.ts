@@ -22,6 +22,11 @@ import { Contact5Block } from '../../blocks/Contact5/config'
 import { Pricing1Block } from '../../blocks/Pricing1/config'
 import { Pricing5Block } from '../../blocks/Pricing5/config'
 import { FAQ1Block } from '../../blocks/FAQ1/config'
+import { FAQ5Block } from '../../blocks/FAQ5/config'
+import { Testimonial1Block } from '../../blocks/Testimonial1/config'
+import { Testimonial5Block } from '../../blocks/Testimonial5/config'
+import { Logo1Block } from '../../blocks/Logo1/config'
+import { Team1Block } from '../../blocks/Team1/config'
 import { Navbar1Block } from '../../blocks/Navbar1/config'
 import { Navbar5Block } from '../../blocks/Navbar5/config'
 import { hero } from '@/heros/config'
@@ -92,7 +97,7 @@ export const Pages: CollectionConfig<'pages'> = {
             {
               name: 'layout',
               type: 'blocks',
-              blocks: [Banner1Block, CallToAction, CTA1Block, CTA5Block, Content, Footer1Block, Footer5Block, Header44Block, Header48Block, Layout1Block, Layout5Block, MediaBlock, Archive, FormBlock, MultiForm1Block, Contact1Block, Contact5Block, Pricing1Block, Pricing5Block, FAQ1Block, Navbar1Block, Navbar5Block],
+              blocks: [Banner1Block, CallToAction, CTA1Block, CTA5Block, Content, Footer1Block, Footer5Block, Header44Block, Header48Block, Layout1Block, Layout5Block, MediaBlock, Archive, FormBlock, MultiForm1Block, Contact1Block, Contact5Block, Pricing1Block, Pricing5Block, FAQ1Block, FAQ5Block, Testimonial1Block, Testimonial5Block, Logo1Block, Team1Block, Navbar1Block, Navbar5Block],
               required: true,
               admin: {
                 initCollapsed: true,

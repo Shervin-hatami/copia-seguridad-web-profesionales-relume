@@ -22,6 +22,11 @@ import { Contact5 } from '@/blocks/Contact5/Component'
 import { Pricing1 } from '@/blocks/Pricing1/Component'
 import { Pricing5 } from '@/blocks/Pricing5/Component'
 import { FAQ1 } from '@/blocks/FAQ1/Component'
+import { FAQ5 } from '@/blocks/FAQ5/Component'
+import { Testimonial1 } from '@/blocks/Testimonial1/Component'
+import { Testimonial5 } from '@/blocks/Testimonial5/Component'
+import { Logo1 } from '@/blocks/Logo1/Component'
+import { Team1 } from '@/blocks/Team1/Component'
 import { Navbar1 } from '@/blocks/Navbar1/Component'
 import { Navbar5 } from '@/blocks/Navbar5/Component'
 
@@ -48,6 +53,11 @@ const blockComponents = {
   pricing1: Pricing1,
   pricing5: Pricing5,
   faq1: FAQ1,
+  faq5: FAQ5,
+  testimonial1: Testimonial1,
+  testimonial5: Testimonial5,
+  logo1: Logo1,
+  team1: Team1,
 }
 
 export const RenderBlocks: React.FC<{

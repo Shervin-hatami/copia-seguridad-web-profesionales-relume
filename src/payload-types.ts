@@ -212,6 +212,83 @@ export interface Page {
     | Pricing1Block
     | Pricing5Block
     | FAQ1Block
+    | FAQ5Block
+    | Testimonial1Block
+    | Testimonial5Block
+    | Logo1Block
+    | {
+        content?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        teamMembers?:
+          | {
+              image: {
+                media: number | Media;
+                alt: string;
+              };
+              name: string;
+              jobTitle: string;
+              description: string;
+              socialLinks?:
+                | {
+                    platform: 'linkedin' | 'twitter' | 'dribbble';
+                    url: string;
+                    id?: string | null;
+                  }[]
+                | null;
+              id?: string | null;
+            }[]
+          | null;
+        footerContent?: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        } | null;
+        button: {
+          title: string;
+          variant?: ('primary' | 'secondary' | 'outline') | null;
+          size?: ('sm' | 'md' | 'lg') | null;
+          link?: {
+            type?: ('reference' | 'custom') | null;
+            newTab?: boolean | null;
+            reference?:
+              | ({
+                  relationTo: 'pages';
+                  value: number | Page;
+                } | null)
+              | ({
+                  relationTo: 'posts';
+                  value: number | Post;
+                } | null);
+            url?: string | null;
+          };
+        };
+        id?: string | null;
+        blockName?: string | null;
+        blockType: 'team1';
+      }
     | Navbar1Block
     | Navbar5Block
   )[];
@@ -1735,6 +1812,221 @@ export interface FAQ1Block {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQ5Block".
+ */
+export interface FAQ5Block {
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  questions?:
+    | {
+        title: string;
+        answer: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  footerContent: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  button: {
+    title: string;
+    variant?: ('primary' | 'secondary' | 'ghost' | 'link') | null;
+    size?: ('sm' | 'primary' | 'icon' | 'link') | null;
+    link?: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: number | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: number | Post;
+          } | null);
+      url?: string | null;
+    };
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'faq5';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Testimonial1Block".
+ */
+export interface Testimonial1Block {
+  quote: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  logo: {
+    media: number | Media;
+    /**
+     * Descripción del logo para accesibilidad
+     */
+    alt?: string | null;
+  };
+  avatar: {
+    media: number | Media;
+    /**
+     * Descripción del avatar para accesibilidad
+     */
+    alt?: string | null;
+  };
+  name: string;
+  position: string;
+  companyName: string;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'testimonial1';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Testimonial5Block".
+ */
+export interface Testimonial5Block {
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  testimonials?:
+    | {
+        numberOfStars: number;
+        quote: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        avatar: {
+          media: number | Media;
+          /**
+           * Descripción del avatar para accesibilidad
+           */
+          alt?: string | null;
+        };
+        name: string;
+        position: string;
+        logo: {
+          media: number | Media;
+          /**
+           * Descripción del logo para accesibilidad
+           */
+          alt?: string | null;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'testimonial5';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Logo1Block".
+ */
+export interface Logo1Block {
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  logos?:
+    | {
+        media: number | Media;
+        /**
+         * Descripción del logo para accesibilidad
+         */
+        alt?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'logo1';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "Navbar1Block".
  */
 export interface Navbar1Block {
@@ -2265,6 +2557,54 @@ export interface PagesSelect<T extends boolean = true> {
         pricing1?: T | Pricing1BlockSelect<T>;
         pricing5?: T | Pricing5BlockSelect<T>;
         faq1?: T | FAQ1BlockSelect<T>;
+        faq5?: T | FAQ5BlockSelect<T>;
+        testimonial1?: T | Testimonial1BlockSelect<T>;
+        testimonial5?: T | Testimonial5BlockSelect<T>;
+        logo1?: T | Logo1BlockSelect<T>;
+        team1?:
+          | T
+          | {
+              content?: T;
+              teamMembers?:
+                | T
+                | {
+                    image?:
+                      | T
+                      | {
+                          media?: T;
+                          alt?: T;
+                        };
+                    name?: T;
+                    jobTitle?: T;
+                    description?: T;
+                    socialLinks?:
+                      | T
+                      | {
+                          platform?: T;
+                          url?: T;
+                          id?: T;
+                        };
+                    id?: T;
+                  };
+              footerContent?: T;
+              button?:
+                | T
+                | {
+                    title?: T;
+                    variant?: T;
+                    size?: T;
+                    link?:
+                      | T
+                      | {
+                          type?: T;
+                          newTab?: T;
+                          reference?: T;
+                          url?: T;
+                        };
+                  };
+              id?: T;
+              blockName?: T;
+            };
         navbar1?: T | Navbar1BlockSelect<T>;
         navbar5?: T | Navbar5BlockSelect<T>;
       };
@@ -2882,6 +3222,108 @@ export interface FAQ1BlockSelect<T extends boolean = true> {
               reference?: T;
               url?: T;
             };
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQ5Block_select".
+ */
+export interface FAQ5BlockSelect<T extends boolean = true> {
+  content?: T;
+  questions?:
+    | T
+    | {
+        title?: T;
+        answer?: T;
+        id?: T;
+      };
+  footerContent?: T;
+  button?:
+    | T
+    | {
+        title?: T;
+        variant?: T;
+        size?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+            };
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Testimonial1Block_select".
+ */
+export interface Testimonial1BlockSelect<T extends boolean = true> {
+  quote?: T;
+  logo?:
+    | T
+    | {
+        media?: T;
+        alt?: T;
+      };
+  avatar?:
+    | T
+    | {
+        media?: T;
+        alt?: T;
+      };
+  name?: T;
+  position?: T;
+  companyName?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Testimonial5Block_select".
+ */
+export interface Testimonial5BlockSelect<T extends boolean = true> {
+  content?: T;
+  testimonials?:
+    | T
+    | {
+        numberOfStars?: T;
+        quote?: T;
+        avatar?:
+          | T
+          | {
+              media?: T;
+              alt?: T;
+            };
+        name?: T;
+        position?: T;
+        logo?:
+          | T
+          | {
+              media?: T;
+              alt?: T;
+            };
+        id?: T;
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Logo1Block_select".
+ */
+export interface Logo1BlockSelect<T extends boolean = true> {
+  content?: T;
+  logos?:
+    | T
+    | {
+        media?: T;
+        alt?: T;
+        id?: T;
       };
   id?: T;
   blockName?: T;

@@ -3,12 +3,13 @@
 import {
   Button,
   Accordion,
+  AccordionTrigger,
   AccordionContent,
   AccordionItem,
-  AccordionTrigger,
 } from "@relume_io/relume-ui";
 
 import type { ButtonProps } from "@relume_io/relume-ui";
+import { RxPlus } from "react-icons/rx";
 import RichText from '@/components/RichText';
 import { CMSLink } from '@/components/Link';
 import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical';
@@ -32,9 +33,9 @@ type Props = {
   };
 };
 
-export type FAQ1BlockType = {
+export type FAQ5BlockType = {
   blockName?: string
-  blockType?: 'faq1'
+  blockType?: 'faq5'
   content?: SerializedEditorState;
   questions: Question[];
   footerContent?: SerializedEditorState;
@@ -48,24 +49,35 @@ export type FAQ1BlockType = {
   };
 }
 
-export const FAQ1 = (props: FAQ1BlockType) => {
+export const FAQ5 = (props: FAQ5BlockType) => {
   const { content, questions, footerContent, button } = {
-    ...FAQ1Defaults,
+    ...FAQ5Defaults,
     ...props,
   };
 
   return (
     <section id="relume" className="px-[5%] py-16 md:py-24 lg:py-28">
-      <div className="container max-w-lg">
-        <div className="rb-12 mb-12 text-center md:mb-18 lg:mb-20">
+      <div className="container">
+        <div className="rb-12 mb-12 max-w-lg md:mb-18 lg:mb-20">
           {content && (
             <RichText data={content} />
           )}
         </div>
-        <Accordion type="multiple">
+        <Accordion type="multiple" className="grid items-start justify-stretch gap-4">
           {questions.map((question, index) => (
-            <AccordionItem key={index} value={`item-${index}`}>
-              <AccordionTrigger className="md:py-5 md:text-md">{question.title}</AccordionTrigger>
+            <AccordionItem
+              key={index}
+              value={`item-${index}`}
+              className="border border-border-primary px-5 md:px-6"
+            >
+              <AccordionTrigger
+                icon={
+                  <RxPlus className="size-7 shrink-0 text-text-primary transition-transform duration-300 md:size-8" />
+                }
+                className="md:py-5 md:text-md [&[data-state=open]>svg]:rotate-45"
+              >
+                {question.title}
+              </AccordionTrigger>
               <AccordionContent className="md:pb-6">
                 <RichText data={question.answer} />
               </AccordionContent>
@@ -74,9 +86,7 @@ export const FAQ1 = (props: FAQ1BlockType) => {
         </Accordion>
         <div className="mt-12 md:mt-18 lg:mt-20">
           {footerContent && (
-            <div className="mb-6 md:mb-8">
-              <RichText data={footerContent} />
-            </div>
+            <RichText data={footerContent} />
           )}
           <div className="mt-6 md:mt-8">
             <CMSLink {...button.link}>
@@ -91,7 +101,7 @@ export const FAQ1 = (props: FAQ1BlockType) => {
   );
 };
 
-export const FAQ1Defaults: Props = {
+export const FAQ5Defaults: Props = {
   content: undefined,
   questions: [
     {
@@ -100,6 +110,14 @@ export const FAQ1Defaults: Props = {
     },
     {
       title: "Question text goes here", 
+      answer: {} as SerializedEditorState,
+    },
+    {
+      title: "Question text goes here",
+      answer: {} as SerializedEditorState,
+    },
+    {
+      title: "Question text goes here",
       answer: {} as SerializedEditorState,
     },
     {
