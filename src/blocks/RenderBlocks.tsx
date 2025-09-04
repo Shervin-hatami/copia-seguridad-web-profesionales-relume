@@ -18,6 +18,10 @@ import { Layout5Block } from '@/blocks/Layout5/Component'
 import { MediaBlock } from '@/blocks/MediaBlock/Component'
 import { MultiForm1Block } from '@/blocks/MultiForm1/Component'
 import { Contact1 } from '@/blocks/Contact1/Component'
+import { Contact5 } from '@/blocks/Contact5/Component'
+import { Pricing1 } from '@/blocks/Pricing1/Component'
+import { Pricing5 } from '@/blocks/Pricing5/Component'
+import { FAQ1 } from '@/blocks/FAQ1/Component'
 import { Navbar1 } from '@/blocks/Navbar1/Component'
 import { Navbar5 } from '@/blocks/Navbar5/Component'
 
@@ -29,6 +33,7 @@ const blockComponents = {
   cta1: CTA1Block,
   cta5: CTA5Block,
   contact1: Contact1,
+  contact5: Contact5,
   footer1: Footer1,
   footer5: Footer5,
   header44: Header44Block,
@@ -40,6 +45,9 @@ const blockComponents = {
   multiForm1: MultiForm1Block,
   navbar1: Navbar1,
   navbar5: Navbar5,
+  pricing1: Pricing1,
+  pricing5: Pricing5,
+  faq1: FAQ1,
 }
 
 export const RenderBlocks: React.FC<{

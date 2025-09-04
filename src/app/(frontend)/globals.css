@@ -57,6 +57,11 @@
     --text-primary: 222.2 84% 4.9%;
     --text-secondary: 215.4 16.3% 46.9%;
     --text-tertiary: 215.4 16.3% 56.9%;
+    
+    /* Variables adicionales para Relume UI */
+    --background-alternative: 222.2 47.4% 11.2%;
+    --text-alternative: 210 40% 98%;
+    --border-alternative: 222.2 47.4% 11.2%;
   }
 
   [data-theme='dark'] {
@@ -101,6 +106,11 @@
     --text-primary: 210 40% 98%;
     --text-secondary: 215 20.2% 65.1%;
     --text-tertiary: 215 20.2% 55.1%;
+    
+    /* Variables adicionales para Relume UI en dark mode */
+    --background-alternative: 210 40% 98%;
+    --text-alternative: 222.2 47.4% 11.2%;
+    --border-alternative: 210 40% 98%;
   }
 }
 

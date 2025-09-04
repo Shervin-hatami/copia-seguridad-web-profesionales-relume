@@ -208,6 +208,10 @@ export interface Page {
     | FormBlock
     | MultiForm1Block
     | Contact1Block
+    | Contact5Block
+    | Pricing1Block
+    | Pricing5Block
+    | FAQ1Block
     | Navbar1Block
     | Navbar5Block
   )[];
@@ -1446,6 +1450,291 @@ export interface Contact1Block {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Contact5Block".
+ */
+export interface Contact5Block {
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  contactInfo: {
+    email: string;
+    phone: string;
+    address: string;
+  };
+  button: {
+    title: string;
+    variant?: ('primary' | 'secondary' | 'link') | null;
+    size?: ('sm' | 'lg' | 'link') | null;
+  };
+  terms: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'contact5';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Pricing1Block".
+ */
+export interface Pricing1Block {
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  pricingPlan: {
+    plan: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    features: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    button: {
+      title: string;
+      variant?: ('primary' | 'secondary' | 'ghost' | 'link') | null;
+      size?: ('sm' | 'primary' | 'icon' | 'link') | null;
+    };
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'pricing1';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Pricing5Block".
+ */
+export interface Pricing5Block {
+  tagline: string;
+  heading: string;
+  description: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  featureSections?:
+    | {
+        icon: {
+          media: number | Media;
+          /**
+           * Descripción del icono para accesibilidad
+           */
+          alt?: string | null;
+        };
+        heading: string;
+        description: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  pricingPlan: {
+    planName: string;
+    description: {
+      root: {
+        type: string;
+        children: {
+          type: string;
+          version: number;
+          [k: string]: unknown;
+        }[];
+        direction: ('ltr' | 'rtl') | null;
+        format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+        indent: number;
+        version: number;
+      };
+      [k: string]: unknown;
+    };
+    monthlyPrice: string;
+    features?:
+      | {
+          feature: {
+            root: {
+              type: string;
+              children: {
+                type: string;
+                version: number;
+                [k: string]: unknown;
+              }[];
+              direction: ('ltr' | 'rtl') | null;
+              format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+              indent: number;
+              version: number;
+            };
+            [k: string]: unknown;
+          };
+          id?: string | null;
+        }[]
+      | null;
+    button: {
+      title: string;
+    };
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'pricing5';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQ1Block".
+ */
+export interface FAQ1Block {
+  content: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  questions?:
+    | {
+        title: string;
+        answer: {
+          root: {
+            type: string;
+            children: {
+              type: string;
+              version: number;
+              [k: string]: unknown;
+            }[];
+            direction: ('ltr' | 'rtl') | null;
+            format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+            indent: number;
+            version: number;
+          };
+          [k: string]: unknown;
+        };
+        id?: string | null;
+      }[]
+    | null;
+  footerContent: {
+    root: {
+      type: string;
+      children: {
+        type: string;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  };
+  button: {
+    title: string;
+    variant?: ('primary' | 'secondary' | 'ghost' | 'link') | null;
+    size?: ('sm' | 'primary' | 'icon' | 'link') | null;
+    link?: {
+      type?: ('reference' | 'custom') | null;
+      newTab?: boolean | null;
+      reference?:
+        | ({
+            relationTo: 'pages';
+            value: number | Page;
+          } | null)
+        | ({
+            relationTo: 'posts';
+            value: number | Post;
+          } | null);
+      url?: string | null;
+    };
+  };
+  id?: string | null;
+  blockName?: string | null;
+  blockType: 'faq1';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "Navbar1Block".
  */
 export interface Navbar1Block {
@@ -1972,6 +2261,10 @@ export interface PagesSelect<T extends boolean = true> {
         formBlock?: T | FormBlockSelect<T>;
         multiForm1?: T | MultiForm1BlockSelect<T>;
         contact1?: T | Contact1BlockSelect<T>;
+        contact5?: T | Contact5BlockSelect<T>;
+        pricing1?: T | Pricing1BlockSelect<T>;
+        pricing5?: T | Pricing5BlockSelect<T>;
+        faq1?: T | FAQ1BlockSelect<T>;
         navbar1?: T | Navbar1BlockSelect<T>;
         navbar5?: T | Navbar5BlockSelect<T>;
       };
@@ -2470,6 +2763,126 @@ export interface Contact1BlockSelect<T extends boolean = true> {
         size?: T;
       };
   terms?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Contact5Block_select".
+ */
+export interface Contact5BlockSelect<T extends boolean = true> {
+  content?: T;
+  contactInfo?:
+    | T
+    | {
+        email?: T;
+        phone?: T;
+        address?: T;
+      };
+  button?:
+    | T
+    | {
+        title?: T;
+        variant?: T;
+        size?: T;
+      };
+  terms?: T;
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Pricing1Block_select".
+ */
+export interface Pricing1BlockSelect<T extends boolean = true> {
+  content?: T;
+  pricingPlan?:
+    | T
+    | {
+        plan?: T;
+        features?: T;
+        button?:
+          | T
+          | {
+              title?: T;
+              variant?: T;
+              size?: T;
+            };
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "Pricing5Block_select".
+ */
+export interface Pricing5BlockSelect<T extends boolean = true> {
+  tagline?: T;
+  heading?: T;
+  description?: T;
+  featureSections?:
+    | T
+    | {
+        icon?:
+          | T
+          | {
+              media?: T;
+              alt?: T;
+            };
+        heading?: T;
+        description?: T;
+        id?: T;
+      };
+  pricingPlan?:
+    | T
+    | {
+        planName?: T;
+        description?: T;
+        monthlyPrice?: T;
+        features?:
+          | T
+          | {
+              feature?: T;
+              id?: T;
+            };
+        button?:
+          | T
+          | {
+              title?: T;
+            };
+      };
+  id?: T;
+  blockName?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "FAQ1Block_select".
+ */
+export interface FAQ1BlockSelect<T extends boolean = true> {
+  content?: T;
+  questions?:
+    | T
+    | {
+        title?: T;
+        answer?: T;
+        id?: T;
+      };
+  footerContent?: T;
+  button?:
+    | T
+    | {
+        title?: T;
+        variant?: T;
+        size?: T;
+        link?:
+          | T
+          | {
+              type?: T;
+              newTab?: T;
+              reference?: T;
+              url?: T;
+            };
+      };
   id?: T;
   blockName?: T;
 }
