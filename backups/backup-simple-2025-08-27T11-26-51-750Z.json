@@ -1,0 +1,1882 @@
+{
+  "metadata": {
+    "timestamp": "2025-08-27T11:26:51.760Z",
+    "version": "1.0",
+    "generatedBy": "Simple Backup Script",
+    "collections": [
+      "posts",
+      "pages",
+      "media",
+      "categories"
+    ],
+    "globals": [
+      "header",
+      "footer"
+    ]
+  },
+  "collections": {
+    "posts": {
+      "docs": [],
+      "hasNextPage": false,
+      "hasPrevPage": false,
+      "limit": 1000,
+      "nextPage": null,
+      "page": 1,
+      "pagingCounter": 1,
+      "prevPage": null,
+      "totalDocs": 0,
+      "totalPages": 1
+    },
+    "pages": {
+      "docs": [
+        {
+          "id": 2,
+          "title": "test bloques relume",
+          "hero": {
+            "type": "header5",
+            "richText": {
+              "root": {
+                "type": "root",
+                "format": "",
+                "indent": 0,
+                "version": 1,
+                "children": [
+                  {
+                    "type": "paragraph",
+                    "format": "",
+                    "indent": 0,
+                    "version": 1,
+                    "children": [
+                      {
+                        "mode": "normal",
+                        "text": "test hero secction",
+                        "type": "text",
+                        "style": "",
+                        "detail": 0,
+                        "format": 0,
+                        "version": 1
+                      }
+                    ],
+                    "direction": "ltr",
+                    "textStyle": "",
+                    "textFormat": 0
+                  }
+                ],
+                "direction": "ltr"
+              }
+            },
+            "links": [
+              {
+                "id": "68adb1d0c33d577922812c78",
+                "link": {
+                  "type": "reference",
+                  "newTab": null,
+                  "reference": {
+                    "relationTo": "pages",
+                    "value": {
+                      "id": 2,
+                      "title": "test bloques relume",
+                      "slug": "test-bloques-relume"
+                    }
+                  },
+                  "url": null,
+                  "label": "home",
+                  "appearance": "default"
+                }
+              },
+              {
+                "id": "68adb1dfc33d577922812c7a",
+                "link": {
+                  "type": "custom",
+                  "newTab": null,
+                  "url": "https://www.google.com/search",
+                  "label": "google",
+                  "appearance": "outline"
+                }
+              }
+            ],
+            "media": {
+              "id": 2,
+              "alt": null,
+              "caption": null,
+              "updatedAt": "2025-08-26T13:08:06.293Z",
+              "createdAt": "2025-08-26T13:08:03.927Z",
+              "url": "/api/media/file/servicios-aperturas.webp",
+              "thumbnailURL": "/api/media/file/servicios-aperturas-300x171.webp",
+              "filename": "servicios-aperturas.webp",
+              "mimeType": "image/webp",
+              "filesize": 260688,
+              "width": 1792,
+              "height": 1024,
+              "focalX": 50,
+              "focalY": 50,
+              "sizes": {
+                "thumbnail": {
+                  "url": "/api/media/file/servicios-aperturas-300x171.webp",
+                  "width": 300,
+                  "height": 171,
+                  "mimeType": "image/webp",
+                  "filesize": 12826,
+                  "filename": "servicios-aperturas-300x171.webp"
+                },
+                "square": {
+                  "url": "/api/media/file/servicios-aperturas-500x500.webp",
+                  "width": 500,
+                  "height": 500,
+                  "mimeType": "image/webp",
+                  "filesize": 50568,
+                  "filename": "servicios-aperturas-500x500.webp"
+                },
+                "small": {
+                  "url": "/api/media/file/servicios-aperturas-600x343.webp",
+                  "width": 600,
+                  "height": 343,
+                  "mimeType": "image/webp",
+                  "filesize": 40008,
+                  "filename": "servicios-aperturas-600x343.webp"
+                },
+                "medium": {
+                  "url": "/api/media/file/servicios-aperturas-900x514.webp",
+                  "width": 900,
+                  "height": 514,
+                  "mimeType": "image/webp",
+                  "filesize": 80098,
+                  "filename": "servicios-aperturas-900x514.webp"
+                },
+                "large": {
+                  "url": "/api/media/file/servicios-aperturas-1400x800.webp",
+                  "width": 1400,
+                  "height": 800,
+                  "mimeType": "image/webp",
+                  "filesize": 164026,
+                  "filename": "servicios-aperturas-1400x800.webp"
+                },
+                "xlarge": {
+                  "url": null,
+                  "width": null,
+                  "height": null,
+                  "mimeType": null,
+                  "filesize": null,
+                  "filename": null
+                },
+                "og": {
+                  "url": "/api/media/file/servicios-aperturas-1200x630.webp",
+                  "width": 1200,
+                  "height": 630,
+                  "mimeType": "image/webp",
+                  "filesize": 114604,
+                  "filename": "servicios-aperturas-1200x630.webp"
+                }
+              }
+            }
+          },
+          "layout": [
+            {
+              "id": "68ac49b6f00b9b4a70376294",
+              "heading": "Medium length banner heading goes here",
+              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+              "inputPlaceholder": "Enter your email",
+              "blockName": null,
+              "blockType": "banner1",
+              "logo": {
+                "url": "#",
+                "src": "https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg",
+                "alt": "Relume logo"
+              },
+              "button": {
+                "title": "Sign up",
+                "size": "sm",
+                "variant": "default"
+              }
+            },
+            {
+              "id": "68ac4c0a8788ed866521a4d0",
+              "blockName": null,
+              "navLinks": [
+                {
+                  "id": "68ac4c2a8788ed866521a4d2",
+                  "title": "home",
+                  "subMenuLinks": [
+                    {
+                      "id": "68ac4c388788ed866521a4d4",
+                      "title": "google",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "https://www.google.com/search"
+                      }
+                    }
+                  ],
+                  "link": {
+                    "type": "reference",
+                    "newTab": null,
+                    "reference": {
+                      "relationTo": "pages",
+                      "value": {
+                        "id": 2,
+                        "title": "test bloques relume",
+                        "slug": "test-bloques-relume"
+                      }
+                    },
+                    "url": null
+                  }
+                },
+                {
+                  "id": "68ac4c5f8788ed866521a4d6",
+                  "title": "home",
+                  "subMenuLinks": [],
+                  "link": {
+                    "type": "reference",
+                    "newTab": null,
+                    "reference": {
+                      "relationTo": "pages",
+                      "value": {
+                        "id": 2,
+                        "title": "test bloques relume",
+                        "slug": "test-bloques-relume"
+                      }
+                    },
+                    "url": null
+                  }
+                }
+              ],
+              "buttons": [
+                {
+                  "id": "68ac4c698788ed866521a4d8",
+                  "title": "youtube",
+                  "size": "lg",
+                  "variant": "default",
+                  "link": {
+                    "type": "custom",
+                    "newTab": null,
+                    "url": "https://www.youtube.com/watch"
+                  }
+                }
+              ],
+              "blockType": "navbar1",
+              "logo": {
+                "useMedia": true,
+                "media": {
+                  "id": 1,
+                  "alt": null,
+                  "caption": null,
+                  "updatedAt": "2025-08-25T11:42:29.811Z",
+                  "createdAt": "2025-08-25T11:42:26.327Z",
+                  "url": "/api/media/file/telefono-24-rojo-1.png",
+                  "thumbnailURL": null,
+                  "filename": "telefono-24-rojo-1.png",
+                  "mimeType": "image/png",
+                  "filesize": 1260,
+                  "width": 50,
+                  "height": 50,
+                  "focalX": 50,
+                  "focalY": 50,
+                  "sizes": {
+                    "thumbnail": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    },
+                    "square": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    },
+                    "small": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    },
+                    "medium": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    },
+                    "large": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    },
+                    "xlarge": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    },
+                    "og": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    }
+                  }
+                },
+                "url": "#",
+                "src": "https://d22po4pjz3o32e.cloudfront.net/logo-image.svg",
+                "alt": "Logo image"
+              }
+            },
+            {
+              "id": "68ac57d06fad3fce761a468f",
+              "blockName": null,
+              "links": [
+                {
+                  "id": "68ac58176fad3fce761a4691",
+                  "title": "navegacion",
+                  "link": {
+                    "type": "reference",
+                    "newTab": null,
+                    "reference": {
+                      "relationTo": "pages",
+                      "value": {
+                        "id": 2,
+                        "title": "test bloques relume",
+                        "slug": "test-bloques-relume"
+                      }
+                    },
+                    "url": null
+                  },
+                  "megaMenu": {
+                    "categoryLinks": [],
+                    "featuredSections": {
+                      "title": "navegacion1",
+                      "links": [
+                        {
+                          "id": "68ac58416fad3fce761a4693",
+                          "title": "apple",
+                          "description": "apple dewscription",
+                          "link": {
+                            "type": "reference",
+                            "newTab": null,
+                            "reference": {
+                              "relationTo": "pages",
+                              "value": {
+                                "id": 2,
+                                "title": "test bloques relume",
+                                "slug": "test-bloques-relume"
+                              }
+                            },
+                            "url": null
+                          },
+                          "image": {
+                            "src": "https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg",
+                            "alt": null
+                          },
+                          "button": {
+                            "title": "button1",
+                            "size": "sm",
+                            "variant": "default"
+                          }
+                        }
+                      ]
+                    },
+                    "button": {
+                      "title": "botton2",
+                      "size": "sm",
+                      "variant": "default",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "https://www.youtube.com/watch"
+                      }
+                    }
+                  }
+                },
+                {
+                  "id": "68ac59496fad3fce761a4697",
+                  "title": "pages",
+                  "link": {
+                    "type": "reference",
+                    "newTab": null,
+                    "reference": {
+                      "relationTo": "pages",
+                      "value": {
+                        "id": 2,
+                        "title": "test bloques relume",
+                        "slug": "test-bloques-relume"
+                      }
+                    },
+                    "url": null
+                  },
+                  "megaMenu": {
+                    "categoryLinks": [
+                      {
+                        "id": "68ac595c6fad3fce761a4699",
+                        "title": "pages",
+                        "links": [
+                          {
+                            "id": "68ac59986fad3fce761a469b",
+                            "title": "reddit apple",
+                            "description": "reddit apple descripcion",
+                            "link": {
+                              "type": "reference",
+                              "newTab": null,
+                              "reference": {
+                                "relationTo": "pages",
+                                "value": {
+                                  "id": 2,
+                                  "title": "test bloques relume",
+                                  "slug": "test-bloques-relume"
+                                }
+                              },
+                              "url": null
+                            },
+                            "image": {
+                              "src": "https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg",
+                              "alt": null
+                            },
+                            "button": {
+                              "title": "ir a reddit",
+                              "size": "sm",
+                              "variant": "default"
+                            }
+                          }
+                        ]
+                      }
+                    ],
+                    "featuredSections": {
+                      "title": "navigation2",
+                      "links": [
+                        {
+                          "id": "68ac59ed6fad3fce761a469d",
+                          "title": "youtube",
+                          "description": "youtube descripcion",
+                          "link": {
+                            "type": "custom",
+                            "newTab": null,
+                            "url": "https://www.youtube.com/watch"
+                          },
+                          "image": {
+                            "src": "https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg",
+                            "alt": null
+                          },
+                          "button": {
+                            "title": "ir a youtube",
+                            "size": "sm",
+                            "variant": "default"
+                          }
+                        }
+                      ]
+                    },
+                    "button": {
+                      "title": "ir a menu inicial de youtube",
+                      "size": "sm",
+                      "variant": "default",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "https://www.youtube.com/feed/"
+                      }
+                    }
+                  }
+                }
+              ],
+              "buttons": [
+                {
+                  "id": "68ac58b26fad3fce761a4695",
+                  "title": "botton3",
+                  "size": "sm",
+                  "variant": "default",
+                  "link": {
+                    "type": "reference",
+                    "newTab": null,
+                    "reference": {
+                      "relationTo": "pages",
+                      "value": {
+                        "id": 2,
+                        "title": "test bloques relume",
+                        "slug": "test-bloques-relume"
+                      }
+                    },
+                    "url": null
+                  }
+                }
+              ],
+              "blockType": "navbar5",
+              "logo": {
+                "useMedia": true,
+                "media": {
+                  "id": 1,
+                  "alt": null,
+                  "caption": null,
+                  "updatedAt": "2025-08-25T11:42:29.811Z",
+                  "createdAt": "2025-08-25T11:42:26.327Z",
+                  "url": "/api/media/file/telefono-24-rojo-1.png",
+                  "thumbnailURL": null,
+                  "filename": "telefono-24-rojo-1.png",
+                  "mimeType": "image/png",
+                  "filesize": 1260,
+                  "width": 50,
+                  "height": 50,
+                  "focalX": 50,
+                  "focalY": 50,
+                  "sizes": {
+                    "thumbnail": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    },
+                    "square": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    },
+                    "small": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    },
+                    "medium": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    },
+                    "large": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    },
+                    "xlarge": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    },
+                    "og": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    }
+                  }
+                },
+                "url": null,
+                "src": null,
+                "alt": null
+              }
+            },
+            {
+              "id": "68ac4d728e1c03787855d168",
+              "navText": "navigation",
+              "footerText": "footer",
+              "blockName": null,
+              "blockType": "multiForm1",
+              "logo": {
+                "url": null,
+                "src": "https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg",
+                "alt": null
+              },
+              "navButton": {
+                "title": "button",
+                "variant": "primary",
+                "size": "default"
+              }
+            },
+            {
+              "id": "68ad7f0e21fe9f27165520ae",
+              "newsletterDescription": "Join our newsletter to stay up to date on features and releases.",
+              "inputPlaceholder": "Enter your email",
+              "footerText": "© 2024 Relume. All rights reserved.",
+              "blockName": null,
+              "columnLinks": [
+                {
+                  "id": "68ad7f1935109e21f84f6d82",
+                  "title": "Column One",
+                  "links": [
+                    {
+                      "id": "68ad7f1935109e21f84f6d7d",
+                      "title": "Link One",
+                      "icon": "facebook",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad7f1935109e21f84f6d7e",
+                      "title": "Link Two",
+                      "icon": "instagram",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad7f1935109e21f84f6d7f",
+                      "title": "Link Three",
+                      "icon": "x",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad7f1935109e21f84f6d80",
+                      "title": "Link Four",
+                      "icon": "linkedin",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad7f1935109e21f84f6d81",
+                      "title": "Link Five",
+                      "icon": "youtube",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "68ad7f1935109e21f84f6d88",
+                  "title": "Column Two",
+                  "links": [
+                    {
+                      "id": "68ad7f1935109e21f84f6d83",
+                      "title": "Link Six",
+                      "icon": null,
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad7f1935109e21f84f6d84",
+                      "title": "Link Seven",
+                      "icon": null,
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad7f1935109e21f84f6d85",
+                      "title": "Link Eight",
+                      "icon": null,
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad7f1935109e21f84f6d86",
+                      "title": "Link Nine",
+                      "icon": null,
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad7f1935109e21f84f6d87",
+                      "title": "Link Ten",
+                      "icon": null,
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "68ad7f1935109e21f84f6d8e",
+                  "title": "Follow us",
+                  "links": [
+                    {
+                      "id": "68ad7f1935109e21f84f6d89",
+                      "title": "Facebook",
+                      "icon": "facebook",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad7f1935109e21f84f6d8a",
+                      "title": "Instagram",
+                      "icon": "instagram",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad7f1935109e21f84f6d8b",
+                      "title": "X",
+                      "icon": "x",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad7f1935109e21f84f6d8c",
+                      "title": "LinkedIn",
+                      "icon": "linkedin",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad7f1935109e21f84f6d8d",
+                      "title": "Youtube",
+                      "icon": "youtube",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "footerLinks": [
+                {
+                  "id": "68ad7f1935109e21f84f6d8f",
+                  "title": "Privacy Policy",
+                  "link": {
+                    "type": "custom",
+                    "newTab": null,
+                    "url": "#"
+                  }
+                },
+                {
+                  "id": "68ad7f1935109e21f84f6d90",
+                  "title": "Terms of Service",
+                  "link": {
+                    "type": "custom",
+                    "newTab": null,
+                    "url": "#"
+                  }
+                },
+                {
+                  "id": "68ad7f1935109e21f84f6d91",
+                  "title": "Cookies Settings",
+                  "link": {
+                    "type": "custom",
+                    "newTab": null,
+                    "url": "#"
+                  }
+                }
+              ],
+              "blockType": "footer1",
+              "logo": {
+                "media": {
+                  "id": 1,
+                  "alt": null,
+                  "caption": null,
+                  "updatedAt": "2025-08-25T11:42:29.811Z",
+                  "createdAt": "2025-08-25T11:42:26.327Z",
+                  "url": "/api/media/file/telefono-24-rojo-1.png",
+                  "thumbnailURL": null,
+                  "filename": "telefono-24-rojo-1.png",
+                  "mimeType": "image/png",
+                  "filesize": 1260,
+                  "width": 50,
+                  "height": 50,
+                  "focalX": 50,
+                  "focalY": 50,
+                  "sizes": {
+                    "thumbnail": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    },
+                    "square": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    },
+                    "small": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    },
+                    "medium": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    },
+                    "large": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    },
+                    "xlarge": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    },
+                    "og": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    }
+                  }
+                },
+                "link": {
+                  "type": "reference",
+                  "newTab": null,
+                  "reference": {
+                    "relationTo": "pages",
+                    "value": {
+                      "id": 2,
+                      "title": "test bloques relume",
+                      "slug": "test-bloques-relume"
+                    }
+                  },
+                  "url": null
+                }
+              },
+              "button": {
+                "title": "Subscribe",
+                "size": "sm",
+                "variant": "secondary"
+              },
+              "termsAndConditions": {
+                "text": "By subscribing you agree to with our",
+                "link": {
+                  "type": "reference",
+                  "newTab": null,
+                  "reference": {
+                    "relationTo": "pages",
+                    "value": {
+                      "id": 2,
+                      "title": "test bloques relume",
+                      "slug": "test-bloques-relume"
+                    }
+                  },
+                  "url": null
+                },
+                "suffix": "and provide consent to receive updates from our company."
+              }
+            },
+            {
+              "id": "68ad96db0f963c29611ec202",
+              "newsletterHeading": "Join our newsletter",
+              "newsletterDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+              "inputPlaceholder": "Enter your email",
+              "footerText": "© 2024 Relume. All rights reserved.",
+              "blockName": null,
+              "columnLinks": [
+                {
+                  "id": "68ad96e939b21e1a1caa868b",
+                  "title": "Column One",
+                  "links": [
+                    {
+                      "id": "68ad96e939b21e1a1caa8686",
+                      "title": "Link One",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad96e939b21e1a1caa8687",
+                      "title": "Link Two",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad96e939b21e1a1caa8688",
+                      "title": "Link Three",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad96e939b21e1a1caa8689",
+                      "title": "Link Four",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad96e939b21e1a1caa868a",
+                      "title": "Link Five",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "68ad96e939b21e1a1caa8691",
+                  "title": "Column Two",
+                  "links": [
+                    {
+                      "id": "68ad96e939b21e1a1caa868c",
+                      "title": "Link Six",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad96e939b21e1a1caa868d",
+                      "title": "Link Seven",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad96e939b21e1a1caa868e",
+                      "title": "Link Eight",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad96e939b21e1a1caa868f",
+                      "title": "Link Nine",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad96e939b21e1a1caa8690",
+                      "title": "Link Ten",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "68ad96e939b21e1a1caa8697",
+                  "title": "Column Three",
+                  "links": [
+                    {
+                      "id": "68ad96e939b21e1a1caa8692",
+                      "title": "Link Eleven",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad96e939b21e1a1caa8693",
+                      "title": "Link Twelve",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad96e939b21e1a1caa8694",
+                      "title": "Link Thirteen",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad96e939b21e1a1caa8695",
+                      "title": "Link Fourteen",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad96e939b21e1a1caa8696",
+                      "title": "Link Fifteen",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "68ad96e939b21e1a1caa869d",
+                  "title": "Column Four",
+                  "links": [
+                    {
+                      "id": "68ad96e939b21e1a1caa8698",
+                      "title": "Link Sixteen",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad96e939b21e1a1caa8699",
+                      "title": "Link Seventeen",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad96e939b21e1a1caa869a",
+                      "title": "Link Eighteen",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad96e939b21e1a1caa869b",
+                      "title": "Link Nineteen",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad96e939b21e1a1caa869c",
+                      "title": "Link Twenty",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "id": "68ad96e939b21e1a1caa86a3",
+                  "title": "Column Five",
+                  "links": [
+                    {
+                      "id": "68ad96e939b21e1a1caa869e",
+                      "title": "Link Twenty One",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad96e939b21e1a1caa869f",
+                      "title": "Link Twenty Two",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad96e939b21e1a1caa86a0",
+                      "title": "Link Twenty Three",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad96e939b21e1a1caa86a1",
+                      "title": "Link Twenty Four",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    },
+                    {
+                      "id": "68ad96e939b21e1a1caa86a2",
+                      "title": "Link Twenty Five",
+                      "link": {
+                        "type": "custom",
+                        "newTab": null,
+                        "url": "#"
+                      }
+                    }
+                  ]
+                }
+              ],
+              "socialMediaLinks": [
+                {
+                  "id": "68ad96e939b21e1a1caa86a4",
+                  "url": "#",
+                  "icon": "facebook"
+                },
+                {
+                  "id": "68ad96e939b21e1a1caa86a5",
+                  "url": "#",
+                  "icon": "instagram"
+                },
+                {
+                  "id": "68ad96e939b21e1a1caa86a6",
+                  "url": "#",
+                  "icon": "x"
+                },
+                {
+                  "id": "68ad96e939b21e1a1caa86a7",
+                  "url": "#",
+                  "icon": "linkedin"
+                },
+                {
+                  "id": "68ad96e939b21e1a1caa86a8",
+                  "url": "#",
+                  "icon": "youtube"
+                }
+              ],
+              "footerLinks": [
+                {
+                  "id": "68ad96e939b21e1a1caa86a9",
+                  "title": "Privacy Policy",
+                  "link": {
+                    "type": "custom",
+                    "newTab": null,
+                    "url": "#"
+                  }
+                },
+                {
+                  "id": "68ad96e939b21e1a1caa86aa",
+                  "title": "Terms of Service",
+                  "link": {
+                    "type": "custom",
+                    "newTab": null,
+                    "url": "#"
+                  }
+                },
+                {
+                  "id": "68ad96e939b21e1a1caa86ab",
+                  "title": "Cookies Settings",
+                  "link": {
+                    "type": "custom",
+                    "newTab": null,
+                    "url": "#"
+                  }
+                }
+              ],
+              "blockType": "footer5",
+              "logo": {
+                "media": {
+                  "id": 1,
+                  "alt": null,
+                  "caption": null,
+                  "updatedAt": "2025-08-25T11:42:29.811Z",
+                  "createdAt": "2025-08-25T11:42:26.327Z",
+                  "url": "/api/media/file/telefono-24-rojo-1.png",
+                  "thumbnailURL": null,
+                  "filename": "telefono-24-rojo-1.png",
+                  "mimeType": "image/png",
+                  "filesize": 1260,
+                  "width": 50,
+                  "height": 50,
+                  "focalX": 50,
+                  "focalY": 50,
+                  "sizes": {
+                    "thumbnail": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    },
+                    "square": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    },
+                    "small": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    },
+                    "medium": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    },
+                    "large": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    },
+                    "xlarge": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    },
+                    "og": {
+                      "url": null,
+                      "width": null,
+                      "height": null,
+                      "mimeType": null,
+                      "filesize": null,
+                      "filename": null
+                    }
+                  }
+                },
+                "link": {
+                  "type": "reference",
+                  "newTab": null,
+                  "reference": {
+                    "relationTo": "pages",
+                    "value": {
+                      "id": 2,
+                      "title": "test bloques relume",
+                      "slug": "test-bloques-relume"
+                    }
+                  },
+                  "url": null
+                }
+              },
+              "button": {
+                "title": "Subscribe",
+                "size": "sm",
+                "variant": "secondary"
+              },
+              "termsAndConditions": {
+                "text": "By subscribing you agree to with our",
+                "link": {
+                  "type": "reference",
+                  "newTab": null,
+                  "reference": {
+                    "relationTo": "pages",
+                    "value": {
+                      "id": 2,
+                      "title": "test bloques relume",
+                      "slug": "test-bloques-relume"
+                    }
+                  },
+                  "url": null
+                },
+                "suffix": "and provide consent to receive updates from our company."
+              }
+            },
+            {
+              "id": "68aed60a58753d019f1715b1",
+              "tagline": "Tagline",
+              "heading": {
+                "root": {
+                  "type": "root",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "tag": "h4",
+                      "type": "heading",
+                      "format": "",
+                      "indent": 0,
+                      "version": 1,
+                      "children": [
+                        {
+                          "mode": "normal",
+                          "text": "Short heading here",
+                          "type": "text",
+                          "style": "",
+                          "detail": 0,
+                          "format": 0,
+                          "version": 1
+                        }
+                      ],
+                      "direction": "ltr"
+                    }
+                  ],
+                  "direction": "ltr"
+                }
+              },
+              "description": {
+                "root": {
+                  "type": "root",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "format": "",
+                      "indent": 0,
+                      "version": 1,
+                      "children": [
+                        {
+                          "mode": "normal",
+                          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id iaculis lectus, at feugiat mauris. Aliquam suscipit erat ex, ac scelerisque nisl volutpat vitae. Nullam eleifend id leo vitae sagittis. Suspendisse potenti. Suspendisse eget ultricies tortor. Integer pellentesque eu dui tristique fringilla. Maecenas gravida id metus eu euismod. Nunc auctor arcu vitae fermentum elementum.",
+                          "type": "text",
+                          "style": "",
+                          "detail": 0,
+                          "format": 2,
+                          "version": 1
+                        }
+                      ],
+                      "direction": "ltr",
+                      "textStyle": "",
+                      "textFormat": 2
+                    },
+                    {
+                      "type": "paragraph",
+                      "format": "",
+                      "indent": 0,
+                      "version": 1,
+                      "children": [],
+                      "direction": null,
+                      "textStyle": "",
+                      "textFormat": 0
+                    }
+                  ],
+                  "direction": "ltr",
+                  "textFormat": 2
+                }
+              },
+              "blockName": null,
+              "links": [
+                {
+                  "id": "68aed66658753d019f1715b3",
+                  "link": {
+                    "type": "reference",
+                    "newTab": null,
+                    "reference": {
+                      "relationTo": "pages",
+                      "value": {
+                        "id": 2,
+                        "title": "test bloques relume",
+                        "slug": "test-bloques-relume"
+                      }
+                    },
+                    "url": null,
+                    "label": "home",
+                    "appearance": "default"
+                  }
+                },
+                {
+                  "id": "68aed66958753d019f1715b5",
+                  "link": {
+                    "type": "custom",
+                    "newTab": null,
+                    "url": "https://www.youtube.com/watch",
+                    "label": "YouTube",
+                    "appearance": "default"
+                  }
+                }
+              ],
+              "blockType": "header44"
+            },
+            {
+              "id": "68aee7e33aa6515230e352d5",
+              "tagline": "Tagline",
+              "heading": {
+                "root": {
+                  "type": "root",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "tag": "h4",
+                      "type": "heading",
+                      "format": "",
+                      "indent": 0,
+                      "version": 1,
+                      "children": [
+                        {
+                          "mode": "normal",
+                          "text": "Short heading here",
+                          "type": "text",
+                          "style": "",
+                          "detail": 0,
+                          "format": 0,
+                          "version": 1
+                        }
+                      ],
+                      "direction": "ltr"
+                    }
+                  ],
+                  "direction": "ltr"
+                }
+              },
+              "description": {
+                "root": {
+                  "type": "root",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "format": "",
+                      "indent": 0,
+                      "version": 1,
+                      "children": [
+                        {
+                          "mode": "normal",
+                          "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean id iaculis lectus, at feugiat mauris. Aliquam suscipit erat ex, ac scelerisque nisl volutpat vitae. Nullam eleifend id leo vitae sagittis. Suspendisse potenti. Suspendisse eget ultricies tortor. Integer pellentesque eu dui tristique fringilla. Maecenas gravida id metus eu euismod. Nunc auctor arcu vitae fermentum elementum.",
+                          "type": "text",
+                          "style": "",
+                          "detail": 0,
+                          "format": 2,
+                          "version": 1
+                        }
+                      ],
+                      "direction": "ltr",
+                      "textStyle": "",
+                      "textFormat": 2
+                    },
+                    {
+                      "type": "paragraph",
+                      "format": "",
+                      "indent": 0,
+                      "version": 1,
+                      "children": [],
+                      "direction": null,
+                      "textStyle": "",
+                      "textFormat": 0
+                    }
+                  ],
+                  "direction": "ltr",
+                  "textFormat": 2
+                }
+              },
+              "inputPlaceholder": "Enter your email",
+              "termsAndConditions": {
+                "root": {
+                  "type": "root",
+                  "format": "",
+                  "indent": 0,
+                  "version": 1,
+                  "children": [
+                    {
+                      "type": "paragraph",
+                      "format": "",
+                      "indent": 0,
+                      "version": 1,
+                      "children": [
+                        {
+                          "mode": "normal",
+                          "text": "pulse aqui para ver los",
+                          "type": "text",
+                          "style": "",
+                          "detail": 0,
+                          "format": 0,
+                          "version": 1
+                        },
+                        {
+                          "mode": "normal",
+                          "text": " ",
+                          "type": "text",
+                          "style": "",
+                          "detail": 0,
+                          "format": 10,
+                          "version": 1
+                        },
+                        {
+                          "id": "68aee86fe1cc712e64112e59",
+                          "type": "link",
+                          "fields": {
+                            "doc": {
+                              "label": "test bloques relume",
+                              "value": {
+                                "id": 2,
+                                "title": "test bloques relume",
+                                "slug": "test-bloques-relume"
+                              },
+                              "relationTo": "pages"
+                            },
+                            "newTab": true,
+                            "linkType": "internal"
+                          },
+                          "format": "",
+                          "indent": 0,
+                          "version": 3,
+                          "children": [
+                            {
+                              "mode": "normal",
+                              "text": "Terminos y Condiciones",
+                              "type": "text",
+                              "style": "",
+                              "detail": 0,
+                              "format": 10,
+                              "version": 1
+                            }
+                          ],
+                          "direction": "ltr",
+                          "textFormat": 10
+                        },
+                        {
+                          "mode": "normal",
+                          "text": " ",
+                          "type": "text",
+                          "style": "",
+                          "detail": 0,
+                          "format": 10,
+                          "version": 1
+                        },
+                        {
+                          "mode": "normal",
+                          "text": "de esta pagina web.",
+                          "type": "text",
+                          "style": "",
+                          "detail": 0,
+                          "format": 0,
+                          "version": 1
+                        }
+                      ],
+                      "direction": "ltr",
+                      "textStyle": "",
+                      "textFormat": 10
+                    }
+                  ],
+                  "direction": "ltr",
+                  "textFormat": 10
+                }
+              },
+              "blockName": null,
+              "blockType": "header48",
+              "button": {
+                "title": "Sign in",
+                "size": "sm",
+                "variant": "default"
+              }
+            }
+          ],
+          "meta": {
+            "title": "metadatos",
+            "image": null,
+            "description": null
+          },
+          "publishedAt": "2025-08-25T11:44:09.208Z",
+          "slug": "test-bloques-relume",
+          "slugLock": true,
+          "updatedAt": "2025-08-27T11:25:19.511Z",
+          "createdAt": "2025-08-25T11:32:03.561Z",
+          "_status": "published"
+        }
+      ],
+      "hasNextPage": false,
+      "hasPrevPage": false,
+      "limit": 1000,
+      "nextPage": null,
+      "page": 1,
+      "pagingCounter": 1,
+      "prevPage": null,
+      "totalDocs": 1,
+      "totalPages": 1
+    },
+    "media": {
+      "docs": [
+        {
+          "id": 2,
+          "alt": null,
+          "caption": null,
+          "updatedAt": "2025-08-26T13:08:06.293Z",
+          "createdAt": "2025-08-26T13:08:03.927Z",
+          "url": "/api/media/file/servicios-aperturas.webp",
+          "thumbnailURL": "/api/media/file/servicios-aperturas-300x171.webp",
+          "filename": "servicios-aperturas.webp",
+          "mimeType": "image/webp",
+          "filesize": 260688,
+          "width": 1792,
+          "height": 1024,
+          "focalX": 50,
+          "focalY": 50,
+          "sizes": {
+            "thumbnail": {
+              "url": "/api/media/file/servicios-aperturas-300x171.webp",
+              "width": 300,
+              "height": 171,
+              "mimeType": "image/webp",
+              "filesize": 12826,
+              "filename": "servicios-aperturas-300x171.webp"
+            },
+            "square": {
+              "url": "/api/media/file/servicios-aperturas-500x500.webp",
+              "width": 500,
+              "height": 500,
+              "mimeType": "image/webp",
+              "filesize": 50568,
+              "filename": "servicios-aperturas-500x500.webp"
+            },
+            "small": {
+              "url": "/api/media/file/servicios-aperturas-600x343.webp",
+              "width": 600,
+              "height": 343,
+              "mimeType": "image/webp",
+              "filesize": 40008,
+              "filename": "servicios-aperturas-600x343.webp"
+            },
+            "medium": {
+              "url": "/api/media/file/servicios-aperturas-900x514.webp",
+              "width": 900,
+              "height": 514,
+              "mimeType": "image/webp",
+              "filesize": 80098,
+              "filename": "servicios-aperturas-900x514.webp"
+            },
+            "large": {
+              "url": "/api/media/file/servicios-aperturas-1400x800.webp",
+              "width": 1400,
+              "height": 800,
+              "mimeType": "image/webp",
+              "filesize": 164026,
+              "filename": "servicios-aperturas-1400x800.webp"
+            },
+            "xlarge": {
+              "url": null,
+              "width": null,
+              "height": null,
+              "mimeType": null,
+              "filesize": null,
+              "filename": null
+            },
+            "og": {
+              "url": "/api/media/file/servicios-aperturas-1200x630.webp",
+              "width": 1200,
+              "height": 630,
+              "mimeType": "image/webp",
+              "filesize": 114604,
+              "filename": "servicios-aperturas-1200x630.webp"
+            }
+          }
+        },
+        {
+          "id": 1,
+          "alt": null,
+          "caption": null,
+          "updatedAt": "2025-08-25T11:42:29.811Z",
+          "createdAt": "2025-08-25T11:42:26.327Z",
+          "url": "/api/media/file/telefono-24-rojo-1.png",
+          "thumbnailURL": null,
+          "filename": "telefono-24-rojo-1.png",
+          "mimeType": "image/png",
+          "filesize": 1260,
+          "width": 50,
+          "height": 50,
+          "focalX": 50,
+          "focalY": 50,
+          "sizes": {
+            "thumbnail": {
+              "url": null,
+              "width": null,
+              "height": null,
+              "mimeType": null,
+              "filesize": null,
+              "filename": null
+            },
+            "square": {
+              "url": null,
+              "width": null,
+              "height": null,
+              "mimeType": null,
+              "filesize": null,
+              "filename": null
+            },
+            "small": {
+              "url": null,
+              "width": null,
+              "height": null,
+              "mimeType": null,
+              "filesize": null,
+              "filename": null
+            },
+            "medium": {
+              "url": null,
+              "width": null,
+              "height": null,
+              "mimeType": null,
+              "filesize": null,
+              "filename": null
+            },
+            "large": {
+              "url": null,
+              "width": null,
+              "height": null,
+              "mimeType": null,
+              "filesize": null,
+              "filename": null
+            },
+            "xlarge": {
+              "url": null,
+              "width": null,
+              "height": null,
+              "mimeType": null,
+              "filesize": null,
+              "filename": null
+            },
+            "og": {
+              "url": null,
+              "width": null,
+              "height": null,
+              "mimeType": null,
+              "filesize": null,
+              "filename": null
+            }
+          }
+        }
+      ],
+      "hasNextPage": false,
+      "hasPrevPage": false,
+      "limit": 1000,
+      "nextPage": null,
+      "page": 1,
+      "pagingCounter": 1,
+      "prevPage": null,
+      "totalDocs": 2,
+      "totalPages": 1
+    },
+    "categories": {
+      "docs": [],
+      "hasNextPage": false,
+      "hasPrevPage": false,
+      "limit": 1000,
+      "nextPage": null,
+      "page": 1,
+      "pagingCounter": 1,
+      "prevPage": null,
+      "totalDocs": 0,
+      "totalPages": 1
+    }
+  },
+  "globals": {
+    "header": {
+      "id": 1,
+      "navItems": [
+        {
+          "id": "68ac49b5f00b9b4a70376292",
+          "link": {
+            "type": "custom",
+            "newTab": false,
+            "url": "/test-bloques-relume",
+            "label": "casa"
+          }
+        }
+      ],
+      "updatedAt": "2025-08-25T11:32:05.945Z",
+      "createdAt": "2025-08-25T11:32:05.842Z",
+      "globalType": "header"
+    },
+    "footer": {
+      "id": 1,
+      "navItems": [
+        {
+          "id": "68ac49b6f00b9b4a70376293",
+          "link": {
+            "type": "custom",
+            "newTab": false,
+            "url": "/test-bloques-relume",
+            "label": "casa tambien"
+          }
+        }
+      ],
+      "updatedAt": "2025-08-25T11:32:06.378Z",
+      "createdAt": "2025-08-25T11:32:06.314Z",
+      "globalType": "footer"
+    }
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "metadata": {
+    "timestamp": "2025-08-20T10:01:34.285Z",
+    "version": "1.0",
+    "generatedBy": "Simple Backup Script",
+    "collections": [
+      "posts",
+      "pages",
+      "media",
+      "categories"
+    ],
+    "globals": [
+      "header",
+      "footer"
+    ]
+  },
+  "collections": {
+    "posts": {
+      "docs": [],
+      "hasNextPage": false,
+      "hasPrevPage": false,
+      "limit": 1000,
+      "nextPage": null,
+      "page": 1,
+      "pagingCounter": 1,
+      "prevPage": null,
+      "totalDocs": 0,
+      "totalPages": 1
+    },
+    "pages": {
+      "docs": [
+        {
+          "id": 3,
+          "title": "test bloques relume",
+          "hero": {
+            "type": "lowImpact",
+            "richText": null,
+            "links": [],
+            "media": null
+          },
+          "layout": [
+            {
+              "id": "68a4807424d277fd54d05ce8",
+              "heading": "Medium length banner heading goes here",
+              "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+              "inputPlaceholder": "Enter your email",
+              "blockName": null,
+              "blockType": "banner1",
+              "logo": {
+                "url": "#",
+                "src": "https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg",
+                "alt": "Relume logo"
+              },
+              "button": {
+                "title": "Sign up",
+                "size": "sm",
+                "variant": "default"
+              }
+            }
+          ],
+          "meta": {
+            "title": "metadatos",
+            "image": null,
+            "description": null
+          },
+          "publishedAt": "2025-08-19T13:47:48.271Z",
+          "slug": "test-bloques-relume",
+          "slugLock": false,
+          "updatedAt": "2025-08-20T09:57:33.966Z",
+          "createdAt": "2025-08-19T13:46:03.263Z",
+          "_status": "published"
+        }
+      ],
+      "hasNextPage": false,
+      "hasPrevPage": false,
+      "limit": 1000,
+      "nextPage": null,
+      "page": 1,
+      "pagingCounter": 1,
+      "prevPage": null,
+      "totalDocs": 1,
+      "totalPages": 1
+    },
+    "media": {
+      "docs": [],
+      "hasNextPage": false,
+      "hasPrevPage": false,
+      "limit": 1000,
+      "nextPage": null,
+      "page": 1,
+      "pagingCounter": 1,
+      "prevPage": null,
+      "totalDocs": 0,
+      "totalPages": 1
+    },
+    "categories": {
+      "docs": [],
+      "hasNextPage": false,
+      "hasPrevPage": false,
+      "limit": 1000,
+      "nextPage": null,
+      "page": 1,
+      "pagingCounter": 1,
+      "prevPage": null,
+      "totalDocs": 0,
+      "totalPages": 1
+    }
+  },
+  "globals": {
+    "header": {
+      "id": 1,
+      "navItems": [
+        {
+          "id": "68a59a8661a56b3574a7dca4",
+          "link": {
+            "type": "reference",
+            "newTab": false,
+            "reference": {
+              "relationTo": "pages",
+              "value": {
+                "id": 3,
+                "title": "test bloques relume",
+                "slug": "test-bloques-relume"
+              }
+            },
+            "url": "#",
+            "label": "casa"
+          }
+        }
+      ],
+      "updatedAt": "2025-08-20T09:55:59.684Z",
+      "createdAt": "2025-08-20T09:22:29.002Z",
+      "globalType": "header"
+    },
+    "footer": {
+      "id": 1,
+      "navItems": [
+        {
+          "id": "68a59bb70b07adf455b81ac7",
+          "link": {
+            "type": "reference",
+            "newTab": null,
+            "reference": {
+              "relationTo": "pages",
+              "value": {
+                "id": 3,
+                "title": "test bloques relume",
+                "slug": "test-bloques-relume"
+              }
+            },
+            "url": null,
+            "label": "casa tambien"
+          }
+        }
+      ],
+      "updatedAt": "2025-08-20T09:56:24.140Z",
+      "createdAt": "2025-08-20T09:42:57.890Z",
+      "globalType": "footer"
+    }
+  }
+}
