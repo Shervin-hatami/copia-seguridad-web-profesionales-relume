@@ -18,12 +18,14 @@ export const Pricing5Block: Block = {
       type: 'text',
       label: 'Tagline',
       required: true,
+      defaultValue: 'Tagline',
     },
     {
       name: 'heading',
       type: 'text',
       label: 'Título principal',
       required: true,
+      defaultValue: 'Medium length heading here',
     },
     {
       name: 'description',
@@ -42,6 +44,9 @@ export const Pricing5Block: Block = {
       }),
       label: 'Descripción',
       required: true,
+      admin: {
+        description: 'Add description text as needed',
+      },
     },
     {
       name: 'featureSections',
@@ -76,6 +81,7 @@ export const Pricing5Block: Block = {
           type: 'text',
           label: 'Título de la característica',
           required: true,
+          defaultValue: 'Feature title',
         },
         {
           name: 'description',
@@ -93,6 +99,9 @@ export const Pricing5Block: Block = {
           }),
           label: 'Descripción de la característica',
           required: true,
+          admin: {
+            description: 'Add feature description text as needed',
+          },
         },
       ],
     },
@@ -105,6 +114,7 @@ export const Pricing5Block: Block = {
           type: 'text',
           label: 'Nombre del plan',
           required: true,
+          defaultValue: 'Basic plan',
         },
         {
           name: 'description',
@@ -122,12 +132,16 @@ export const Pricing5Block: Block = {
           }),
           label: 'Descripción del plan',
           required: true,
+          admin: {
+            description: 'Add plan description text as needed',
+          },
         },
         {
           name: 'monthlyPrice',
           type: 'text',
           label: 'Precio mensual',
           required: true,
+          defaultValue: '$0',
         },
         {
           name: 'features',
@@ -152,6 +166,9 @@ export const Pricing5Block: Block = {
               }),
               label: 'Característica',
               required: true,
+              admin: {
+                description: 'Add feature text as needed',
+              },
             },
           ],
         },
@@ -164,6 +181,7 @@ export const Pricing5Block: Block = {
               type: 'text',
               label: 'Texto del botón',
               required: true,
+              defaultValue: 'Get started',
             },
           ],
         },

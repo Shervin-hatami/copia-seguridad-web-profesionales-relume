@@ -33,6 +33,9 @@ export const Header48Block: Block = {
         },
       }),
       label: false,
+      admin: {
+        description: 'Use H3 for "Medium length heading here" or customize as needed',
+      },
     },
     {
       name: 'description',
@@ -47,6 +50,9 @@ export const Header48Block: Block = {
         },
       }),
       label: false,
+      admin: {
+        description: 'Add description text like "Lorem ipsum dolor sit amet, consectetur adipiscing elit."',
+      },
     },
     {
       name: 'inputPlaceholder',
@@ -101,6 +107,9 @@ export const Header48Block: Block = {
         },
       }),
       label: false,
+      admin: {
+        description: 'Add terms and conditions text as needed',
+      },
     },
   ],
 }

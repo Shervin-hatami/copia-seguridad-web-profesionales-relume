@@ -15,6 +15,9 @@ export const Footer1Block: Block = {
           type: 'upload',
           relationTo: 'media',
           required: true,
+          admin: {
+            description: 'Upload logo image or use placeholder',
+          },
         },
         simpleLink(),
       ],

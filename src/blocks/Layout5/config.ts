@@ -33,6 +33,9 @@ export const Layout5Block: Block = {
         },
       }),
       label: false,
+      admin: {
+        description: 'Use H1 for "Medium length section heading goes here" or customize as needed',
+      },
     },
     {
       name: 'description',
@@ -47,6 +50,9 @@ export const Layout5Block: Block = {
         },
       }),
       label: false,
+      admin: {
+        description: 'Add description text like "Lorem ipsum dolor sit amet, consectetur adipiscing elit."',
+      },
     },
     {
       name: 'subHeadings',

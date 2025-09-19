@@ -30,6 +30,9 @@ export const Logo1Block: Block = {
       }),
       label: 'Título/Encabezado',
       required: true,
+      admin: {
+        description: 'Add title/heading content as needed',
+      },
     },
     {
       name: 'logos',
@@ -43,6 +46,9 @@ export const Logo1Block: Block = {
           relationTo: 'media',
           required: true,
           label: 'Imagen del logo',
+          admin: {
+            description: 'Upload logo image or use placeholder',
+          },
         },
         {
           name: 'alt',

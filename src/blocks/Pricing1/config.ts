@@ -30,6 +30,9 @@ export const Pricing1Block: Block = {
       }),
       label: 'Contenido superior (tagline, título y descripción)',
       required: true,
+      admin: {
+        description: 'Add tagline, heading and description text as needed',
+      },
     },
     {
       name: 'pricingPlan',
@@ -52,6 +55,9 @@ export const Pricing1Block: Block = {
           }),
           label: 'Plan (nombre, precio mensual y anual)',
           required: true,
+          admin: {
+            description: 'Add plan name (H6), monthly and annual pricing as needed',
+          },
         },
         {
           name: 'features',
@@ -69,6 +75,9 @@ export const Pricing1Block: Block = {
           }),
           label: 'Características del plan (usa listas para cada característica)',
           required: true,
+          admin: {
+            description: 'Add plan features using lists for each characteristic',
+          },
         },
         {
           name: 'button',
@@ -79,6 +88,7 @@ export const Pricing1Block: Block = {
               type: 'text',
               label: 'Texto del botón',
               required: true,
+              defaultValue: 'Get started',
             },
             {
               name: 'variant',

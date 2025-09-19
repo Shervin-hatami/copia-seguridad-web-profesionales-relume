@@ -30,6 +30,9 @@ export const Testimonial1Block: Block = {
       }),
       label: 'Testimonio (cita)',
       required: true,
+      admin: {
+        description: 'Add testimonial quote text as needed',
+      },
     },
     {
       name: 'logo',
@@ -42,6 +45,9 @@ export const Testimonial1Block: Block = {
           relationTo: 'media',
           required: true,
           label: 'Imagen del logo',
+          admin: {
+            description: 'Upload company logo or use placeholder',
+          },
         },
         {
           name: 'alt',
@@ -64,6 +70,9 @@ export const Testimonial1Block: Block = {
           relationTo: 'media',
           required: true,
           label: 'Imagen del avatar',
+          admin: {
+            description: 'Upload user avatar or use placeholder',
+          },
         },
         {
           name: 'alt',
@@ -80,18 +89,21 @@ export const Testimonial1Block: Block = {
       type: 'text',
       label: 'Nombre completo',
       required: true,
+      defaultValue: 'John Doe',
     },
     {
       name: 'position',
       type: 'text',
       label: 'Cargo/Posición',
       required: true,
+      defaultValue: 'CEO',
     },
     {
       name: 'companyName',
       type: 'text',
       label: 'Nombre de la empresa',
       required: true,
+      defaultValue: 'Company Name',
     },
   ],
   graphQL: {

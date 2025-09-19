@@ -1,6 +1,6 @@
 import { MigrateUpArgs, MigrateDownArgs, sql } from '@payloadcms/db-postgres'
 
-export async function up({ db }: MigrateUpArgs): Promise<void> {
+export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   await db.execute(sql`
    CREATE TYPE "public"."enum_pages_hero_links_link_type" AS ENUM('reference', 'custom');
   CREATE TYPE "public"."enum_pages_hero_links_link_appearance" AS ENUM('default', 'outline');
@@ -8,6 +8,10 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum_pages_blocks_banner1_button_variant" AS ENUM('default', 'destructive', 'outline', 'secondary', 'ghost', 'link');
   CREATE TYPE "public"."enum_pages_blocks_cta_links_link_type" AS ENUM('reference', 'custom');
   CREATE TYPE "public"."enum_pages_blocks_cta_links_link_appearance" AS ENUM('default', 'outline');
+  CREATE TYPE "public"."enum_pages_blocks_cta1_buttons_variant" AS ENUM('primary', 'secondary', 'ghost', 'link');
+  CREATE TYPE "public"."enum_pages_blocks_cta1_buttons_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum_pages_blocks_cta5_buttons_variant" AS ENUM('primary', 'secondary', 'secondary-alt', 'ghost', 'link');
+  CREATE TYPE "public"."enum_pages_blocks_cta5_buttons_link_type" AS ENUM('reference', 'custom');
   CREATE TYPE "public"."enum_pages_blocks_content_columns_size" AS ENUM('oneThird', 'half', 'twoThirds', 'full');
   CREATE TYPE "public"."enum_pages_blocks_content_columns_link_type" AS ENUM('reference', 'custom');
   CREATE TYPE "public"."enum_pages_blocks_content_columns_link_appearance" AS ENUM('default', 'outline');
@@ -17,10 +21,42 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum_pages_blocks_footer1_logo_link_type" AS ENUM('reference', 'custom');
   CREATE TYPE "public"."enum_pages_blocks_footer1_button_size" AS ENUM('sm', 'md', 'lg');
   CREATE TYPE "public"."enum_pages_blocks_footer1_button_variant" AS ENUM('default', 'destructive', 'outline', 'secondary', 'ghost', 'link');
+  CREATE TYPE "public"."enum_pages_blocks_footer1_terms_and_conditions_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum_pages_blocks_footer5_column_links_links_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum_pages_blocks_footer5_social_media_links_icon" AS ENUM('facebook', 'instagram', 'x', 'linkedin', 'youtube');
+  CREATE TYPE "public"."enum_pages_blocks_footer5_footer_links_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum_pages_blocks_footer5_logo_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum_pages_blocks_footer5_button_size" AS ENUM('sm', 'md', 'lg');
+  CREATE TYPE "public"."enum_pages_blocks_footer5_button_variant" AS ENUM('default', 'destructive', 'outline', 'secondary', 'ghost', 'link');
+  CREATE TYPE "public"."enum_pages_blocks_footer5_terms_and_conditions_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum_pages_blocks_header44_links_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum_pages_blocks_header44_links_link_appearance" AS ENUM('default', 'outline');
+  CREATE TYPE "public"."enum_pages_blocks_header48_button_size" AS ENUM('sm', 'md', 'lg');
+  CREATE TYPE "public"."enum_pages_blocks_header48_button_variant" AS ENUM('default', 'destructive', 'outline', 'secondary', 'ghost', 'link');
+  CREATE TYPE "public"."enum_pages_blocks_layout1_links_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum_pages_blocks_layout1_links_link_appearance" AS ENUM('default', 'outline');
+  CREATE TYPE "public"."enum_pages_blocks_layout5_buttons_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum_pages_blocks_layout5_buttons_link_appearance" AS ENUM('default', 'outline');
   CREATE TYPE "public"."enum_pages_blocks_archive_populate_by" AS ENUM('collection', 'selection');
   CREATE TYPE "public"."enum_pages_blocks_archive_relation_to" AS ENUM('posts');
   CREATE TYPE "public"."enum_pages_blocks_multi_form1_nav_button_variant" AS ENUM('primary', 'secondary', 'link');
   CREATE TYPE "public"."enum_pages_blocks_multi_form1_nav_button_size" AS ENUM('default', 'sm', 'lg', 'link');
+  CREATE TYPE "public"."enum_pages_blocks_contact1_button_variant" AS ENUM('primary', 'secondary', 'link');
+  CREATE TYPE "public"."enum_pages_blocks_contact1_button_size" AS ENUM('default', 'sm', 'lg', 'link');
+  CREATE TYPE "public"."enum_pages_blocks_contact5_button_variant" AS ENUM('primary', 'secondary', 'link');
+  CREATE TYPE "public"."enum_pages_blocks_contact5_button_size" AS ENUM('sm', 'lg', 'link');
+  CREATE TYPE "public"."enum_pages_blocks_pricing1_pricing_plan_button_variant" AS ENUM('primary', 'secondary', 'ghost', 'link');
+  CREATE TYPE "public"."enum_pages_blocks_pricing1_pricing_plan_button_size" AS ENUM('sm', 'primary', 'icon', 'link');
+  CREATE TYPE "public"."enum_pages_blocks_faq1_button_variant" AS ENUM('primary', 'secondary', 'ghost', 'link');
+  CREATE TYPE "public"."enum_pages_blocks_faq1_button_size" AS ENUM('sm', 'primary', 'icon', 'link');
+  CREATE TYPE "public"."enum_pages_blocks_faq1_button_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum_pages_blocks_faq5_button_variant" AS ENUM('primary', 'secondary', 'ghost', 'link');
+  CREATE TYPE "public"."enum_pages_blocks_faq5_button_size" AS ENUM('sm', 'primary', 'icon', 'link');
+  CREATE TYPE "public"."enum_pages_blocks_faq5_button_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum_pages_blocks_team1_team_members_social_links_platform" AS ENUM('linkedin', 'twitter', 'dribbble');
+  CREATE TYPE "public"."enum_pages_blocks_team1_button_variant" AS ENUM('primary', 'secondary', 'outline');
+  CREATE TYPE "public"."enum_pages_blocks_team1_button_size" AS ENUM('sm', 'md', 'lg');
+  CREATE TYPE "public"."enum_pages_blocks_team1_button_link_type" AS ENUM('reference', 'custom');
   CREATE TYPE "public"."enum_sub_links_link_type" AS ENUM('reference', 'custom');
   CREATE TYPE "public"."enum_nav_links_link_type" AS ENUM('reference', 'custom');
   CREATE TYPE "public"."enum_btns_link_type" AS ENUM('reference', 'custom');
@@ -39,7 +75,7 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum_btns_5_size" AS ENUM('sm', 'lg');
   CREATE TYPE "public"."enum_btns_5_variant" AS ENUM('default', 'secondary', 'ghost', 'link');
   CREATE TYPE "public"."enum_btns_5_link_type" AS ENUM('reference', 'custom');
-  CREATE TYPE "public"."enum_pages_hero_type" AS ENUM('none', 'highImpact', 'mediumImpact', 'lowImpact');
+  CREATE TYPE "public"."enum_pages_hero_type" AS ENUM('none', 'highImpact', 'mediumImpact', 'lowImpact', 'header1', 'header5');
   CREATE TYPE "public"."enum_pages_status" AS ENUM('draft', 'published');
   CREATE TYPE "public"."enum__pages_v_version_hero_links_link_type" AS ENUM('reference', 'custom');
   CREATE TYPE "public"."enum__pages_v_version_hero_links_link_appearance" AS ENUM('default', 'outline');
@@ -47,6 +83,10 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum__pages_v_blocks_banner1_button_variant" AS ENUM('default', 'destructive', 'outline', 'secondary', 'ghost', 'link');
   CREATE TYPE "public"."enum__pages_v_blocks_cta_links_link_type" AS ENUM('reference', 'custom');
   CREATE TYPE "public"."enum__pages_v_blocks_cta_links_link_appearance" AS ENUM('default', 'outline');
+  CREATE TYPE "public"."enum__pages_v_blocks_cta1_buttons_variant" AS ENUM('primary', 'secondary', 'ghost', 'link');
+  CREATE TYPE "public"."enum__pages_v_blocks_cta1_buttons_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum__pages_v_blocks_cta5_buttons_variant" AS ENUM('primary', 'secondary', 'secondary-alt', 'ghost', 'link');
+  CREATE TYPE "public"."enum__pages_v_blocks_cta5_buttons_link_type" AS ENUM('reference', 'custom');
   CREATE TYPE "public"."enum__pages_v_blocks_content_columns_size" AS ENUM('oneThird', 'half', 'twoThirds', 'full');
   CREATE TYPE "public"."enum__pages_v_blocks_content_columns_link_type" AS ENUM('reference', 'custom');
   CREATE TYPE "public"."enum__pages_v_blocks_content_columns_link_appearance" AS ENUM('default', 'outline');
@@ -56,10 +96,42 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum__pages_v_blocks_footer1_logo_link_type" AS ENUM('reference', 'custom');
   CREATE TYPE "public"."enum__pages_v_blocks_footer1_button_size" AS ENUM('sm', 'md', 'lg');
   CREATE TYPE "public"."enum__pages_v_blocks_footer1_button_variant" AS ENUM('default', 'destructive', 'outline', 'secondary', 'ghost', 'link');
+  CREATE TYPE "public"."enum__pages_v_blocks_footer1_terms_and_conditions_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum__pages_v_blocks_footer5_column_links_links_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum__pages_v_blocks_footer5_social_media_links_icon" AS ENUM('facebook', 'instagram', 'x', 'linkedin', 'youtube');
+  CREATE TYPE "public"."enum__pages_v_blocks_footer5_footer_links_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum__pages_v_blocks_footer5_logo_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum__pages_v_blocks_footer5_button_size" AS ENUM('sm', 'md', 'lg');
+  CREATE TYPE "public"."enum__pages_v_blocks_footer5_button_variant" AS ENUM('default', 'destructive', 'outline', 'secondary', 'ghost', 'link');
+  CREATE TYPE "public"."enum__pages_v_blocks_footer5_terms_and_conditions_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum__pages_v_blocks_header44_links_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum__pages_v_blocks_header44_links_link_appearance" AS ENUM('default', 'outline');
+  CREATE TYPE "public"."enum__pages_v_blocks_header48_button_size" AS ENUM('sm', 'md', 'lg');
+  CREATE TYPE "public"."enum__pages_v_blocks_header48_button_variant" AS ENUM('default', 'destructive', 'outline', 'secondary', 'ghost', 'link');
+  CREATE TYPE "public"."enum__pages_v_blocks_layout1_links_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum__pages_v_blocks_layout1_links_link_appearance" AS ENUM('default', 'outline');
+  CREATE TYPE "public"."enum__pages_v_blocks_layout5_buttons_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum__pages_v_blocks_layout5_buttons_link_appearance" AS ENUM('default', 'outline');
   CREATE TYPE "public"."enum__pages_v_blocks_archive_populate_by" AS ENUM('collection', 'selection');
   CREATE TYPE "public"."enum__pages_v_blocks_archive_relation_to" AS ENUM('posts');
   CREATE TYPE "public"."enum__pages_v_blocks_multi_form1_nav_button_variant" AS ENUM('primary', 'secondary', 'link');
   CREATE TYPE "public"."enum__pages_v_blocks_multi_form1_nav_button_size" AS ENUM('default', 'sm', 'lg', 'link');
+  CREATE TYPE "public"."enum__pages_v_blocks_contact1_button_variant" AS ENUM('primary', 'secondary', 'link');
+  CREATE TYPE "public"."enum__pages_v_blocks_contact1_button_size" AS ENUM('default', 'sm', 'lg', 'link');
+  CREATE TYPE "public"."enum__pages_v_blocks_contact5_button_variant" AS ENUM('primary', 'secondary', 'link');
+  CREATE TYPE "public"."enum__pages_v_blocks_contact5_button_size" AS ENUM('sm', 'lg', 'link');
+  CREATE TYPE "public"."enum__pages_v_blocks_pricing1_pricing_plan_button_variant" AS ENUM('primary', 'secondary', 'ghost', 'link');
+  CREATE TYPE "public"."enum__pages_v_blocks_pricing1_pricing_plan_button_size" AS ENUM('sm', 'primary', 'icon', 'link');
+  CREATE TYPE "public"."enum__pages_v_blocks_faq1_button_variant" AS ENUM('primary', 'secondary', 'ghost', 'link');
+  CREATE TYPE "public"."enum__pages_v_blocks_faq1_button_size" AS ENUM('sm', 'primary', 'icon', 'link');
+  CREATE TYPE "public"."enum__pages_v_blocks_faq1_button_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum__pages_v_blocks_faq5_button_variant" AS ENUM('primary', 'secondary', 'ghost', 'link');
+  CREATE TYPE "public"."enum__pages_v_blocks_faq5_button_size" AS ENUM('sm', 'primary', 'icon', 'link');
+  CREATE TYPE "public"."enum__pages_v_blocks_faq5_button_link_type" AS ENUM('reference', 'custom');
+  CREATE TYPE "public"."enum__pages_v_blocks_team1_team_members_social_links_platform" AS ENUM('linkedin', 'twitter', 'dribbble');
+  CREATE TYPE "public"."enum__pages_v_blocks_team1_button_variant" AS ENUM('primary', 'secondary', 'outline');
+  CREATE TYPE "public"."enum__pages_v_blocks_team1_button_size" AS ENUM('sm', 'md', 'lg');
+  CREATE TYPE "public"."enum__pages_v_blocks_team1_button_link_type" AS ENUM('reference', 'custom');
   CREATE TYPE "public"."enum__sub_links_v_link_type" AS ENUM('reference', 'custom');
   CREATE TYPE "public"."enum__nav_links_v_link_type" AS ENUM('reference', 'custom');
   CREATE TYPE "public"."enum__btns_v_link_type" AS ENUM('reference', 'custom');
@@ -78,7 +150,7 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum__btns_5_v_size" AS ENUM('sm', 'lg');
   CREATE TYPE "public"."enum__btns_5_v_variant" AS ENUM('default', 'secondary', 'ghost', 'link');
   CREATE TYPE "public"."enum__btns_5_v_link_type" AS ENUM('reference', 'custom');
-  CREATE TYPE "public"."enum__pages_v_version_hero_type" AS ENUM('none', 'highImpact', 'mediumImpact', 'lowImpact');
+  CREATE TYPE "public"."enum__pages_v_version_hero_type" AS ENUM('none', 'highImpact', 'mediumImpact', 'lowImpact', 'header1', 'header5');
   CREATE TYPE "public"."enum__pages_v_version_status" AS ENUM('draft', 'published');
   CREATE TYPE "public"."enum_posts_status" AS ENUM('draft', 'published');
   CREATE TYPE "public"."enum__posts_v_version_status" AS ENUM('draft', 'published');
@@ -134,6 +206,49 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   	"_path" text NOT NULL,
   	"id" varchar PRIMARY KEY NOT NULL,
   	"rich_text" jsonb,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_cta1_buttons" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"title" varchar,
+  	"variant" "enum_pages_blocks_cta1_buttons_variant" DEFAULT 'primary',
+  	"link_type" "enum_pages_blocks_cta1_buttons_link_type" DEFAULT 'reference',
+  	"link_new_tab" boolean,
+  	"link_url" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_cta1" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"content" jsonb,
+  	"image_media_id" integer,
+  	"image_alt" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_cta5_buttons" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"title" varchar,
+  	"variant" "enum_pages_blocks_cta5_buttons_variant" DEFAULT 'primary',
+  	"link_type" "enum_pages_blocks_cta5_buttons_link_type" DEFAULT 'reference',
+  	"link_new_tab" boolean,
+  	"link_url" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_cta5" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"content" jsonb,
+  	"video_youtube_url" varchar,
   	"block_name" varchar
   );
   
@@ -201,8 +316,164 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   	"button_title" varchar DEFAULT 'Subscribe',
   	"button_size" "enum_pages_blocks_footer1_button_size" DEFAULT 'sm',
   	"button_variant" "enum_pages_blocks_footer1_button_variant" DEFAULT 'secondary',
-  	"terms_and_conditions" jsonb DEFAULT '[{"children":[{"text":"By subscribing you agree to with our "},{"children":[{"text":"Privacy Policy"}],"type":"link","url":"#"},{"text":" and provide consent to receive updates from our company."}],"type":"p"}]'::jsonb,
+  	"terms_and_conditions_text" varchar DEFAULT 'By subscribing you agree to with our',
+  	"terms_and_conditions_link_type" "enum_pages_blocks_footer1_terms_and_conditions_link_type" DEFAULT 'reference',
+  	"terms_and_conditions_link_new_tab" boolean,
+  	"terms_and_conditions_link_url" varchar,
+  	"terms_and_conditions_suffix" varchar DEFAULT 'and provide consent to receive updates from our company.',
   	"footer_text" varchar DEFAULT '© 2024 Relume. All rights reserved.',
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_footer5_column_links_links" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"title" varchar,
+  	"link_type" "enum_pages_blocks_footer5_column_links_links_link_type" DEFAULT 'reference',
+  	"link_new_tab" boolean,
+  	"link_url" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_footer5_column_links" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"title" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_footer5_social_media_links" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"url" varchar,
+  	"icon" "enum_pages_blocks_footer5_social_media_links_icon"
+  );
+  
+  CREATE TABLE "pages_blocks_footer5_footer_links" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"title" varchar,
+  	"link_type" "enum_pages_blocks_footer5_footer_links_link_type" DEFAULT 'reference',
+  	"link_new_tab" boolean,
+  	"link_url" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_footer5" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"logo_media_id" integer,
+  	"logo_link_type" "enum_pages_blocks_footer5_logo_link_type" DEFAULT 'reference',
+  	"logo_link_new_tab" boolean,
+  	"logo_link_url" varchar,
+  	"newsletter_heading" varchar DEFAULT 'Join our newsletter',
+  	"newsletter_description" varchar DEFAULT 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  	"input_placeholder" varchar DEFAULT 'Enter your email',
+  	"button_title" varchar DEFAULT 'Subscribe',
+  	"button_size" "enum_pages_blocks_footer5_button_size" DEFAULT 'sm',
+  	"button_variant" "enum_pages_blocks_footer5_button_variant" DEFAULT 'secondary',
+  	"terms_and_conditions_text" varchar DEFAULT 'By subscribing you agree to with our',
+  	"terms_and_conditions_link_type" "enum_pages_blocks_footer5_terms_and_conditions_link_type" DEFAULT 'reference',
+  	"terms_and_conditions_link_new_tab" boolean,
+  	"terms_and_conditions_link_url" varchar,
+  	"terms_and_conditions_suffix" varchar DEFAULT 'and provide consent to receive updates from our company.',
+  	"footer_text" varchar DEFAULT '© 2024 Relume. All rights reserved.',
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_header44_links" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"link_type" "enum_pages_blocks_header44_links_link_type" DEFAULT 'reference',
+  	"link_new_tab" boolean,
+  	"link_url" varchar,
+  	"link_label" varchar,
+  	"link_appearance" "enum_pages_blocks_header44_links_link_appearance" DEFAULT 'default'
+  );
+  
+  CREATE TABLE "pages_blocks_header44" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"tagline" varchar DEFAULT 'Tagline',
+  	"heading" jsonb,
+  	"description" jsonb,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_header48" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"tagline" varchar DEFAULT 'Tagline',
+  	"heading" jsonb,
+  	"description" jsonb,
+  	"input_placeholder" varchar DEFAULT 'Enter your email',
+  	"button_title" varchar DEFAULT 'Sign up',
+  	"button_size" "enum_pages_blocks_header48_button_size" DEFAULT 'sm',
+  	"button_variant" "enum_pages_blocks_header48_button_variant" DEFAULT 'default',
+  	"terms_and_conditions" jsonb,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_layout1_links" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"link_type" "enum_pages_blocks_layout1_links_link_type" DEFAULT 'reference',
+  	"link_new_tab" boolean,
+  	"link_url" varchar,
+  	"link_label" varchar,
+  	"link_appearance" "enum_pages_blocks_layout1_links_link_appearance" DEFAULT 'default'
+  );
+  
+  CREATE TABLE "pages_blocks_layout1" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"tagline" varchar DEFAULT 'Tagline',
+  	"heading" jsonb,
+  	"description" jsonb,
+  	"media_id" integer,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_layout5_sub_headings" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"title" varchar,
+  	"description" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_layout5_buttons" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"link_type" "enum_pages_blocks_layout5_buttons_link_type" DEFAULT 'reference',
+  	"link_new_tab" boolean,
+  	"link_url" varchar,
+  	"link_label" varchar,
+  	"link_appearance" "enum_pages_blocks_layout5_buttons_link_appearance" DEFAULT 'default'
+  );
+  
+  CREATE TABLE "pages_blocks_layout5" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"tagline" varchar DEFAULT 'Tagline',
+  	"heading" jsonb,
+  	"description" jsonb,
+  	"video" varchar,
+  	"image_id" integer,
   	"block_name" varchar
   );
   
@@ -251,6 +522,220 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   	"nav_button_variant" "enum_pages_blocks_multi_form1_nav_button_variant",
   	"nav_button_size" "enum_pages_blocks_multi_form1_nav_button_size",
   	"footer_text" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_contact1" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"content" jsonb,
+  	"button_title" varchar,
+  	"button_variant" "enum_pages_blocks_contact1_button_variant" DEFAULT 'primary',
+  	"button_size" "enum_pages_blocks_contact1_button_size" DEFAULT 'default',
+  	"terms" jsonb,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_contact5" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"content" jsonb,
+  	"contact_info_email" varchar,
+  	"contact_info_phone" varchar,
+  	"contact_info_address" varchar,
+  	"button_title" varchar,
+  	"button_variant" "enum_pages_blocks_contact5_button_variant" DEFAULT 'primary',
+  	"button_size" "enum_pages_blocks_contact5_button_size" DEFAULT 'sm',
+  	"terms" jsonb,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_pricing1" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"content" jsonb,
+  	"pricing_plan_plan" jsonb,
+  	"pricing_plan_features" jsonb,
+  	"pricing_plan_button_title" varchar,
+  	"pricing_plan_button_variant" "enum_pages_blocks_pricing1_pricing_plan_button_variant" DEFAULT 'primary',
+  	"pricing_plan_button_size" "enum_pages_blocks_pricing1_pricing_plan_button_size" DEFAULT 'sm',
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_pricing5_feature_sections" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"icon_media_id" integer,
+  	"icon_alt" varchar,
+  	"heading" varchar,
+  	"description" jsonb
+  );
+  
+  CREATE TABLE "pages_blocks_pricing5_pricing_plan_features" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"feature" jsonb
+  );
+  
+  CREATE TABLE "pages_blocks_pricing5" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"tagline" varchar,
+  	"heading" varchar,
+  	"description" jsonb,
+  	"pricing_plan_plan_name" varchar,
+  	"pricing_plan_description" jsonb,
+  	"pricing_plan_monthly_price" varchar,
+  	"pricing_plan_button_title" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_faq1_questions" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"title" varchar,
+  	"answer" jsonb
+  );
+  
+  CREATE TABLE "pages_blocks_faq1" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"content" jsonb,
+  	"footer_content" jsonb,
+  	"button_title" varchar,
+  	"button_variant" "enum_pages_blocks_faq1_button_variant" DEFAULT 'secondary',
+  	"button_size" "enum_pages_blocks_faq1_button_size" DEFAULT 'sm',
+  	"button_link_type" "enum_pages_blocks_faq1_button_link_type" DEFAULT 'reference',
+  	"button_link_new_tab" boolean,
+  	"button_link_url" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_faq5_questions" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"title" varchar,
+  	"answer" jsonb
+  );
+  
+  CREATE TABLE "pages_blocks_faq5" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"content" jsonb,
+  	"footer_content" jsonb,
+  	"button_title" varchar,
+  	"button_variant" "enum_pages_blocks_faq5_button_variant" DEFAULT 'secondary',
+  	"button_size" "enum_pages_blocks_faq5_button_size" DEFAULT 'sm',
+  	"button_link_type" "enum_pages_blocks_faq5_button_link_type" DEFAULT 'reference',
+  	"button_link_new_tab" boolean,
+  	"button_link_url" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_testimonial1" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"quote" jsonb,
+  	"logo_media_id" integer,
+  	"logo_alt" varchar,
+  	"avatar_media_id" integer,
+  	"avatar_alt" varchar,
+  	"name" varchar,
+  	"position" varchar,
+  	"company_name" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_testimonial5_testimonials" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"number_of_stars" numeric DEFAULT 5,
+  	"quote" jsonb,
+  	"avatar_media_id" integer,
+  	"avatar_alt" varchar,
+  	"name" varchar,
+  	"position" varchar,
+  	"logo_media_id" integer,
+  	"logo_alt" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_testimonial5" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"content" jsonb,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_logo1_logos" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"media_id" integer,
+  	"alt" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_logo1" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"content" jsonb,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_team1_team_members_social_links" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"platform" "enum_pages_blocks_team1_team_members_social_links_platform",
+  	"url" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_team1_team_members" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" varchar NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"image_media_id" integer,
+  	"image_alt" varchar,
+  	"name" varchar,
+  	"job_title" varchar,
+  	"description" varchar
+  );
+  
+  CREATE TABLE "pages_blocks_team1" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" varchar PRIMARY KEY NOT NULL,
+  	"content" jsonb,
+  	"footer_content" jsonb,
+  	"button_title" varchar,
+  	"button_variant" "enum_pages_blocks_team1_button_variant" DEFAULT 'secondary',
+  	"button_size" "enum_pages_blocks_team1_button_size" DEFAULT 'sm',
+  	"button_link_type" "enum_pages_blocks_team1_button_link_type" DEFAULT 'reference',
+  	"button_link_new_tab" boolean,
+  	"button_link_url" varchar,
   	"block_name" varchar
   );
   
@@ -459,6 +944,53 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   	"block_name" varchar
   );
   
+  CREATE TABLE "_pages_v_blocks_cta1_buttons" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"title" varchar,
+  	"variant" "enum__pages_v_blocks_cta1_buttons_variant" DEFAULT 'primary',
+  	"link_type" "enum__pages_v_blocks_cta1_buttons_link_type" DEFAULT 'reference',
+  	"link_new_tab" boolean,
+  	"link_url" varchar,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_cta1" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"content" jsonb,
+  	"image_media_id" integer,
+  	"image_alt" varchar,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_cta5_buttons" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"title" varchar,
+  	"variant" "enum__pages_v_blocks_cta5_buttons_variant" DEFAULT 'primary',
+  	"link_type" "enum__pages_v_blocks_cta5_buttons_link_type" DEFAULT 'reference',
+  	"link_new_tab" boolean,
+  	"link_url" varchar,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_cta5" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"content" jsonb,
+  	"video_youtube_url" varchar,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
   CREATE TABLE "_pages_v_blocks_content_columns" (
   	"_order" integer NOT NULL,
   	"_parent_id" integer NOT NULL,
@@ -528,8 +1060,177 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   	"button_title" varchar DEFAULT 'Subscribe',
   	"button_size" "enum__pages_v_blocks_footer1_button_size" DEFAULT 'sm',
   	"button_variant" "enum__pages_v_blocks_footer1_button_variant" DEFAULT 'secondary',
-  	"terms_and_conditions" jsonb DEFAULT '[{"children":[{"text":"By subscribing you agree to with our "},{"children":[{"text":"Privacy Policy"}],"type":"link","url":"#"},{"text":" and provide consent to receive updates from our company."}],"type":"p"}]'::jsonb,
+  	"terms_and_conditions_text" varchar DEFAULT 'By subscribing you agree to with our',
+  	"terms_and_conditions_link_type" "enum__pages_v_blocks_footer1_terms_and_conditions_link_type" DEFAULT 'reference',
+  	"terms_and_conditions_link_new_tab" boolean,
+  	"terms_and_conditions_link_url" varchar,
+  	"terms_and_conditions_suffix" varchar DEFAULT 'and provide consent to receive updates from our company.',
   	"footer_text" varchar DEFAULT '© 2024 Relume. All rights reserved.',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_footer5_column_links_links" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"title" varchar,
+  	"link_type" "enum__pages_v_blocks_footer5_column_links_links_link_type" DEFAULT 'reference',
+  	"link_new_tab" boolean,
+  	"link_url" varchar,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_footer5_column_links" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"title" varchar,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_footer5_social_media_links" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"url" varchar,
+  	"icon" "enum__pages_v_blocks_footer5_social_media_links_icon",
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_footer5_footer_links" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"title" varchar,
+  	"link_type" "enum__pages_v_blocks_footer5_footer_links_link_type" DEFAULT 'reference',
+  	"link_new_tab" boolean,
+  	"link_url" varchar,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_footer5" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"logo_media_id" integer,
+  	"logo_link_type" "enum__pages_v_blocks_footer5_logo_link_type" DEFAULT 'reference',
+  	"logo_link_new_tab" boolean,
+  	"logo_link_url" varchar,
+  	"newsletter_heading" varchar DEFAULT 'Join our newsletter',
+  	"newsletter_description" varchar DEFAULT 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  	"input_placeholder" varchar DEFAULT 'Enter your email',
+  	"button_title" varchar DEFAULT 'Subscribe',
+  	"button_size" "enum__pages_v_blocks_footer5_button_size" DEFAULT 'sm',
+  	"button_variant" "enum__pages_v_blocks_footer5_button_variant" DEFAULT 'secondary',
+  	"terms_and_conditions_text" varchar DEFAULT 'By subscribing you agree to with our',
+  	"terms_and_conditions_link_type" "enum__pages_v_blocks_footer5_terms_and_conditions_link_type" DEFAULT 'reference',
+  	"terms_and_conditions_link_new_tab" boolean,
+  	"terms_and_conditions_link_url" varchar,
+  	"terms_and_conditions_suffix" varchar DEFAULT 'and provide consent to receive updates from our company.',
+  	"footer_text" varchar DEFAULT '© 2024 Relume. All rights reserved.',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_header44_links" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"link_type" "enum__pages_v_blocks_header44_links_link_type" DEFAULT 'reference',
+  	"link_new_tab" boolean,
+  	"link_url" varchar,
+  	"link_label" varchar,
+  	"link_appearance" "enum__pages_v_blocks_header44_links_link_appearance" DEFAULT 'default',
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_header44" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"tagline" varchar DEFAULT 'Tagline',
+  	"heading" jsonb,
+  	"description" jsonb,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_header48" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"tagline" varchar DEFAULT 'Tagline',
+  	"heading" jsonb,
+  	"description" jsonb,
+  	"input_placeholder" varchar DEFAULT 'Enter your email',
+  	"button_title" varchar DEFAULT 'Sign up',
+  	"button_size" "enum__pages_v_blocks_header48_button_size" DEFAULT 'sm',
+  	"button_variant" "enum__pages_v_blocks_header48_button_variant" DEFAULT 'default',
+  	"terms_and_conditions" jsonb,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_layout1_links" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"link_type" "enum__pages_v_blocks_layout1_links_link_type" DEFAULT 'reference',
+  	"link_new_tab" boolean,
+  	"link_url" varchar,
+  	"link_label" varchar,
+  	"link_appearance" "enum__pages_v_blocks_layout1_links_link_appearance" DEFAULT 'default',
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_layout1" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"tagline" varchar DEFAULT 'Tagline',
+  	"heading" jsonb,
+  	"description" jsonb,
+  	"media_id" integer,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_layout5_sub_headings" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"title" varchar,
+  	"description" varchar,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_layout5_buttons" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"link_type" "enum__pages_v_blocks_layout5_buttons_link_type" DEFAULT 'reference',
+  	"link_new_tab" boolean,
+  	"link_url" varchar,
+  	"link_label" varchar,
+  	"link_appearance" "enum__pages_v_blocks_layout5_buttons_link_appearance" DEFAULT 'default',
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_layout5" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"tagline" varchar DEFAULT 'Tagline',
+  	"heading" jsonb,
+  	"description" jsonb,
+  	"video" varchar,
+  	"image_id" integer,
   	"_uuid" varchar,
   	"block_name" varchar
   );
@@ -582,6 +1283,238 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   	"nav_button_variant" "enum__pages_v_blocks_multi_form1_nav_button_variant",
   	"nav_button_size" "enum__pages_v_blocks_multi_form1_nav_button_size",
   	"footer_text" varchar,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_contact1" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"content" jsonb,
+  	"button_title" varchar,
+  	"button_variant" "enum__pages_v_blocks_contact1_button_variant" DEFAULT 'primary',
+  	"button_size" "enum__pages_v_blocks_contact1_button_size" DEFAULT 'default',
+  	"terms" jsonb,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_contact5" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"content" jsonb,
+  	"contact_info_email" varchar,
+  	"contact_info_phone" varchar,
+  	"contact_info_address" varchar,
+  	"button_title" varchar,
+  	"button_variant" "enum__pages_v_blocks_contact5_button_variant" DEFAULT 'primary',
+  	"button_size" "enum__pages_v_blocks_contact5_button_size" DEFAULT 'sm',
+  	"terms" jsonb,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_pricing1" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"content" jsonb,
+  	"pricing_plan_plan" jsonb,
+  	"pricing_plan_features" jsonb,
+  	"pricing_plan_button_title" varchar,
+  	"pricing_plan_button_variant" "enum__pages_v_blocks_pricing1_pricing_plan_button_variant" DEFAULT 'primary',
+  	"pricing_plan_button_size" "enum__pages_v_blocks_pricing1_pricing_plan_button_size" DEFAULT 'sm',
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_pricing5_feature_sections" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"icon_media_id" integer,
+  	"icon_alt" varchar,
+  	"heading" varchar,
+  	"description" jsonb,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_pricing5_pricing_plan_features" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"feature" jsonb,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_pricing5" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"tagline" varchar,
+  	"heading" varchar,
+  	"description" jsonb,
+  	"pricing_plan_plan_name" varchar,
+  	"pricing_plan_description" jsonb,
+  	"pricing_plan_monthly_price" varchar,
+  	"pricing_plan_button_title" varchar,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_faq1_questions" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"title" varchar,
+  	"answer" jsonb,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_faq1" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"content" jsonb,
+  	"footer_content" jsonb,
+  	"button_title" varchar,
+  	"button_variant" "enum__pages_v_blocks_faq1_button_variant" DEFAULT 'secondary',
+  	"button_size" "enum__pages_v_blocks_faq1_button_size" DEFAULT 'sm',
+  	"button_link_type" "enum__pages_v_blocks_faq1_button_link_type" DEFAULT 'reference',
+  	"button_link_new_tab" boolean,
+  	"button_link_url" varchar,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_faq5_questions" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"title" varchar,
+  	"answer" jsonb,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_faq5" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"content" jsonb,
+  	"footer_content" jsonb,
+  	"button_title" varchar,
+  	"button_variant" "enum__pages_v_blocks_faq5_button_variant" DEFAULT 'secondary',
+  	"button_size" "enum__pages_v_blocks_faq5_button_size" DEFAULT 'sm',
+  	"button_link_type" "enum__pages_v_blocks_faq5_button_link_type" DEFAULT 'reference',
+  	"button_link_new_tab" boolean,
+  	"button_link_url" varchar,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_testimonial1" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"quote" jsonb,
+  	"logo_media_id" integer,
+  	"logo_alt" varchar,
+  	"avatar_media_id" integer,
+  	"avatar_alt" varchar,
+  	"name" varchar,
+  	"position" varchar,
+  	"company_name" varchar,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_testimonial5_testimonials" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"number_of_stars" numeric DEFAULT 5,
+  	"quote" jsonb,
+  	"avatar_media_id" integer,
+  	"avatar_alt" varchar,
+  	"name" varchar,
+  	"position" varchar,
+  	"logo_media_id" integer,
+  	"logo_alt" varchar,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_testimonial5" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"content" jsonb,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_logo1_logos" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"media_id" integer,
+  	"alt" varchar,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_logo1" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"content" jsonb,
+  	"_uuid" varchar,
+  	"block_name" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_team1_team_members_social_links" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"platform" "enum__pages_v_blocks_team1_team_members_social_links_platform",
+  	"url" varchar,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_team1_team_members" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"image_media_id" integer,
+  	"image_alt" varchar,
+  	"name" varchar,
+  	"job_title" varchar,
+  	"description" varchar,
+  	"_uuid" varchar
+  );
+  
+  CREATE TABLE "_pages_v_blocks_team1" (
+  	"_order" integer NOT NULL,
+  	"_parent_id" integer NOT NULL,
+  	"_path" text NOT NULL,
+  	"id" serial PRIMARY KEY NOT NULL,
+  	"content" jsonb,
+  	"footer_content" jsonb,
+  	"button_title" varchar,
+  	"button_variant" "enum__pages_v_blocks_team1_button_variant" DEFAULT 'secondary',
+  	"button_size" "enum__pages_v_blocks_team1_button_size" DEFAULT 'sm',
+  	"button_link_type" "enum__pages_v_blocks_team1_button_link_type" DEFAULT 'reference',
+  	"button_link_new_tab" boolean,
+  	"button_link_url" varchar,
   	"_uuid" varchar,
   	"block_name" varchar
   );
@@ -1262,6 +2195,11 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   ALTER TABLE "pages_blocks_banner1" ADD CONSTRAINT "pages_blocks_banner1_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "pages_blocks_cta_links" ADD CONSTRAINT "pages_blocks_cta_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_cta"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "pages_blocks_cta" ADD CONSTRAINT "pages_blocks_cta_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_cta1_buttons" ADD CONSTRAINT "pages_blocks_cta1_buttons_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_cta1"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_cta1" ADD CONSTRAINT "pages_blocks_cta1_image_media_id_media_id_fk" FOREIGN KEY ("image_media_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "pages_blocks_cta1" ADD CONSTRAINT "pages_blocks_cta1_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_cta5_buttons" ADD CONSTRAINT "pages_blocks_cta5_buttons_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_cta5"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_cta5" ADD CONSTRAINT "pages_blocks_cta5_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "pages_blocks_content_columns" ADD CONSTRAINT "pages_blocks_content_columns_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_content"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "pages_blocks_content" ADD CONSTRAINT "pages_blocks_content_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "pages_blocks_footer1_column_links_links" ADD CONSTRAINT "pages_blocks_footer1_column_links_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_footer1_column_links"("id") ON DELETE cascade ON UPDATE no action;
@@ -1269,12 +2207,53 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   ALTER TABLE "pages_blocks_footer1_footer_links" ADD CONSTRAINT "pages_blocks_footer1_footer_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_footer1"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "pages_blocks_footer1" ADD CONSTRAINT "pages_blocks_footer1_logo_media_id_media_id_fk" FOREIGN KEY ("logo_media_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "pages_blocks_footer1" ADD CONSTRAINT "pages_blocks_footer1_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_footer5_column_links_links" ADD CONSTRAINT "pages_blocks_footer5_column_links_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_footer5_column_links"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_footer5_column_links" ADD CONSTRAINT "pages_blocks_footer5_column_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_footer5"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_footer5_social_media_links" ADD CONSTRAINT "pages_blocks_footer5_social_media_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_footer5"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_footer5_footer_links" ADD CONSTRAINT "pages_blocks_footer5_footer_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_footer5"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_footer5" ADD CONSTRAINT "pages_blocks_footer5_logo_media_id_media_id_fk" FOREIGN KEY ("logo_media_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "pages_blocks_footer5" ADD CONSTRAINT "pages_blocks_footer5_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_header44_links" ADD CONSTRAINT "pages_blocks_header44_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_header44"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_header44" ADD CONSTRAINT "pages_blocks_header44_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_header48" ADD CONSTRAINT "pages_blocks_header48_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_layout1_links" ADD CONSTRAINT "pages_blocks_layout1_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_layout1"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_layout1" ADD CONSTRAINT "pages_blocks_layout1_media_id_media_id_fk" FOREIGN KEY ("media_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "pages_blocks_layout1" ADD CONSTRAINT "pages_blocks_layout1_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_layout5_sub_headings" ADD CONSTRAINT "pages_blocks_layout5_sub_headings_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_layout5"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_layout5_buttons" ADD CONSTRAINT "pages_blocks_layout5_buttons_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_layout5"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_layout5" ADD CONSTRAINT "pages_blocks_layout5_image_id_media_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "pages_blocks_layout5" ADD CONSTRAINT "pages_blocks_layout5_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "pages_blocks_media_block" ADD CONSTRAINT "pages_blocks_media_block_media_id_media_id_fk" FOREIGN KEY ("media_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "pages_blocks_media_block" ADD CONSTRAINT "pages_blocks_media_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "pages_blocks_archive" ADD CONSTRAINT "pages_blocks_archive_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "pages_blocks_form_block" ADD CONSTRAINT "pages_blocks_form_block_form_id_forms_id_fk" FOREIGN KEY ("form_id") REFERENCES "public"."forms"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "pages_blocks_form_block" ADD CONSTRAINT "pages_blocks_form_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "pages_blocks_multi_form1" ADD CONSTRAINT "pages_blocks_multi_form1_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_contact1" ADD CONSTRAINT "pages_blocks_contact1_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_contact5" ADD CONSTRAINT "pages_blocks_contact5_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_pricing1" ADD CONSTRAINT "pages_blocks_pricing1_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_pricing5_feature_sections" ADD CONSTRAINT "pages_blocks_pricing5_feature_sections_icon_media_id_media_id_fk" FOREIGN KEY ("icon_media_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "pages_blocks_pricing5_feature_sections" ADD CONSTRAINT "pages_blocks_pricing5_feature_sections_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_pricing5"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_pricing5_pricing_plan_features" ADD CONSTRAINT "pages_blocks_pricing5_pricing_plan_features_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_pricing5"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_pricing5" ADD CONSTRAINT "pages_blocks_pricing5_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_faq1_questions" ADD CONSTRAINT "pages_blocks_faq1_questions_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_faq1"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_faq1" ADD CONSTRAINT "pages_blocks_faq1_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_faq5_questions" ADD CONSTRAINT "pages_blocks_faq5_questions_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_faq5"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_faq5" ADD CONSTRAINT "pages_blocks_faq5_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_testimonial1" ADD CONSTRAINT "pages_blocks_testimonial1_logo_media_id_media_id_fk" FOREIGN KEY ("logo_media_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "pages_blocks_testimonial1" ADD CONSTRAINT "pages_blocks_testimonial1_avatar_media_id_media_id_fk" FOREIGN KEY ("avatar_media_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "pages_blocks_testimonial1" ADD CONSTRAINT "pages_blocks_testimonial1_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_testimonial5_testimonials" ADD CONSTRAINT "pages_blocks_testimonial5_testimonials_avatar_media_id_media_id_fk" FOREIGN KEY ("avatar_media_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "pages_blocks_testimonial5_testimonials" ADD CONSTRAINT "pages_blocks_testimonial5_testimonials_logo_media_id_media_id_fk" FOREIGN KEY ("logo_media_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "pages_blocks_testimonial5_testimonials" ADD CONSTRAINT "pages_blocks_testimonial5_testimonials_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_testimonial5"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_testimonial5" ADD CONSTRAINT "pages_blocks_testimonial5_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_logo1_logos" ADD CONSTRAINT "pages_blocks_logo1_logos_media_id_media_id_fk" FOREIGN KEY ("media_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "pages_blocks_logo1_logos" ADD CONSTRAINT "pages_blocks_logo1_logos_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_logo1"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_logo1" ADD CONSTRAINT "pages_blocks_logo1_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_team1_team_members_social_links" ADD CONSTRAINT "pages_blocks_team1_team_members_social_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_team1_team_members"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_team1_team_members" ADD CONSTRAINT "pages_blocks_team1_team_members_image_media_id_media_id_fk" FOREIGN KEY ("image_media_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "pages_blocks_team1_team_members" ADD CONSTRAINT "pages_blocks_team1_team_members_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_team1"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "pages_blocks_team1" ADD CONSTRAINT "pages_blocks_team1_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "sub_links" ADD CONSTRAINT "sub_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."nav_links"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "nav_links" ADD CONSTRAINT "nav_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_navbar1"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "btns" ADD CONSTRAINT "btns_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."pages_blocks_navbar1"("id") ON DELETE cascade ON UPDATE no action;
@@ -1297,6 +2276,11 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   ALTER TABLE "_pages_v_blocks_banner1" ADD CONSTRAINT "_pages_v_blocks_banner1_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "_pages_v_blocks_cta_links" ADD CONSTRAINT "_pages_v_blocks_cta_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_cta"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "_pages_v_blocks_cta" ADD CONSTRAINT "_pages_v_blocks_cta_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_cta1_buttons" ADD CONSTRAINT "_pages_v_blocks_cta1_buttons_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_cta1"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_cta1" ADD CONSTRAINT "_pages_v_blocks_cta1_image_media_id_media_id_fk" FOREIGN KEY ("image_media_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_cta1" ADD CONSTRAINT "_pages_v_blocks_cta1_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_cta5_buttons" ADD CONSTRAINT "_pages_v_blocks_cta5_buttons_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_cta5"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_cta5" ADD CONSTRAINT "_pages_v_blocks_cta5_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "_pages_v_blocks_content_columns" ADD CONSTRAINT "_pages_v_blocks_content_columns_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_content"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "_pages_v_blocks_content" ADD CONSTRAINT "_pages_v_blocks_content_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "_pages_v_blocks_footer1_column_links_links" ADD CONSTRAINT "_pages_v_blocks_footer1_column_links_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_footer1_column_links"("id") ON DELETE cascade ON UPDATE no action;
@@ -1304,12 +2288,53 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   ALTER TABLE "_pages_v_blocks_footer1_footer_links" ADD CONSTRAINT "_pages_v_blocks_footer1_footer_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_footer1"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "_pages_v_blocks_footer1" ADD CONSTRAINT "_pages_v_blocks_footer1_logo_media_id_media_id_fk" FOREIGN KEY ("logo_media_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "_pages_v_blocks_footer1" ADD CONSTRAINT "_pages_v_blocks_footer1_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_footer5_column_links_links" ADD CONSTRAINT "_pages_v_blocks_footer5_column_links_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_footer5_column_links"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_footer5_column_links" ADD CONSTRAINT "_pages_v_blocks_footer5_column_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_footer5"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_footer5_social_media_links" ADD CONSTRAINT "_pages_v_blocks_footer5_social_media_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_footer5"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_footer5_footer_links" ADD CONSTRAINT "_pages_v_blocks_footer5_footer_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_footer5"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_footer5" ADD CONSTRAINT "_pages_v_blocks_footer5_logo_media_id_media_id_fk" FOREIGN KEY ("logo_media_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_footer5" ADD CONSTRAINT "_pages_v_blocks_footer5_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_header44_links" ADD CONSTRAINT "_pages_v_blocks_header44_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_header44"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_header44" ADD CONSTRAINT "_pages_v_blocks_header44_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_header48" ADD CONSTRAINT "_pages_v_blocks_header48_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_layout1_links" ADD CONSTRAINT "_pages_v_blocks_layout1_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_layout1"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_layout1" ADD CONSTRAINT "_pages_v_blocks_layout1_media_id_media_id_fk" FOREIGN KEY ("media_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_layout1" ADD CONSTRAINT "_pages_v_blocks_layout1_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_layout5_sub_headings" ADD CONSTRAINT "_pages_v_blocks_layout5_sub_headings_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_layout5"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_layout5_buttons" ADD CONSTRAINT "_pages_v_blocks_layout5_buttons_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_layout5"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_layout5" ADD CONSTRAINT "_pages_v_blocks_layout5_image_id_media_id_fk" FOREIGN KEY ("image_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_layout5" ADD CONSTRAINT "_pages_v_blocks_layout5_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "_pages_v_blocks_media_block" ADD CONSTRAINT "_pages_v_blocks_media_block_media_id_media_id_fk" FOREIGN KEY ("media_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "_pages_v_blocks_media_block" ADD CONSTRAINT "_pages_v_blocks_media_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "_pages_v_blocks_archive" ADD CONSTRAINT "_pages_v_blocks_archive_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "_pages_v_blocks_form_block" ADD CONSTRAINT "_pages_v_blocks_form_block_form_id_forms_id_fk" FOREIGN KEY ("form_id") REFERENCES "public"."forms"("id") ON DELETE set null ON UPDATE no action;
   ALTER TABLE "_pages_v_blocks_form_block" ADD CONSTRAINT "_pages_v_blocks_form_block_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "_pages_v_blocks_multi_form1" ADD CONSTRAINT "_pages_v_blocks_multi_form1_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_contact1" ADD CONSTRAINT "_pages_v_blocks_contact1_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_contact5" ADD CONSTRAINT "_pages_v_blocks_contact5_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_pricing1" ADD CONSTRAINT "_pages_v_blocks_pricing1_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_pricing5_feature_sections" ADD CONSTRAINT "_pages_v_blocks_pricing5_feature_sections_icon_media_id_media_id_fk" FOREIGN KEY ("icon_media_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_pricing5_feature_sections" ADD CONSTRAINT "_pages_v_blocks_pricing5_feature_sections_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_pricing5"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_pricing5_pricing_plan_features" ADD CONSTRAINT "_pages_v_blocks_pricing5_pricing_plan_features_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_pricing5"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_pricing5" ADD CONSTRAINT "_pages_v_blocks_pricing5_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_faq1_questions" ADD CONSTRAINT "_pages_v_blocks_faq1_questions_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_faq1"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_faq1" ADD CONSTRAINT "_pages_v_blocks_faq1_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_faq5_questions" ADD CONSTRAINT "_pages_v_blocks_faq5_questions_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_faq5"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_faq5" ADD CONSTRAINT "_pages_v_blocks_faq5_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_testimonial1" ADD CONSTRAINT "_pages_v_blocks_testimonial1_logo_media_id_media_id_fk" FOREIGN KEY ("logo_media_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_testimonial1" ADD CONSTRAINT "_pages_v_blocks_testimonial1_avatar_media_id_media_id_fk" FOREIGN KEY ("avatar_media_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_testimonial1" ADD CONSTRAINT "_pages_v_blocks_testimonial1_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_testimonial5_testimonials" ADD CONSTRAINT "_pages_v_blocks_testimonial5_testimonials_avatar_media_id_media_id_fk" FOREIGN KEY ("avatar_media_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_testimonial5_testimonials" ADD CONSTRAINT "_pages_v_blocks_testimonial5_testimonials_logo_media_id_media_id_fk" FOREIGN KEY ("logo_media_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_testimonial5_testimonials" ADD CONSTRAINT "_pages_v_blocks_testimonial5_testimonials_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_testimonial5"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_testimonial5" ADD CONSTRAINT "_pages_v_blocks_testimonial5_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_logo1_logos" ADD CONSTRAINT "_pages_v_blocks_logo1_logos_media_id_media_id_fk" FOREIGN KEY ("media_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_logo1_logos" ADD CONSTRAINT "_pages_v_blocks_logo1_logos_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_logo1"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_logo1" ADD CONSTRAINT "_pages_v_blocks_logo1_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_team1_team_members_social_links" ADD CONSTRAINT "_pages_v_blocks_team1_team_members_social_links_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_team1_team_members"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_team1_team_members" ADD CONSTRAINT "_pages_v_blocks_team1_team_members_image_media_id_media_id_fk" FOREIGN KEY ("image_media_id") REFERENCES "public"."media"("id") ON DELETE set null ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_team1_team_members" ADD CONSTRAINT "_pages_v_blocks_team1_team_members_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_team1"("id") ON DELETE cascade ON UPDATE no action;
+  ALTER TABLE "_pages_v_blocks_team1" ADD CONSTRAINT "_pages_v_blocks_team1_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "_sub_links_v" ADD CONSTRAINT "_sub_links_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_nav_links_v"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "_nav_links_v" ADD CONSTRAINT "_nav_links_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_navbar1"("id") ON DELETE cascade ON UPDATE no action;
   ALTER TABLE "_btns_v" ADD CONSTRAINT "_btns_v_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."_pages_v_blocks_navbar1"("id") ON DELETE cascade ON UPDATE no action;
@@ -1400,6 +2425,17 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "pages_blocks_cta_order_idx" ON "pages_blocks_cta" USING btree ("_order");
   CREATE INDEX "pages_blocks_cta_parent_id_idx" ON "pages_blocks_cta" USING btree ("_parent_id");
   CREATE INDEX "pages_blocks_cta_path_idx" ON "pages_blocks_cta" USING btree ("_path");
+  CREATE INDEX "pages_blocks_cta1_buttons_order_idx" ON "pages_blocks_cta1_buttons" USING btree ("_order");
+  CREATE INDEX "pages_blocks_cta1_buttons_parent_id_idx" ON "pages_blocks_cta1_buttons" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_cta1_order_idx" ON "pages_blocks_cta1" USING btree ("_order");
+  CREATE INDEX "pages_blocks_cta1_parent_id_idx" ON "pages_blocks_cta1" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_cta1_path_idx" ON "pages_blocks_cta1" USING btree ("_path");
+  CREATE INDEX "pages_blocks_cta1_image_image_media_idx" ON "pages_blocks_cta1" USING btree ("image_media_id");
+  CREATE INDEX "pages_blocks_cta5_buttons_order_idx" ON "pages_blocks_cta5_buttons" USING btree ("_order");
+  CREATE INDEX "pages_blocks_cta5_buttons_parent_id_idx" ON "pages_blocks_cta5_buttons" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_cta5_order_idx" ON "pages_blocks_cta5" USING btree ("_order");
+  CREATE INDEX "pages_blocks_cta5_parent_id_idx" ON "pages_blocks_cta5" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_cta5_path_idx" ON "pages_blocks_cta5" USING btree ("_path");
   CREATE INDEX "pages_blocks_content_columns_order_idx" ON "pages_blocks_content_columns" USING btree ("_order");
   CREATE INDEX "pages_blocks_content_columns_parent_id_idx" ON "pages_blocks_content_columns" USING btree ("_parent_id");
   CREATE INDEX "pages_blocks_content_order_idx" ON "pages_blocks_content" USING btree ("_order");
@@ -1415,6 +2451,40 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "pages_blocks_footer1_parent_id_idx" ON "pages_blocks_footer1" USING btree ("_parent_id");
   CREATE INDEX "pages_blocks_footer1_path_idx" ON "pages_blocks_footer1" USING btree ("_path");
   CREATE INDEX "pages_blocks_footer1_logo_logo_media_idx" ON "pages_blocks_footer1" USING btree ("logo_media_id");
+  CREATE INDEX "pages_blocks_footer5_column_links_links_order_idx" ON "pages_blocks_footer5_column_links_links" USING btree ("_order");
+  CREATE INDEX "pages_blocks_footer5_column_links_links_parent_id_idx" ON "pages_blocks_footer5_column_links_links" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_footer5_column_links_order_idx" ON "pages_blocks_footer5_column_links" USING btree ("_order");
+  CREATE INDEX "pages_blocks_footer5_column_links_parent_id_idx" ON "pages_blocks_footer5_column_links" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_footer5_social_media_links_order_idx" ON "pages_blocks_footer5_social_media_links" USING btree ("_order");
+  CREATE INDEX "pages_blocks_footer5_social_media_links_parent_id_idx" ON "pages_blocks_footer5_social_media_links" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_footer5_footer_links_order_idx" ON "pages_blocks_footer5_footer_links" USING btree ("_order");
+  CREATE INDEX "pages_blocks_footer5_footer_links_parent_id_idx" ON "pages_blocks_footer5_footer_links" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_footer5_order_idx" ON "pages_blocks_footer5" USING btree ("_order");
+  CREATE INDEX "pages_blocks_footer5_parent_id_idx" ON "pages_blocks_footer5" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_footer5_path_idx" ON "pages_blocks_footer5" USING btree ("_path");
+  CREATE INDEX "pages_blocks_footer5_logo_logo_media_idx" ON "pages_blocks_footer5" USING btree ("logo_media_id");
+  CREATE INDEX "pages_blocks_header44_links_order_idx" ON "pages_blocks_header44_links" USING btree ("_order");
+  CREATE INDEX "pages_blocks_header44_links_parent_id_idx" ON "pages_blocks_header44_links" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_header44_order_idx" ON "pages_blocks_header44" USING btree ("_order");
+  CREATE INDEX "pages_blocks_header44_parent_id_idx" ON "pages_blocks_header44" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_header44_path_idx" ON "pages_blocks_header44" USING btree ("_path");
+  CREATE INDEX "pages_blocks_header48_order_idx" ON "pages_blocks_header48" USING btree ("_order");
+  CREATE INDEX "pages_blocks_header48_parent_id_idx" ON "pages_blocks_header48" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_header48_path_idx" ON "pages_blocks_header48" USING btree ("_path");
+  CREATE INDEX "pages_blocks_layout1_links_order_idx" ON "pages_blocks_layout1_links" USING btree ("_order");
+  CREATE INDEX "pages_blocks_layout1_links_parent_id_idx" ON "pages_blocks_layout1_links" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_layout1_order_idx" ON "pages_blocks_layout1" USING btree ("_order");
+  CREATE INDEX "pages_blocks_layout1_parent_id_idx" ON "pages_blocks_layout1" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_layout1_path_idx" ON "pages_blocks_layout1" USING btree ("_path");
+  CREATE INDEX "pages_blocks_layout1_media_idx" ON "pages_blocks_layout1" USING btree ("media_id");
+  CREATE INDEX "pages_blocks_layout5_sub_headings_order_idx" ON "pages_blocks_layout5_sub_headings" USING btree ("_order");
+  CREATE INDEX "pages_blocks_layout5_sub_headings_parent_id_idx" ON "pages_blocks_layout5_sub_headings" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_layout5_buttons_order_idx" ON "pages_blocks_layout5_buttons" USING btree ("_order");
+  CREATE INDEX "pages_blocks_layout5_buttons_parent_id_idx" ON "pages_blocks_layout5_buttons" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_layout5_order_idx" ON "pages_blocks_layout5" USING btree ("_order");
+  CREATE INDEX "pages_blocks_layout5_parent_id_idx" ON "pages_blocks_layout5" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_layout5_path_idx" ON "pages_blocks_layout5" USING btree ("_path");
+  CREATE INDEX "pages_blocks_layout5_image_idx" ON "pages_blocks_layout5" USING btree ("image_id");
   CREATE INDEX "pages_blocks_media_block_order_idx" ON "pages_blocks_media_block" USING btree ("_order");
   CREATE INDEX "pages_blocks_media_block_parent_id_idx" ON "pages_blocks_media_block" USING btree ("_parent_id");
   CREATE INDEX "pages_blocks_media_block_path_idx" ON "pages_blocks_media_block" USING btree ("_path");
@@ -1429,6 +2499,59 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "pages_blocks_multi_form1_order_idx" ON "pages_blocks_multi_form1" USING btree ("_order");
   CREATE INDEX "pages_blocks_multi_form1_parent_id_idx" ON "pages_blocks_multi_form1" USING btree ("_parent_id");
   CREATE INDEX "pages_blocks_multi_form1_path_idx" ON "pages_blocks_multi_form1" USING btree ("_path");
+  CREATE INDEX "pages_blocks_contact1_order_idx" ON "pages_blocks_contact1" USING btree ("_order");
+  CREATE INDEX "pages_blocks_contact1_parent_id_idx" ON "pages_blocks_contact1" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_contact1_path_idx" ON "pages_blocks_contact1" USING btree ("_path");
+  CREATE INDEX "pages_blocks_contact5_order_idx" ON "pages_blocks_contact5" USING btree ("_order");
+  CREATE INDEX "pages_blocks_contact5_parent_id_idx" ON "pages_blocks_contact5" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_contact5_path_idx" ON "pages_blocks_contact5" USING btree ("_path");
+  CREATE INDEX "pages_blocks_pricing1_order_idx" ON "pages_blocks_pricing1" USING btree ("_order");
+  CREATE INDEX "pages_blocks_pricing1_parent_id_idx" ON "pages_blocks_pricing1" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_pricing1_path_idx" ON "pages_blocks_pricing1" USING btree ("_path");
+  CREATE INDEX "pages_blocks_pricing5_feature_sections_order_idx" ON "pages_blocks_pricing5_feature_sections" USING btree ("_order");
+  CREATE INDEX "pages_blocks_pricing5_feature_sections_parent_id_idx" ON "pages_blocks_pricing5_feature_sections" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_pricing5_feature_sections_icon_icon_media_idx" ON "pages_blocks_pricing5_feature_sections" USING btree ("icon_media_id");
+  CREATE INDEX "pages_blocks_pricing5_pricing_plan_features_order_idx" ON "pages_blocks_pricing5_pricing_plan_features" USING btree ("_order");
+  CREATE INDEX "pages_blocks_pricing5_pricing_plan_features_parent_id_idx" ON "pages_blocks_pricing5_pricing_plan_features" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_pricing5_order_idx" ON "pages_blocks_pricing5" USING btree ("_order");
+  CREATE INDEX "pages_blocks_pricing5_parent_id_idx" ON "pages_blocks_pricing5" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_pricing5_path_idx" ON "pages_blocks_pricing5" USING btree ("_path");
+  CREATE INDEX "pages_blocks_faq1_questions_order_idx" ON "pages_blocks_faq1_questions" USING btree ("_order");
+  CREATE INDEX "pages_blocks_faq1_questions_parent_id_idx" ON "pages_blocks_faq1_questions" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_faq1_order_idx" ON "pages_blocks_faq1" USING btree ("_order");
+  CREATE INDEX "pages_blocks_faq1_parent_id_idx" ON "pages_blocks_faq1" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_faq1_path_idx" ON "pages_blocks_faq1" USING btree ("_path");
+  CREATE INDEX "pages_blocks_faq5_questions_order_idx" ON "pages_blocks_faq5_questions" USING btree ("_order");
+  CREATE INDEX "pages_blocks_faq5_questions_parent_id_idx" ON "pages_blocks_faq5_questions" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_faq5_order_idx" ON "pages_blocks_faq5" USING btree ("_order");
+  CREATE INDEX "pages_blocks_faq5_parent_id_idx" ON "pages_blocks_faq5" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_faq5_path_idx" ON "pages_blocks_faq5" USING btree ("_path");
+  CREATE INDEX "pages_blocks_testimonial1_order_idx" ON "pages_blocks_testimonial1" USING btree ("_order");
+  CREATE INDEX "pages_blocks_testimonial1_parent_id_idx" ON "pages_blocks_testimonial1" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_testimonial1_path_idx" ON "pages_blocks_testimonial1" USING btree ("_path");
+  CREATE INDEX "pages_blocks_testimonial1_logo_logo_media_idx" ON "pages_blocks_testimonial1" USING btree ("logo_media_id");
+  CREATE INDEX "pages_blocks_testimonial1_avatar_avatar_media_idx" ON "pages_blocks_testimonial1" USING btree ("avatar_media_id");
+  CREATE INDEX "pages_blocks_testimonial5_testimonials_order_idx" ON "pages_blocks_testimonial5_testimonials" USING btree ("_order");
+  CREATE INDEX "pages_blocks_testimonial5_testimonials_parent_id_idx" ON "pages_blocks_testimonial5_testimonials" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_testimonial5_testimonials_avatar_avatar_media_idx" ON "pages_blocks_testimonial5_testimonials" USING btree ("avatar_media_id");
+  CREATE INDEX "pages_blocks_testimonial5_testimonials_logo_logo_media_idx" ON "pages_blocks_testimonial5_testimonials" USING btree ("logo_media_id");
+  CREATE INDEX "pages_blocks_testimonial5_order_idx" ON "pages_blocks_testimonial5" USING btree ("_order");
+  CREATE INDEX "pages_blocks_testimonial5_parent_id_idx" ON "pages_blocks_testimonial5" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_testimonial5_path_idx" ON "pages_blocks_testimonial5" USING btree ("_path");
+  CREATE INDEX "pages_blocks_logo1_logos_order_idx" ON "pages_blocks_logo1_logos" USING btree ("_order");
+  CREATE INDEX "pages_blocks_logo1_logos_parent_id_idx" ON "pages_blocks_logo1_logos" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_logo1_logos_media_idx" ON "pages_blocks_logo1_logos" USING btree ("media_id");
+  CREATE INDEX "pages_blocks_logo1_order_idx" ON "pages_blocks_logo1" USING btree ("_order");
+  CREATE INDEX "pages_blocks_logo1_parent_id_idx" ON "pages_blocks_logo1" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_logo1_path_idx" ON "pages_blocks_logo1" USING btree ("_path");
+  CREATE INDEX "pages_blocks_team1_team_members_social_links_order_idx" ON "pages_blocks_team1_team_members_social_links" USING btree ("_order");
+  CREATE INDEX "pages_blocks_team1_team_members_social_links_parent_id_idx" ON "pages_blocks_team1_team_members_social_links" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_team1_team_members_order_idx" ON "pages_blocks_team1_team_members" USING btree ("_order");
+  CREATE INDEX "pages_blocks_team1_team_members_parent_id_idx" ON "pages_blocks_team1_team_members" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_team1_team_members_image_image_media_idx" ON "pages_blocks_team1_team_members" USING btree ("image_media_id");
+  CREATE INDEX "pages_blocks_team1_order_idx" ON "pages_blocks_team1" USING btree ("_order");
+  CREATE INDEX "pages_blocks_team1_parent_id_idx" ON "pages_blocks_team1" USING btree ("_parent_id");
+  CREATE INDEX "pages_blocks_team1_path_idx" ON "pages_blocks_team1" USING btree ("_path");
   CREATE INDEX "sub_links_order_idx" ON "sub_links" USING btree ("_order");
   CREATE INDEX "sub_links_parent_id_idx" ON "sub_links" USING btree ("_parent_id");
   CREATE INDEX "nav_links_order_idx" ON "nav_links" USING btree ("_order");
@@ -1475,6 +2598,17 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "_pages_v_blocks_cta_order_idx" ON "_pages_v_blocks_cta" USING btree ("_order");
   CREATE INDEX "_pages_v_blocks_cta_parent_id_idx" ON "_pages_v_blocks_cta" USING btree ("_parent_id");
   CREATE INDEX "_pages_v_blocks_cta_path_idx" ON "_pages_v_blocks_cta" USING btree ("_path");
+  CREATE INDEX "_pages_v_blocks_cta1_buttons_order_idx" ON "_pages_v_blocks_cta1_buttons" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_cta1_buttons_parent_id_idx" ON "_pages_v_blocks_cta1_buttons" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_cta1_order_idx" ON "_pages_v_blocks_cta1" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_cta1_parent_id_idx" ON "_pages_v_blocks_cta1" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_cta1_path_idx" ON "_pages_v_blocks_cta1" USING btree ("_path");
+  CREATE INDEX "_pages_v_blocks_cta1_image_image_media_idx" ON "_pages_v_blocks_cta1" USING btree ("image_media_id");
+  CREATE INDEX "_pages_v_blocks_cta5_buttons_order_idx" ON "_pages_v_blocks_cta5_buttons" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_cta5_buttons_parent_id_idx" ON "_pages_v_blocks_cta5_buttons" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_cta5_order_idx" ON "_pages_v_blocks_cta5" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_cta5_parent_id_idx" ON "_pages_v_blocks_cta5" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_cta5_path_idx" ON "_pages_v_blocks_cta5" USING btree ("_path");
   CREATE INDEX "_pages_v_blocks_content_columns_order_idx" ON "_pages_v_blocks_content_columns" USING btree ("_order");
   CREATE INDEX "_pages_v_blocks_content_columns_parent_id_idx" ON "_pages_v_blocks_content_columns" USING btree ("_parent_id");
   CREATE INDEX "_pages_v_blocks_content_order_idx" ON "_pages_v_blocks_content" USING btree ("_order");
@@ -1490,6 +2624,40 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "_pages_v_blocks_footer1_parent_id_idx" ON "_pages_v_blocks_footer1" USING btree ("_parent_id");
   CREATE INDEX "_pages_v_blocks_footer1_path_idx" ON "_pages_v_blocks_footer1" USING btree ("_path");
   CREATE INDEX "_pages_v_blocks_footer1_logo_logo_media_idx" ON "_pages_v_blocks_footer1" USING btree ("logo_media_id");
+  CREATE INDEX "_pages_v_blocks_footer5_column_links_links_order_idx" ON "_pages_v_blocks_footer5_column_links_links" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_footer5_column_links_links_parent_id_idx" ON "_pages_v_blocks_footer5_column_links_links" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_footer5_column_links_order_idx" ON "_pages_v_blocks_footer5_column_links" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_footer5_column_links_parent_id_idx" ON "_pages_v_blocks_footer5_column_links" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_footer5_social_media_links_order_idx" ON "_pages_v_blocks_footer5_social_media_links" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_footer5_social_media_links_parent_id_idx" ON "_pages_v_blocks_footer5_social_media_links" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_footer5_footer_links_order_idx" ON "_pages_v_blocks_footer5_footer_links" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_footer5_footer_links_parent_id_idx" ON "_pages_v_blocks_footer5_footer_links" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_footer5_order_idx" ON "_pages_v_blocks_footer5" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_footer5_parent_id_idx" ON "_pages_v_blocks_footer5" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_footer5_path_idx" ON "_pages_v_blocks_footer5" USING btree ("_path");
+  CREATE INDEX "_pages_v_blocks_footer5_logo_logo_media_idx" ON "_pages_v_blocks_footer5" USING btree ("logo_media_id");
+  CREATE INDEX "_pages_v_blocks_header44_links_order_idx" ON "_pages_v_blocks_header44_links" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_header44_links_parent_id_idx" ON "_pages_v_blocks_header44_links" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_header44_order_idx" ON "_pages_v_blocks_header44" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_header44_parent_id_idx" ON "_pages_v_blocks_header44" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_header44_path_idx" ON "_pages_v_blocks_header44" USING btree ("_path");
+  CREATE INDEX "_pages_v_blocks_header48_order_idx" ON "_pages_v_blocks_header48" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_header48_parent_id_idx" ON "_pages_v_blocks_header48" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_header48_path_idx" ON "_pages_v_blocks_header48" USING btree ("_path");
+  CREATE INDEX "_pages_v_blocks_layout1_links_order_idx" ON "_pages_v_blocks_layout1_links" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_layout1_links_parent_id_idx" ON "_pages_v_blocks_layout1_links" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_layout1_order_idx" ON "_pages_v_blocks_layout1" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_layout1_parent_id_idx" ON "_pages_v_blocks_layout1" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_layout1_path_idx" ON "_pages_v_blocks_layout1" USING btree ("_path");
+  CREATE INDEX "_pages_v_blocks_layout1_media_idx" ON "_pages_v_blocks_layout1" USING btree ("media_id");
+  CREATE INDEX "_pages_v_blocks_layout5_sub_headings_order_idx" ON "_pages_v_blocks_layout5_sub_headings" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_layout5_sub_headings_parent_id_idx" ON "_pages_v_blocks_layout5_sub_headings" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_layout5_buttons_order_idx" ON "_pages_v_blocks_layout5_buttons" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_layout5_buttons_parent_id_idx" ON "_pages_v_blocks_layout5_buttons" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_layout5_order_idx" ON "_pages_v_blocks_layout5" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_layout5_parent_id_idx" ON "_pages_v_blocks_layout5" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_layout5_path_idx" ON "_pages_v_blocks_layout5" USING btree ("_path");
+  CREATE INDEX "_pages_v_blocks_layout5_image_idx" ON "_pages_v_blocks_layout5" USING btree ("image_id");
   CREATE INDEX "_pages_v_blocks_media_block_order_idx" ON "_pages_v_blocks_media_block" USING btree ("_order");
   CREATE INDEX "_pages_v_blocks_media_block_parent_id_idx" ON "_pages_v_blocks_media_block" USING btree ("_parent_id");
   CREATE INDEX "_pages_v_blocks_media_block_path_idx" ON "_pages_v_blocks_media_block" USING btree ("_path");
@@ -1504,6 +2672,59 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "_pages_v_blocks_multi_form1_order_idx" ON "_pages_v_blocks_multi_form1" USING btree ("_order");
   CREATE INDEX "_pages_v_blocks_multi_form1_parent_id_idx" ON "_pages_v_blocks_multi_form1" USING btree ("_parent_id");
   CREATE INDEX "_pages_v_blocks_multi_form1_path_idx" ON "_pages_v_blocks_multi_form1" USING btree ("_path");
+  CREATE INDEX "_pages_v_blocks_contact1_order_idx" ON "_pages_v_blocks_contact1" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_contact1_parent_id_idx" ON "_pages_v_blocks_contact1" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_contact1_path_idx" ON "_pages_v_blocks_contact1" USING btree ("_path");
+  CREATE INDEX "_pages_v_blocks_contact5_order_idx" ON "_pages_v_blocks_contact5" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_contact5_parent_id_idx" ON "_pages_v_blocks_contact5" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_contact5_path_idx" ON "_pages_v_blocks_contact5" USING btree ("_path");
+  CREATE INDEX "_pages_v_blocks_pricing1_order_idx" ON "_pages_v_blocks_pricing1" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_pricing1_parent_id_idx" ON "_pages_v_blocks_pricing1" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_pricing1_path_idx" ON "_pages_v_blocks_pricing1" USING btree ("_path");
+  CREATE INDEX "_pages_v_blocks_pricing5_feature_sections_order_idx" ON "_pages_v_blocks_pricing5_feature_sections" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_pricing5_feature_sections_parent_id_idx" ON "_pages_v_blocks_pricing5_feature_sections" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_pricing5_feature_sections_icon_icon_media_idx" ON "_pages_v_blocks_pricing5_feature_sections" USING btree ("icon_media_id");
+  CREATE INDEX "_pages_v_blocks_pricing5_pricing_plan_features_order_idx" ON "_pages_v_blocks_pricing5_pricing_plan_features" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_pricing5_pricing_plan_features_parent_id_idx" ON "_pages_v_blocks_pricing5_pricing_plan_features" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_pricing5_order_idx" ON "_pages_v_blocks_pricing5" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_pricing5_parent_id_idx" ON "_pages_v_blocks_pricing5" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_pricing5_path_idx" ON "_pages_v_blocks_pricing5" USING btree ("_path");
+  CREATE INDEX "_pages_v_blocks_faq1_questions_order_idx" ON "_pages_v_blocks_faq1_questions" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_faq1_questions_parent_id_idx" ON "_pages_v_blocks_faq1_questions" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_faq1_order_idx" ON "_pages_v_blocks_faq1" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_faq1_parent_id_idx" ON "_pages_v_blocks_faq1" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_faq1_path_idx" ON "_pages_v_blocks_faq1" USING btree ("_path");
+  CREATE INDEX "_pages_v_blocks_faq5_questions_order_idx" ON "_pages_v_blocks_faq5_questions" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_faq5_questions_parent_id_idx" ON "_pages_v_blocks_faq5_questions" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_faq5_order_idx" ON "_pages_v_blocks_faq5" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_faq5_parent_id_idx" ON "_pages_v_blocks_faq5" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_faq5_path_idx" ON "_pages_v_blocks_faq5" USING btree ("_path");
+  CREATE INDEX "_pages_v_blocks_testimonial1_order_idx" ON "_pages_v_blocks_testimonial1" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_testimonial1_parent_id_idx" ON "_pages_v_blocks_testimonial1" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_testimonial1_path_idx" ON "_pages_v_blocks_testimonial1" USING btree ("_path");
+  CREATE INDEX "_pages_v_blocks_testimonial1_logo_logo_media_idx" ON "_pages_v_blocks_testimonial1" USING btree ("logo_media_id");
+  CREATE INDEX "_pages_v_blocks_testimonial1_avatar_avatar_media_idx" ON "_pages_v_blocks_testimonial1" USING btree ("avatar_media_id");
+  CREATE INDEX "_pages_v_blocks_testimonial5_testimonials_order_idx" ON "_pages_v_blocks_testimonial5_testimonials" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_testimonial5_testimonials_parent_id_idx" ON "_pages_v_blocks_testimonial5_testimonials" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_testimonial5_testimonials_avatar_avatar_media_idx" ON "_pages_v_blocks_testimonial5_testimonials" USING btree ("avatar_media_id");
+  CREATE INDEX "_pages_v_blocks_testimonial5_testimonials_logo_logo_media_idx" ON "_pages_v_blocks_testimonial5_testimonials" USING btree ("logo_media_id");
+  CREATE INDEX "_pages_v_blocks_testimonial5_order_idx" ON "_pages_v_blocks_testimonial5" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_testimonial5_parent_id_idx" ON "_pages_v_blocks_testimonial5" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_testimonial5_path_idx" ON "_pages_v_blocks_testimonial5" USING btree ("_path");
+  CREATE INDEX "_pages_v_blocks_logo1_logos_order_idx" ON "_pages_v_blocks_logo1_logos" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_logo1_logos_parent_id_idx" ON "_pages_v_blocks_logo1_logos" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_logo1_logos_media_idx" ON "_pages_v_blocks_logo1_logos" USING btree ("media_id");
+  CREATE INDEX "_pages_v_blocks_logo1_order_idx" ON "_pages_v_blocks_logo1" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_logo1_parent_id_idx" ON "_pages_v_blocks_logo1" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_logo1_path_idx" ON "_pages_v_blocks_logo1" USING btree ("_path");
+  CREATE INDEX "_pages_v_blocks_team1_team_members_social_links_order_idx" ON "_pages_v_blocks_team1_team_members_social_links" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_team1_team_members_social_links_parent_id_idx" ON "_pages_v_blocks_team1_team_members_social_links" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_team1_team_members_order_idx" ON "_pages_v_blocks_team1_team_members" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_team1_team_members_parent_id_idx" ON "_pages_v_blocks_team1_team_members" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_team1_team_members_image_image_media_idx" ON "_pages_v_blocks_team1_team_members" USING btree ("image_media_id");
+  CREATE INDEX "_pages_v_blocks_team1_order_idx" ON "_pages_v_blocks_team1" USING btree ("_order");
+  CREATE INDEX "_pages_v_blocks_team1_parent_id_idx" ON "_pages_v_blocks_team1" USING btree ("_parent_id");
+  CREATE INDEX "_pages_v_blocks_team1_path_idx" ON "_pages_v_blocks_team1" USING btree ("_path");
   CREATE INDEX "_sub_links_v_order_idx" ON "_sub_links_v" USING btree ("_order");
   CREATE INDEX "_sub_links_v_parent_id_idx" ON "_sub_links_v" USING btree ("_parent_id");
   CREATE INDEX "_nav_links_v_order_idx" ON "_nav_links_v" USING btree ("_order");
@@ -1708,22 +2929,57 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   CREATE INDEX "footer_rels_posts_id_idx" ON "footer_rels" USING btree ("posts_id");`)
 }
 
-export async function down({ db }: MigrateDownArgs): Promise<void> {
+export async function down({ db, payload, req }: MigrateDownArgs): Promise<void> {
   await db.execute(sql`
    DROP TABLE "pages_hero_links" CASCADE;
   DROP TABLE "pages_blocks_banner1" CASCADE;
   DROP TABLE "pages_blocks_cta_links" CASCADE;
   DROP TABLE "pages_blocks_cta" CASCADE;
+  DROP TABLE "pages_blocks_cta1_buttons" CASCADE;
+  DROP TABLE "pages_blocks_cta1" CASCADE;
+  DROP TABLE "pages_blocks_cta5_buttons" CASCADE;
+  DROP TABLE "pages_blocks_cta5" CASCADE;
   DROP TABLE "pages_blocks_content_columns" CASCADE;
   DROP TABLE "pages_blocks_content" CASCADE;
   DROP TABLE "pages_blocks_footer1_column_links_links" CASCADE;
   DROP TABLE "pages_blocks_footer1_column_links" CASCADE;
   DROP TABLE "pages_blocks_footer1_footer_links" CASCADE;
   DROP TABLE "pages_blocks_footer1" CASCADE;
+  DROP TABLE "pages_blocks_footer5_column_links_links" CASCADE;
+  DROP TABLE "pages_blocks_footer5_column_links" CASCADE;
+  DROP TABLE "pages_blocks_footer5_social_media_links" CASCADE;
+  DROP TABLE "pages_blocks_footer5_footer_links" CASCADE;
+  DROP TABLE "pages_blocks_footer5" CASCADE;
+  DROP TABLE "pages_blocks_header44_links" CASCADE;
+  DROP TABLE "pages_blocks_header44" CASCADE;
+  DROP TABLE "pages_blocks_header48" CASCADE;
+  DROP TABLE "pages_blocks_layout1_links" CASCADE;
+  DROP TABLE "pages_blocks_layout1" CASCADE;
+  DROP TABLE "pages_blocks_layout5_sub_headings" CASCADE;
+  DROP TABLE "pages_blocks_layout5_buttons" CASCADE;
+  DROP TABLE "pages_blocks_layout5" CASCADE;
   DROP TABLE "pages_blocks_media_block" CASCADE;
   DROP TABLE "pages_blocks_archive" CASCADE;
   DROP TABLE "pages_blocks_form_block" CASCADE;
   DROP TABLE "pages_blocks_multi_form1" CASCADE;
+  DROP TABLE "pages_blocks_contact1" CASCADE;
+  DROP TABLE "pages_blocks_contact5" CASCADE;
+  DROP TABLE "pages_blocks_pricing1" CASCADE;
+  DROP TABLE "pages_blocks_pricing5_feature_sections" CASCADE;
+  DROP TABLE "pages_blocks_pricing5_pricing_plan_features" CASCADE;
+  DROP TABLE "pages_blocks_pricing5" CASCADE;
+  DROP TABLE "pages_blocks_faq1_questions" CASCADE;
+  DROP TABLE "pages_blocks_faq1" CASCADE;
+  DROP TABLE "pages_blocks_faq5_questions" CASCADE;
+  DROP TABLE "pages_blocks_faq5" CASCADE;
+  DROP TABLE "pages_blocks_testimonial1" CASCADE;
+  DROP TABLE "pages_blocks_testimonial5_testimonials" CASCADE;
+  DROP TABLE "pages_blocks_testimonial5" CASCADE;
+  DROP TABLE "pages_blocks_logo1_logos" CASCADE;
+  DROP TABLE "pages_blocks_logo1" CASCADE;
+  DROP TABLE "pages_blocks_team1_team_members_social_links" CASCADE;
+  DROP TABLE "pages_blocks_team1_team_members" CASCADE;
+  DROP TABLE "pages_blocks_team1" CASCADE;
   DROP TABLE "sub_links" CASCADE;
   DROP TABLE "nav_links" CASCADE;
   DROP TABLE "btns" CASCADE;
@@ -1740,16 +2996,51 @@ export async function down({ db }: MigrateDownArgs): Promise<void> {
   DROP TABLE "_pages_v_blocks_banner1" CASCADE;
   DROP TABLE "_pages_v_blocks_cta_links" CASCADE;
   DROP TABLE "_pages_v_blocks_cta" CASCADE;
+  DROP TABLE "_pages_v_blocks_cta1_buttons" CASCADE;
+  DROP TABLE "_pages_v_blocks_cta1" CASCADE;
+  DROP TABLE "_pages_v_blocks_cta5_buttons" CASCADE;
+  DROP TABLE "_pages_v_blocks_cta5" CASCADE;
   DROP TABLE "_pages_v_blocks_content_columns" CASCADE;
   DROP TABLE "_pages_v_blocks_content" CASCADE;
   DROP TABLE "_pages_v_blocks_footer1_column_links_links" CASCADE;
   DROP TABLE "_pages_v_blocks_footer1_column_links" CASCADE;
   DROP TABLE "_pages_v_blocks_footer1_footer_links" CASCADE;
   DROP TABLE "_pages_v_blocks_footer1" CASCADE;
+  DROP TABLE "_pages_v_blocks_footer5_column_links_links" CASCADE;
+  DROP TABLE "_pages_v_blocks_footer5_column_links" CASCADE;
+  DROP TABLE "_pages_v_blocks_footer5_social_media_links" CASCADE;
+  DROP TABLE "_pages_v_blocks_footer5_footer_links" CASCADE;
+  DROP TABLE "_pages_v_blocks_footer5" CASCADE;
+  DROP TABLE "_pages_v_blocks_header44_links" CASCADE;
+  DROP TABLE "_pages_v_blocks_header44" CASCADE;
+  DROP TABLE "_pages_v_blocks_header48" CASCADE;
+  DROP TABLE "_pages_v_blocks_layout1_links" CASCADE;
+  DROP TABLE "_pages_v_blocks_layout1" CASCADE;
+  DROP TABLE "_pages_v_blocks_layout5_sub_headings" CASCADE;
+  DROP TABLE "_pages_v_blocks_layout5_buttons" CASCADE;
+  DROP TABLE "_pages_v_blocks_layout5" CASCADE;
   DROP TABLE "_pages_v_blocks_media_block" CASCADE;
   DROP TABLE "_pages_v_blocks_archive" CASCADE;
   DROP TABLE "_pages_v_blocks_form_block" CASCADE;
   DROP TABLE "_pages_v_blocks_multi_form1" CASCADE;
+  DROP TABLE "_pages_v_blocks_contact1" CASCADE;
+  DROP TABLE "_pages_v_blocks_contact5" CASCADE;
+  DROP TABLE "_pages_v_blocks_pricing1" CASCADE;
+  DROP TABLE "_pages_v_blocks_pricing5_feature_sections" CASCADE;
+  DROP TABLE "_pages_v_blocks_pricing5_pricing_plan_features" CASCADE;
+  DROP TABLE "_pages_v_blocks_pricing5" CASCADE;
+  DROP TABLE "_pages_v_blocks_faq1_questions" CASCADE;
+  DROP TABLE "_pages_v_blocks_faq1" CASCADE;
+  DROP TABLE "_pages_v_blocks_faq5_questions" CASCADE;
+  DROP TABLE "_pages_v_blocks_faq5" CASCADE;
+  DROP TABLE "_pages_v_blocks_testimonial1" CASCADE;
+  DROP TABLE "_pages_v_blocks_testimonial5_testimonials" CASCADE;
+  DROP TABLE "_pages_v_blocks_testimonial5" CASCADE;
+  DROP TABLE "_pages_v_blocks_logo1_logos" CASCADE;
+  DROP TABLE "_pages_v_blocks_logo1" CASCADE;
+  DROP TABLE "_pages_v_blocks_team1_team_members_social_links" CASCADE;
+  DROP TABLE "_pages_v_blocks_team1_team_members" CASCADE;
+  DROP TABLE "_pages_v_blocks_team1" CASCADE;
   DROP TABLE "_sub_links_v" CASCADE;
   DROP TABLE "_nav_links_v" CASCADE;
   DROP TABLE "_btns_v" CASCADE;
@@ -1811,6 +3102,10 @@ export async function down({ db }: MigrateDownArgs): Promise<void> {
   DROP TYPE "public"."enum_pages_blocks_banner1_button_variant";
   DROP TYPE "public"."enum_pages_blocks_cta_links_link_type";
   DROP TYPE "public"."enum_pages_blocks_cta_links_link_appearance";
+  DROP TYPE "public"."enum_pages_blocks_cta1_buttons_variant";
+  DROP TYPE "public"."enum_pages_blocks_cta1_buttons_link_type";
+  DROP TYPE "public"."enum_pages_blocks_cta5_buttons_variant";
+  DROP TYPE "public"."enum_pages_blocks_cta5_buttons_link_type";
   DROP TYPE "public"."enum_pages_blocks_content_columns_size";
   DROP TYPE "public"."enum_pages_blocks_content_columns_link_type";
   DROP TYPE "public"."enum_pages_blocks_content_columns_link_appearance";
@@ -1820,10 +3115,42 @@ export async function down({ db }: MigrateDownArgs): Promise<void> {
   DROP TYPE "public"."enum_pages_blocks_footer1_logo_link_type";
   DROP TYPE "public"."enum_pages_blocks_footer1_button_size";
   DROP TYPE "public"."enum_pages_blocks_footer1_button_variant";
+  DROP TYPE "public"."enum_pages_blocks_footer1_terms_and_conditions_link_type";
+  DROP TYPE "public"."enum_pages_blocks_footer5_column_links_links_link_type";
+  DROP TYPE "public"."enum_pages_blocks_footer5_social_media_links_icon";
+  DROP TYPE "public"."enum_pages_blocks_footer5_footer_links_link_type";
+  DROP TYPE "public"."enum_pages_blocks_footer5_logo_link_type";
+  DROP TYPE "public"."enum_pages_blocks_footer5_button_size";
+  DROP TYPE "public"."enum_pages_blocks_footer5_button_variant";
+  DROP TYPE "public"."enum_pages_blocks_footer5_terms_and_conditions_link_type";
+  DROP TYPE "public"."enum_pages_blocks_header44_links_link_type";
+  DROP TYPE "public"."enum_pages_blocks_header44_links_link_appearance";
+  DROP TYPE "public"."enum_pages_blocks_header48_button_size";
+  DROP TYPE "public"."enum_pages_blocks_header48_button_variant";
+  DROP TYPE "public"."enum_pages_blocks_layout1_links_link_type";
+  DROP TYPE "public"."enum_pages_blocks_layout1_links_link_appearance";
+  DROP TYPE "public"."enum_pages_blocks_layout5_buttons_link_type";
+  DROP TYPE "public"."enum_pages_blocks_layout5_buttons_link_appearance";
   DROP TYPE "public"."enum_pages_blocks_archive_populate_by";
   DROP TYPE "public"."enum_pages_blocks_archive_relation_to";
   DROP TYPE "public"."enum_pages_blocks_multi_form1_nav_button_variant";
   DROP TYPE "public"."enum_pages_blocks_multi_form1_nav_button_size";
+  DROP TYPE "public"."enum_pages_blocks_contact1_button_variant";
+  DROP TYPE "public"."enum_pages_blocks_contact1_button_size";
+  DROP TYPE "public"."enum_pages_blocks_contact5_button_variant";
+  DROP TYPE "public"."enum_pages_blocks_contact5_button_size";
+  DROP TYPE "public"."enum_pages_blocks_pricing1_pricing_plan_button_variant";
+  DROP TYPE "public"."enum_pages_blocks_pricing1_pricing_plan_button_size";
+  DROP TYPE "public"."enum_pages_blocks_faq1_button_variant";
+  DROP TYPE "public"."enum_pages_blocks_faq1_button_size";
+  DROP TYPE "public"."enum_pages_blocks_faq1_button_link_type";
+  DROP TYPE "public"."enum_pages_blocks_faq5_button_variant";
+  DROP TYPE "public"."enum_pages_blocks_faq5_button_size";
+  DROP TYPE "public"."enum_pages_blocks_faq5_button_link_type";
+  DROP TYPE "public"."enum_pages_blocks_team1_team_members_social_links_platform";
+  DROP TYPE "public"."enum_pages_blocks_team1_button_variant";
+  DROP TYPE "public"."enum_pages_blocks_team1_button_size";
+  DROP TYPE "public"."enum_pages_blocks_team1_button_link_type";
   DROP TYPE "public"."enum_sub_links_link_type";
   DROP TYPE "public"."enum_nav_links_link_type";
   DROP TYPE "public"."enum_btns_link_type";
@@ -1850,6 +3177,10 @@ export async function down({ db }: MigrateDownArgs): Promise<void> {
   DROP TYPE "public"."enum__pages_v_blocks_banner1_button_variant";
   DROP TYPE "public"."enum__pages_v_blocks_cta_links_link_type";
   DROP TYPE "public"."enum__pages_v_blocks_cta_links_link_appearance";
+  DROP TYPE "public"."enum__pages_v_blocks_cta1_buttons_variant";
+  DROP TYPE "public"."enum__pages_v_blocks_cta1_buttons_link_type";
+  DROP TYPE "public"."enum__pages_v_blocks_cta5_buttons_variant";
+  DROP TYPE "public"."enum__pages_v_blocks_cta5_buttons_link_type";
   DROP TYPE "public"."enum__pages_v_blocks_content_columns_size";
   DROP TYPE "public"."enum__pages_v_blocks_content_columns_link_type";
   DROP TYPE "public"."enum__pages_v_blocks_content_columns_link_appearance";
@@ -1859,10 +3190,42 @@ export async function down({ db }: MigrateDownArgs): Promise<void> {
   DROP TYPE "public"."enum__pages_v_blocks_footer1_logo_link_type";
   DROP TYPE "public"."enum__pages_v_blocks_footer1_button_size";
   DROP TYPE "public"."enum__pages_v_blocks_footer1_button_variant";
+  DROP TYPE "public"."enum__pages_v_blocks_footer1_terms_and_conditions_link_type";
+  DROP TYPE "public"."enum__pages_v_blocks_footer5_column_links_links_link_type";
+  DROP TYPE "public"."enum__pages_v_blocks_footer5_social_media_links_icon";
+  DROP TYPE "public"."enum__pages_v_blocks_footer5_footer_links_link_type";
+  DROP TYPE "public"."enum__pages_v_blocks_footer5_logo_link_type";
+  DROP TYPE "public"."enum__pages_v_blocks_footer5_button_size";
+  DROP TYPE "public"."enum__pages_v_blocks_footer5_button_variant";
+  DROP TYPE "public"."enum__pages_v_blocks_footer5_terms_and_conditions_link_type";
+  DROP TYPE "public"."enum__pages_v_blocks_header44_links_link_type";
+  DROP TYPE "public"."enum__pages_v_blocks_header44_links_link_appearance";
+  DROP TYPE "public"."enum__pages_v_blocks_header48_button_size";
+  DROP TYPE "public"."enum__pages_v_blocks_header48_button_variant";
+  DROP TYPE "public"."enum__pages_v_blocks_layout1_links_link_type";
+  DROP TYPE "public"."enum__pages_v_blocks_layout1_links_link_appearance";
+  DROP TYPE "public"."enum__pages_v_blocks_layout5_buttons_link_type";
+  DROP TYPE "public"."enum__pages_v_blocks_layout5_buttons_link_appearance";
   DROP TYPE "public"."enum__pages_v_blocks_archive_populate_by";
   DROP TYPE "public"."enum__pages_v_blocks_archive_relation_to";
   DROP TYPE "public"."enum__pages_v_blocks_multi_form1_nav_button_variant";
   DROP TYPE "public"."enum__pages_v_blocks_multi_form1_nav_button_size";
+  DROP TYPE "public"."enum__pages_v_blocks_contact1_button_variant";
+  DROP TYPE "public"."enum__pages_v_blocks_contact1_button_size";
+  DROP TYPE "public"."enum__pages_v_blocks_contact5_button_variant";
+  DROP TYPE "public"."enum__pages_v_blocks_contact5_button_size";
+  DROP TYPE "public"."enum__pages_v_blocks_pricing1_pricing_plan_button_variant";
+  DROP TYPE "public"."enum__pages_v_blocks_pricing1_pricing_plan_button_size";
+  DROP TYPE "public"."enum__pages_v_blocks_faq1_button_variant";
+  DROP TYPE "public"."enum__pages_v_blocks_faq1_button_size";
+  DROP TYPE "public"."enum__pages_v_blocks_faq1_button_link_type";
+  DROP TYPE "public"."enum__pages_v_blocks_faq5_button_variant";
+  DROP TYPE "public"."enum__pages_v_blocks_faq5_button_size";
+  DROP TYPE "public"."enum__pages_v_blocks_faq5_button_link_type";
+  DROP TYPE "public"."enum__pages_v_blocks_team1_team_members_social_links_platform";
+  DROP TYPE "public"."enum__pages_v_blocks_team1_button_variant";
+  DROP TYPE "public"."enum__pages_v_blocks_team1_button_size";
+  DROP TYPE "public"."enum__pages_v_blocks_team1_button_link_type";
   DROP TYPE "public"."enum__sub_links_v_link_type";
   DROP TYPE "public"."enum__nav_links_v_link_type";
   DROP TYPE "public"."enum__btns_v_link_type";

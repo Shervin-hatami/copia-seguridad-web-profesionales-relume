@@ -12,17 +12,20 @@ export const MultiForm1Block: Block = {
           name: 'url',
           type: 'text',
           label: 'Logo URL',
+          defaultValue: '#',
         },
         {
           name: 'src',
           type: 'text',
           label: 'Logo Image URL',
           required: true,
+          defaultValue: 'https://d22po4pjz3o32e.cloudfront.net/relume-icon.svg',
         },
         {
           name: 'alt',
           type: 'text',
           label: 'Logo Alt Text',
+          defaultValue: 'Relume logo',
         },
       ],
     },
@@ -30,6 +33,7 @@ export const MultiForm1Block: Block = {
       name: 'navText',
       type: 'text',
       label: 'Navigation Text',
+      defaultValue: 'Navigation',
     },
     {
       name: 'navButton',
@@ -39,6 +43,7 @@ export const MultiForm1Block: Block = {
           name: 'title',
           type: 'text',
           label: 'Button Text',
+          defaultValue: 'button',
         },
         {
           name: 'variant',
@@ -49,6 +54,7 @@ export const MultiForm1Block: Block = {
             { label: 'Secondary', value: 'secondary' },
             { label: 'Link', value: 'link' },
           ],
+          defaultValue: 'primary',
         },
         {
           name: 'size',
@@ -60,6 +66,7 @@ export const MultiForm1Block: Block = {
             { label: 'Large', value: 'lg' },
             { label: 'Link', value: 'link' },
           ],
+          defaultValue: 'default',
         },
       ],
     },
@@ -67,6 +74,7 @@ export const MultiForm1Block: Block = {
       name: 'footerText',
       type: 'text',
       label: 'Footer Text',
+      defaultValue: '© 2024 Relume. All rights reserved.',
     },
   ],
   graphQL: {

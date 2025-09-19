@@ -17,7 +17,7 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum_pages_blocks_multi_form1_block_nav_button_variant" AS ENUM('default', 'secondary', 'link');
   CREATE TYPE "public"."enum_pages_blocks_multi_form1_block_nav_button_size" AS ENUM('default', 'sm', 'lg', 'link');
   CREATE TYPE "public"."enum_pages_blocks_multi_form1_block_confirmation_type" AS ENUM('message', 'redirect');
-  CREATE TYPE "public"."enum_pages_hero_type" AS ENUM('none', 'highImpact', 'mediumImpact', 'lowImpact', 'customHero1');
+  CREATE TYPE "public"."enum_pages_hero_type" AS ENUM('none', 'highImpact', 'mediumImpact', 'lowImpact', 'customHero1', 'header1', 'header5');
   CREATE TYPE "public"."enum_pages_status" AS ENUM('draft', 'published');
   CREATE TYPE "public"."enum__pages_v_version_hero_links_link_type" AS ENUM('reference', 'custom');
   CREATE TYPE "public"."enum__pages_v_version_hero_links_link_appearance" AS ENUM('default', 'outline');
@@ -34,7 +34,7 @@ export async function up({ db }: MigrateUpArgs): Promise<void> {
   CREATE TYPE "public"."enum__pages_v_blocks_multi_form1_block_nav_button_variant" AS ENUM('default', 'secondary', 'link');
   CREATE TYPE "public"."enum__pages_v_blocks_multi_form1_block_nav_button_size" AS ENUM('default', 'sm', 'lg', 'link');
   CREATE TYPE "public"."enum__pages_v_blocks_multi_form1_block_confirmation_type" AS ENUM('message', 'redirect');
-  CREATE TYPE "public"."enum__pages_v_version_hero_type" AS ENUM('none', 'highImpact', 'mediumImpact', 'lowImpact', 'customHero1');
+  CREATE TYPE "public"."enum__pages_v_version_hero_type" AS ENUM('none', 'highImpact', 'mediumImpact', 'lowImpact', 'customHero1', 'header1', 'header5');
   CREATE TYPE "public"."enum__pages_v_version_status" AS ENUM('draft', 'published');
   CREATE TYPE "public"."enum_posts_status" AS ENUM('draft', 'published');
   CREATE TYPE "public"."enum__posts_v_version_status" AS ENUM('draft', 'published');

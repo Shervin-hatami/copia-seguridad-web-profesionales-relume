@@ -14,7 +14,7 @@ export const Navbar1Block: Block = {
           name: 'useMedia',
           type: 'checkbox',
           label: 'Usar imagen subida',
-          defaultValue: false,
+          defaultValue: true,
         },
         {
           name: 'media',
@@ -59,6 +59,7 @@ export const Navbar1Block: Block = {
           name: 'title',
           type: 'text',
           required: true,
+          defaultValue: 'home',
         },
         simpleLink(),
         {
@@ -70,6 +71,7 @@ export const Navbar1Block: Block = {
               name: 'title',
               type: 'text',
               required: true,
+              defaultValue: 'google',
             },
             simpleLink(),
           ],
@@ -85,6 +87,7 @@ export const Navbar1Block: Block = {
           name: 'title',
           type: 'text',
           required: true,
+          defaultValue: 'youtube',
         },
         simpleLink(),
         {
@@ -94,7 +97,7 @@ export const Navbar1Block: Block = {
             { label: 'Small', value: 'sm' },
             { label: 'Large', value: 'lg' },
           ],
-          defaultValue: 'sm',
+          defaultValue: 'lg',
         },
         {
           name: 'variant',

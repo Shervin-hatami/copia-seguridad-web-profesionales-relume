@@ -30,6 +30,9 @@ export const Testimonial5Block: Block = {
       }),
       label: 'Contenido principal (título y descripción)',
       required: true,
+      admin: {
+        description: 'Add main content with heading and description as needed',
+      },
     },
     {
       name: 'testimonials',
@@ -63,6 +66,9 @@ export const Testimonial5Block: Block = {
           }),
           label: 'Testimonio (cita)',
           required: true,
+          admin: {
+            description: 'Add testimonial quote text as needed',
+          },
         },
         {
           name: 'avatar',
@@ -75,6 +81,9 @@ export const Testimonial5Block: Block = {
               relationTo: 'media',
               required: true,
               label: 'Imagen del avatar',
+              admin: {
+                description: 'Upload user avatar or use placeholder',
+              },
             },
             {
               name: 'alt',
@@ -91,12 +100,14 @@ export const Testimonial5Block: Block = {
           type: 'text',
           label: 'Nombre completo',
           required: true,
+          defaultValue: 'John Doe',
         },
         {
           name: 'position',
           type: 'text',
           label: 'Cargo/Posición y empresa',
           required: true,
+          defaultValue: 'CEO at Company',
         },
         {
           name: 'logo',
@@ -109,6 +120,9 @@ export const Testimonial5Block: Block = {
               relationTo: 'media',
               required: true,
               label: 'Imagen del logo',
+              admin: {
+                description: 'Upload company logo or use placeholder',
+              },
             },
             {
               name: 'alt',

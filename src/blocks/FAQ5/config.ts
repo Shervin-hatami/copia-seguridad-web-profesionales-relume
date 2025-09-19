@@ -32,6 +32,9 @@ export const FAQ5Block: Block = {
       }),
       label: 'Contenido principal (título y descripción)',
       required: true,
+      admin: {
+        description: 'Add main content with heading and description as needed',
+      },
     },
     {
       name: 'questions',
@@ -44,6 +47,7 @@ export const FAQ5Block: Block = {
           type: 'text',
           label: 'Pregunta',
           required: true,
+          defaultValue: 'Frequently asked question',
         },
         {
           name: 'answer',
@@ -62,6 +66,9 @@ export const FAQ5Block: Block = {
           }),
           label: 'Respuesta',
           required: true,
+          admin: {
+            description: 'Add answer text as needed',
+          },
         },
       ],
     },
@@ -82,6 +89,9 @@ export const FAQ5Block: Block = {
       }),
       label: 'Contenido del pie (título y descripción)',
       required: true,
+      admin: {
+        description: 'Add footer content with heading and description as needed',
+      },
     },
     {
       name: 'button',
@@ -92,6 +102,7 @@ export const FAQ5Block: Block = {
           type: 'text',
           label: 'Texto del botón',
           required: true,
+          defaultValue: 'Contact',
         },
         {
           name: 'variant',

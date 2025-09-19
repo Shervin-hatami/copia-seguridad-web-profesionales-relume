@@ -26,6 +26,9 @@ export const Contact5Block: Block = {
       }),
       label: 'Contenido superior (tagline, título y descripción)',
       required: true,
+      admin: {
+        description: 'Add tagline, heading (H6) and description text as needed',
+      },
     },
     {
       name: 'contactInfo',
@@ -36,18 +39,21 @@ export const Contact5Block: Block = {
           type: 'text',
           label: 'Email de contacto',
           required: true,
+          defaultValue: 'test@test.com',
         },
         {
           name: 'phone',
           type: 'text',
           label: 'Teléfono de contacto',
           required: true,
+          defaultValue: '0000000000',
         },
         {
           name: 'address',
           type: 'text',
           label: 'Dirección de contacto',
           required: true,
+          defaultValue: 'test',
         },
       ],
     },
@@ -60,6 +66,7 @@ export const Contact5Block: Block = {
           type: 'text',
           label: 'Texto del botón',
           required: true,
+          defaultValue: 'Submit',
         },
         {
           name: 'variant',
@@ -99,6 +106,9 @@ export const Contact5Block: Block = {
       }),
       label: 'Texto de términos y condiciones',
       required: true,
+      admin: {
+        description: 'Add terms and conditions text as needed',
+      },
     },
   ],
   graphQL: {

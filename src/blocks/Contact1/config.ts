@@ -26,6 +26,9 @@ export const Contact1Block: Block = {
       }),
       label: 'Contenido superior (tagline, título y descripción)',
       required: true,
+      admin: {
+        description: 'Add tagline, heading (H6) and description text as needed',
+      },
     },
     {
       name: 'button',
@@ -36,6 +39,7 @@ export const Contact1Block: Block = {
           type: 'text',
           label: 'Texto del botón',
           required: true,
+          defaultValue: 'Submit',
         },
         {
           name: 'variant',
@@ -76,6 +80,9 @@ export const Contact1Block: Block = {
       }),
       label: 'Texto de términos y condiciones',
       required: true,
+      admin: {
+        description: 'Add terms and conditions text as needed',
+      },
     },
   ],
   graphQL: {

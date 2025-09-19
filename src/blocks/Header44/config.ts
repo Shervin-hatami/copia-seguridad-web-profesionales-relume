@@ -33,6 +33,9 @@ export const Header44Block: Block = {
         },
       }),
       label: false,
+      admin: {
+        description: 'Use H4 for "Short heading here" or customize as needed',
+      },
     },
     {
       name: 'description',
@@ -47,6 +50,9 @@ export const Header44Block: Block = {
         },
       }),
       label: false,
+      admin: {
+        description: 'Add description text like "Lorem ipsum dolor sit amet, consectetur adipiscing elit."',
+      },
     },
     linkGroup({
       overrides: {

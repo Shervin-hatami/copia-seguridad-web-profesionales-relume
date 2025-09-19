@@ -28,6 +28,9 @@ export const CTA5Block: Block = {
           ]
         },
       }),
+      admin: {
+        description: 'Add CTA content with headings and text as needed',
+      },
     },
     {
       name: 'buttons',
@@ -35,12 +38,23 @@ export const CTA5Block: Block = {
       label: 'Botones',
       minRows: 1,
       maxRows: 3,
+      defaultValue: [
+        {
+          title: 'Call to Action',
+          variant: 'primary',
+          link: {
+            type: 'custom',
+            url: '#',
+          },
+        },
+      ],
       fields: [
         {
           name: 'title',
           type: 'text',
           required: true,
           label: 'Texto del botón',
+          defaultValue: 'Call to Action',
         },
         {
           name: 'variant',

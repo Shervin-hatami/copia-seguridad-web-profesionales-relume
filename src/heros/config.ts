@@ -60,6 +60,9 @@ export const hero: Field = {
         },
       }),
       label: false,
+      admin: {
+        description: 'Add hero heading text as needed',
+      },
     },
     linkGroup({
       overrides: {
@@ -71,6 +74,7 @@ export const hero: Field = {
       type: 'upload',
       admin: {
         condition: (_, { type } = {}) => ['highImpact', 'mediumImpact', 'header1', 'header5'].includes(type),
+        description: 'Upload hero background image or use placeholder',
       },
       relationTo: 'media',
       required: true,

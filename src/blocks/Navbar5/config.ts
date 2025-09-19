@@ -13,7 +13,7 @@ export const Navbar5Block: Block = {
           name: 'useMedia',
           type: 'checkbox',
           label: 'Usar upload de media',
-          defaultValue: false,
+          defaultValue: true,
         },
         {
           name: 'media',
@@ -22,6 +22,7 @@ export const Navbar5Block: Block = {
           label: 'Logo (Media)',
           admin: {
             condition: (_, siblingData) => siblingData?.useMedia === true,
+            description: 'Upload logo image or use placeholder',
           },
         },
         {

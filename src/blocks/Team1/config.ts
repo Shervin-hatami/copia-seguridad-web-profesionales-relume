@@ -18,6 +18,9 @@ export const Team1Block: Block = {
           ...defaultFeatures,
         ],
       }),
+      admin: {
+        description: 'Add main content with heading and description as needed',
+      },
     },
     {
       name: 'teamMembers',
@@ -37,6 +40,9 @@ export const Team1Block: Block = {
               relationTo: 'media',
               label: 'Imagen',
               required: true,
+              admin: {
+                description: 'Upload team member photo or use placeholder',
+              },
             },
             {
               name: 'alt',
@@ -51,18 +57,21 @@ export const Team1Block: Block = {
           type: 'text',
           label: 'Nombre',
           required: true,
+          defaultValue: 'John Doe',
         },
         {
           name: 'jobTitle',
           type: 'text',
           label: 'Título del trabajo',
           required: true,
+          defaultValue: 'CEO',
         },
         {
           name: 'description',
           type: 'textarea',
           label: 'Descripción',
           required: true,
+          defaultValue: 'Team member description',
         },
         {
           name: 'socialLinks',
@@ -110,6 +119,9 @@ export const Team1Block: Block = {
           ...defaultFeatures,
         ],
       }),
+      admin: {
+        description: 'Add footer content as needed',
+      },
     },
     {
       name: 'button',
@@ -121,6 +133,7 @@ export const Team1Block: Block = {
           type: 'text',
           label: 'Título del botón',
           required: true,
+          defaultValue: 'Open Positions',
         },
         {
           name: 'variant',

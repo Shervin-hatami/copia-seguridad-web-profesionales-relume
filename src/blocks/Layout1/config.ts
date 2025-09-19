@@ -33,6 +33,9 @@ export const Layout1Block: Block = {
         },
       }),
       label: false,
+      admin: {
+        description: 'Use H3 for "Medium length heading here" or customize as needed',
+      },
     },
     {
       name: 'description',
@@ -47,6 +50,9 @@ export const Layout1Block: Block = {
         },
       }),
       label: false,
+      admin: {
+        description: 'Add description text like "Lorem ipsum dolor sit amet, consectetur adipiscing elit."',
+      },
     },
           {
         name: 'links',
@@ -70,6 +76,9 @@ export const Layout1Block: Block = {
       type: 'upload',
       relationTo: 'media',
       required: true,
+      admin: {
+        description: 'Upload image or use placeholder',
+      },
     },
   ],
 }
